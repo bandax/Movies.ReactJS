@@ -1,13 +1,15 @@
 import React from 'react';
-import Header from './Header.jsx';
-import Footer from './Footer.jsx';
+import { Header } from './Header';
+import { Footer } from './Footer';
+import { Message } from './Message';
 
 
 const App = () => (
-    <div>
+    <div>        
         <Header />        
+        <Message />
         <Footer />
     </div>
 );
 
-export default App;
+export { App };
