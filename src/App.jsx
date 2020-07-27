@@ -4,12 +4,10 @@ import { Footer } from './Footer';
 import { Message } from './Message';
 
 
-const App = () => (
+export const App = () => (
     <div>        
         <Header />        
         <Message />
         <Footer />
     </div>
 );
-
-export { App };

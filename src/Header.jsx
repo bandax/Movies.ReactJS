@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { LocalDate } from './LocalDate';
 
-class Header extends Component {
+export class Header extends Component {
     render() {        
         return (
             <div>
@@ -11,5 +11,3 @@ class Header extends Component {
         );
     }
 }
-
-export { Header };
