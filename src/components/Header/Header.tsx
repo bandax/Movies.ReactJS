@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { LocalDate } from './LocalDate';
+import * as React from 'react';
+import { LocalDate } from '../LocalDate/LocalDate';
 
-export class Header extends Component {
+export class Header extends React.Component {
     render() {        
         return (
             <div>
