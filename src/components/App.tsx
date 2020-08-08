@@ -2,12 +2,13 @@ import * as React from "react";
 import './App.scss';
 import { Header } from './Header/Header';
 import { Footer } from './Footer/Footer';
-import { Message } from './Message/Message';
+import { ErrorBoundary } from './Error/ErrorBoundary';
 
 export const App = () => (
-  <div className="app">        
-    <Header />        
-    <Message />
-    <Footer />
+  <div className="app">  
+    <ErrorBoundary>
+      <Header />           
+      <Footer />
+    </ErrorBoundary>      
 </div>
 );

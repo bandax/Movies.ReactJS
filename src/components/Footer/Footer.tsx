@@ -1,7 +1,10 @@
 import * as React from 'react';
+import './Footer.scss';
 
-export class Footer extends React.PureComponent {
-    render() {
-        return <h4>Contact: administrator@movies.com</h4>
-    }
+export function Footer() {
+    return (
+        <div className="footer">
+            <img src="../../../assets/netflix-roulette.PNG" />
+        </div>
+    )
 }
