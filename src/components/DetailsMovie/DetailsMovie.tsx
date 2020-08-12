@@ -2,9 +2,8 @@ import * as React from 'react';
 import './DetailsMovie.scss';
 import { ICategory, IDetailsMovieProps } from '../../interfaces/IResultsMovies';
 
-
-
-export function DetailsMovie(props: IDetailsMovieProps) {
+export const DetailsMovie: React.FunctionComponent<IDetailsMovieProps> 
+                                                        = (props: IDetailsMovieProps) => { 
     const movie = props.movie;     
        
     return (

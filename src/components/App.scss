@@ -1,6 +1,16 @@
 
 .app {  
-  font-size: 12px;
+  font-size: 14px;
   font-family: Open Sans;
   color: #9ca4ab;
+
+  .btn {
+    color: #F65261;     
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+  }
+
 }

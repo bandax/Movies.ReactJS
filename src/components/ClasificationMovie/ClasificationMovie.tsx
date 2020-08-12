@@ -2,7 +2,8 @@ import * as React from 'react';
 import './ClasificationMovie.scss';
 import { IClasification, IClasificationMovieProps } from '../../interfaces/IClasificationMovie';
 
-export function ClasificationMovie(props: IClasificationMovieProps) {
+export const ClasificationMovie: React.FunctionComponent<IClasificationMovieProps> 
+                                                        = (props: IClasificationMovieProps) => { 
     const movieTypes = props.clasificationTypes;     
        
     return (

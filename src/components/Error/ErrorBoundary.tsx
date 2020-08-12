@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './ErrorBoundary.scss';
 
 export function ErrorBoundary(props:any) {
     const ErrorMessage = () => { 
@@ -7,5 +6,5 @@ export function ErrorBoundary(props:any) {
     }
 
     let notExistError = true;
-    return <> { notExistError ? props.children : <ErrorMessage /> } </>
+    return notExistError ? props.children : <ErrorMessage />;
 }

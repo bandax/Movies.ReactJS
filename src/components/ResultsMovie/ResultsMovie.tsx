@@ -3,7 +3,8 @@ import './ResultsMovie.scss';
 import { IMovie, IResultsMovieProps } from '../../interfaces/IResultsMovies';
 import { DetailsMovie } from '../DetailsMovie/DetailsMovie';
 
-export function ResultsMovie(props: IResultsMovieProps) {
+export const ResultsMovie: React.FunctionComponent<IResultsMovieProps> 
+                                                        = (props: IResultsMovieProps) => { 
     const resultsMovies = props.resultsMovies;     
     const title = props.title;
        
