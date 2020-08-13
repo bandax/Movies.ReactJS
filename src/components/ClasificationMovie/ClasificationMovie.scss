@@ -1,24 +1,19 @@
-ul.movies-types {    
+.movies-types {    
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;    
-  
-  
-  li.movie-type {
-    float: left;
-  }
-  
-  li.movie-type a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
-  }
-  
-  li.movie-type a:hover {
-    background-color: #111111;
-  }
+    text-transform: uppercase;
+}
 
+.movie-type {
+  float: left;
+}
+
+.movie-type a {
+  display: block;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
 }

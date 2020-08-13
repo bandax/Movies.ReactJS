@@ -1,9 +1,9 @@
 export interface IClasification {
-    id: string,
-    name: string
+    id: string;
+    name: string;
 }
 
 export interface IClasificationMovieProps {
-    clasificationTypes: IClasification[],    
+    clasificationTypes: IClasification[];
 }
 

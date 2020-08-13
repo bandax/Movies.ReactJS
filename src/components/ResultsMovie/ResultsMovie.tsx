@@ -5,17 +5,16 @@ import { DetailsMovie } from '../DetailsMovie/DetailsMovie';
 
 export const ResultsMovie: React.FunctionComponent<IResultsMovieProps> 
                                                         = (props: IResultsMovieProps) => { 
-    const resultsMovies = props.resultsMovies;     
-    const title = props.title;
+    const resultsMovies = props.resultsMovies;         
        
     return (
         <div className="list-movies">
             <div className="total-result">
-                <span><b>{resultsMovies.total}</b> {title}</span> 
+                <span className="found-label"><b>{resultsMovies.length}</b> movies found</span> 
             </div>
             <div className="display-movie">
                 {
-                    resultsMovies.movies.map((movie:IMovie) => {
+                    resultsMovies.map((movie:IMovie) => {
                         return (
                             <DetailsMovie movie={movie} />
                         )

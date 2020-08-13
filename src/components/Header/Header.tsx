@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { LocalDate } from '../LocalDate/LocalDate';
 import './Header.scss';
 import { Search } from '../Search/Search';
 import { AddMovie } from '../AddMovie/AddMovie';
@@ -13,7 +12,6 @@ export const Header: React.FunctionComponent = () => (
         <br />
         <br />        
         <Search  />
-
     </div>
 );    
 

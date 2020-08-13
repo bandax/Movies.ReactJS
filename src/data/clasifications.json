@@ -1,0 +1,22 @@
+[
+    {
+      "id": "type-1",
+      "name": "All"
+    },
+    {
+      "id": "type-2",
+      "name": "Documentary"
+    },
+    {
+      "id": "type-3",
+      "name": "Comedy"
+    },
+    {
+      "id": "type-4",
+      "name": "Horror"
+    },
+    {
+      "id": "type-5",
+      "name": "Crime"
+    }
+  ]

@@ -1,33 +1,28 @@
 .search{
     text-align: left; 
-    margin-left: 200px;  
+    margin-left: 200px; 
+    text-transform: uppercase;     
+}
 
-    .find-label {
-        font-size: 30px;
-        color: #FFFFFF;
-    }
+.find-label {
+    font-size: 30px;
+    color: #FFFFFF;
+}
 
-    .search-box {
-        background-color: rgba(255,255,255,0.5);  
-        font-size: 20px;
-        margin-right: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 25px;
-        padding-right: 25px;
-        border-radius: 5px;
-        width: 500px;
+.search-box {
+    background-color: rgba(255,255,255,0.5);  
+    font-size: 20px;
+    margin-right: 20px;
+    padding: 10px 25px 10px 25px;    
+    border-radius: 5px;
+    width: 500px;
+}
 
-    }
-    
-    .btn-search {
-        background-color: #F65261;
-        color: white;
-        font-size: 20px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 25px;
-        padding-right: 25px;
-        border-radius: 5px;
-    }
+.btn-search {
+    background-color: #F65261;
+    color: white;
+    font-size: 20px;
+    padding: 10px 25px 10px 25px;    
+    border-radius: 5px;
+    text-transform: uppercase; 
 }
