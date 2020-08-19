@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Search.scss';
 
 const Search: React.FunctionComponent = ()  => (   
-    <div className="search">
+    <div className="search col-10">
         <span className="find-label">Find your movie</span>
         <br />
         <input className="search-box" placeholder="What do you want to watch?" />

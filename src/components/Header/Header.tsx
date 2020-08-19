@@ -4,14 +4,9 @@ import { Search } from '../Search/Search';
 import { AddMovie } from '../AddMovie/AddMovie';
 
 const Header: React.FunctionComponent = () => (    
-    <div className="header">     
-        <br />
-        <AddMovie />           
-        <br />
-        <br />
-        <br />
-        <br />        
+    <div className="header row">             
         <Search  />
+        <AddMovie />                            
     </div>
 );    
 

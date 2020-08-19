@@ -36,7 +36,21 @@ module.exports = {
         enforce: "pre",
         test: /\.js$/,
         loader: "source-map-loader",
-      }
+      },
+      {
+        test: /\.(png|svg|jpe?g|gif)$/,
+        include: /assets/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/',
+              publicPath: 'assets/'
+            }
+          }
+        ]
+      },
     ],
   },
   plugins: [
