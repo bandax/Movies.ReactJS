@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { LocalDate } from '../LocalDate/LocalDate';
+import './Header.scss';
+import { Search } from '../Search/Search';
+import { AddMovie } from '../AddMovie/AddMovie';
 
-export class Header extends React.Component {
-    render() {        
-        return (
-            <div>
-                <LocalDate />
-                <h1>Welcome to Movie Catalog</h1>
-            </div>
-        );
-    }
-}
+const Header: React.FunctionComponent = () => (    
+    <div className="header row">             
+        <Search  />
+        <AddMovie />                            
+    </div>
+);    
+
+export { Header };

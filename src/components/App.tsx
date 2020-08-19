@@ -1,13 +1,20 @@
-import * as React from "react";
+import * as React from 'react';
 import './App.scss';
 import { Header } from './Header/Header';
 import { Footer } from './Footer/Footer';
-import { Message } from './Message/Message';
+import { ErrorBoundary } from './Error/ErrorBoundary';
+import { SubHeader } from './SubHeader/SubHeader';
 
-export const App = () => (
-  <div className="app">        
-    <Header />        
-    <Message />
-    <Footer />
-</div>
+import { ResultsMovie } from './ResultsMovie/ResultsMovie';
+import * as movies from '../data/movies.json';
+
+export const App: React.FunctionComponent = () => (    
+  <div className="app">  
+    <ErrorBoundary>
+      <Header />     
+      <SubHeader />
+      <ResultsMovie resultsMovies={movies} />
+      <Footer />
+    </ErrorBoundary>      
+  </div>
 );
