@@ -1,9 +1,13 @@
 import * as React from 'react';
 import './ResultsMovie.scss';
-import { IMovie, IResultsMovieProps } from '../../interfaces/IResultsMovies';
+import { IMovie } from '../../interfaces/IResultsMovies';
 import { DetailsMovie } from '../DetailsMovie/DetailsMovie';
 
-export const ResultsMovie: React.FunctionComponent<IResultsMovieProps> 
+interface IResultsMovieProps {    
+    resultsMovies: IMovie[];    
+}
+
+const ResultsMovie: React.FunctionComponent<IResultsMovieProps> 
                                                         = (props: IResultsMovieProps) => { 
     const resultsMovies = props.resultsMovies;         
        
@@ -13,15 +17,11 @@ export const ResultsMovie: React.FunctionComponent<IResultsMovieProps>
                 <span className="found-label"><b>{resultsMovies.length}</b> movies found</span> 
             </div>
             <div className="display-movie">
-                {
-                    resultsMovies.map((movie:IMovie) => {
-                        return (
-                            <DetailsMovie movie={movie} />
-                        )
-                    })
-                }
+                { resultsMovies.map((movie:IMovie) => <DetailsMovie movie={movie} />) }
             </div>            
         </div>
         
     )
 }
+
+export { ResultsMovie };

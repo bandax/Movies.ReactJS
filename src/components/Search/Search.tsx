@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './Search.scss';
 
-export const Search: React.FunctionComponent = ()  => (   
+const Search: React.FunctionComponent = ()  => (   
     <div className="search">
         <span className="find-label">Find your movie</span>
         <br />
@@ -9,3 +9,5 @@ export const Search: React.FunctionComponent = ()  => (
         <button className="btn btn-search">Search</button>
     </div>   
 );
+
+export { Search };

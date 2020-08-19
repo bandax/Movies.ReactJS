@@ -1,8 +1,12 @@
 import * as React from 'react';
 import './DetailsMovie.scss';
-import { ICategory, IDetailsMovieProps } from '../../interfaces/IResultsMovies';
+import { IMovie } from '../../interfaces/IResultsMovies';
 
-export const DetailsMovie: React.FunctionComponent<IDetailsMovieProps>
+export interface IDetailsMovieProps {
+    movie: IMovie;   
+}
+
+const DetailsMovie: React.FunctionComponent<IDetailsMovieProps>
     = (props: IDetailsMovieProps) => {
         const movie = props.movie;
 
@@ -13,8 +17,10 @@ export const DetailsMovie: React.FunctionComponent<IDetailsMovieProps>
                 <span className="title-movie">{movie.title}</span>
                 <span className="year-movie">{movie.year}</span>
                 <span className="categories-movie">
-                    {movie.categories.map(category => category.name).join(", ")}
+                    { movie.categories.map(category => category.name).join(", ") }
                 </span>
             </div>
         )
     }
+
+export { DetailsMovie };

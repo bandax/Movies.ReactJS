@@ -1,8 +1,12 @@
 import * as React from 'react';
 import './ClasificationMovie.scss';
-import { IClasification, IClasificationMovieProps } from '../../interfaces/IClasificationMovie';
+import { IClasification } from '../../interfaces/IClasificationMovie';
 
-export const ClasificationMovie: React.FunctionComponent<IClasificationMovieProps>
+interface IClasificationMovieProps {
+    clasificationTypes: IClasification[];
+}
+
+const ClasificationMovie: React.FunctionComponent<IClasificationMovieProps>
     = (props: IClasificationMovieProps) => {
         const movieTypes = props.clasificationTypes;
 
@@ -12,7 +16,7 @@ export const ClasificationMovie: React.FunctionComponent<IClasificationMovieProp
                     movieTypes.map(({ id, name }) => {
                         return (
                             <li key={id} className="movie-type">
-                                <a href="" >{name}</a>
+                                <a href="">{name}</a>
                             </li>
                         );
                     })
@@ -20,3 +24,5 @@ export const ClasificationMovie: React.FunctionComponent<IClasificationMovieProp
             </ul>
         );
     }
+
+export { ClasificationMovie };

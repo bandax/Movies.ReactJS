@@ -10,12 +10,3 @@ export interface ICategory {
     id: string; 
     name: string;
 }
-
-export interface IResultsMovieProps {    
-    resultsMovies: IMovie[];    
-}
-
-
-export interface IDetailsMovieProps {
-    movie: IMovie;   
-}

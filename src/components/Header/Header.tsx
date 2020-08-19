@@ -3,7 +3,7 @@ import './Header.scss';
 import { Search } from '../Search/Search';
 import { AddMovie } from '../AddMovie/AddMovie';
 
-export const Header: React.FunctionComponent = () => (    
+const Header: React.FunctionComponent = () => (    
     <div className="header">     
         <br />
         <AddMovie />           
@@ -15,3 +15,4 @@ export const Header: React.FunctionComponent = () => (
     </div>
 );    
 
+export { Header };
