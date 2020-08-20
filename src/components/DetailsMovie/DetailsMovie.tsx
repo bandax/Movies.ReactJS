@@ -11,7 +11,7 @@ const DetailsMovie: React.FunctionComponent<IDetailsMovieProps>
         const movie = props.movie;
 
         return (
-            <div className="details-movie col-4" key={movie.id}>
+            <div className="details-movie col-4 col-s-6" key={movie.id}>
                 <img className="poster-movie" src={movie.image} />                
                 <div className="text-movie row">
                     <div className="title-movie col-8">

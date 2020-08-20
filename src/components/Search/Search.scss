@@ -1,7 +1,6 @@
 .search{
     text-align: left;     
-    text-transform: uppercase;   
-    padding: 100px 100px;  
+    text-transform: uppercase;    
 }
 
 .find-label {
@@ -11,19 +10,43 @@
 
 .search-box {
     background-color: rgba(10, 10, 10, 0.8);  
-    font-size: 20px;
-    margin-right: 20px;
+    font-size: 14px;
+    margin: 0 10px 0 5px;
     padding: 10px 25px;    
     border-radius: 8px;  
-    width: 70%; 
+    width: 98%; 
     border-color: #232323;
 }
 
 .btn-search {
     background-color: #F65261;
     color: white;
-    font-size: 20px;
-    padding: 10px 50px;    
+    font-size: 14px;
+    padding: 10px 50px;  
+    margin: 10px 0 0 0;  
     border-radius: 5px;
     text-transform: uppercase; 
+    border: 1px solid #F65261;
+}
+
+@media only screen and (min-width: 800px) {
+    .btn-search {
+        background-color: #F65261;
+        color: white;
+        font-size: 20px;
+        padding: 10px 50px;    
+        border-radius: 5px;
+        text-transform: uppercase; 
+        border: 1px solid #F65261;
+    }        
+
+    .search-box {
+        background-color: rgba(10, 10, 10, 0.8);  
+        font-size: 20px;
+        margin-right: 20px;
+        padding: 10px 25px;    
+        border-radius: 8px;  
+        width: 70%; 
+        border-color: #232323;
+    }
 }
