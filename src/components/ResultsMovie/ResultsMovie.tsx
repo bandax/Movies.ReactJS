@@ -13,10 +13,11 @@ const ResultsMovie: React.FunctionComponent<IResultsMovieProps>
        
     return (
         <div className="list-movies">
+            <hr className="division" />            
             <div className="total-result">
                 <span className="found-label"><b>{resultsMovies.length}</b> movies found</span> 
             </div>
-            <div className="display-movie">
+            <div className="display-movie row">
                 { resultsMovies.map((movie:IMovie) => <DetailsMovie movie={movie} />) }
             </div>            
         </div>

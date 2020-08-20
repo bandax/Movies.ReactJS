@@ -26,5 +26,21 @@
                 "name": "Drama"
             }
         ]
+    },
+    {
+        "id":"movie-3",
+        "title": "Pulp Fiction",
+        "image": "../../../assets/posters/pulp-fiction.PNG",
+        "year": 2004,
+        "categories": [
+            {
+                "id": "cat-1",
+                "name": "Action & Adventure"
+            },
+            {
+                "id": "cat-2",
+                "name": "Drama"
+            }
+        ]
     }
 ]

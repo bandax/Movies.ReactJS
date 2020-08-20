@@ -11,15 +11,17 @@ const SortMovie: React.FunctionComponent<ISortMovieProps>
     const { sortOptions } = props;
 
     return (
-        <>
-            <span className="sort-title">sort by: </span>
-            <select>
-            {               
-                sortOptions.map((sortOption:ISortOption) => 
-                                <option key={sortOption.id} value={sortOption.id}>{sortOption.name}</option>)                    
-                                                           
-            }
-            </select>
+        <>                    
+            <div className="sort-options">
+                <span className="sort-title">sort by </span>
+                <select>
+                {               
+                    sortOptions.map((sortOption:ISortOption) => 
+                                    <option key={sortOption.id} value={sortOption.id}>{sortOption.name}</option>)                    
+                                                            
+                }
+                </select>
+            </div>
         </>
     )
 }

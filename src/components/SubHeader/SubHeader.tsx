@@ -9,11 +9,11 @@ import * as sortOptions from '../../data/sorts.json';
 import * as clasificationTypes from '../../data/clasifications.json';
   
 const SubHeader: React.FunctionComponent = () => (    
-  <div className="sub-header">
-      <div className="clasification-movies">
+  <div className="sub-header row">
+      <div className="clasification-movies col-9">
           <ClasificationMovie clasificationTypes={clasificationTypes} />   
       </div>
-      <div className="sort-movies">      
+      <div className="sort-movies col-3">      
           <SortMovie sortOptions={sortOptions} />   
       </div>
   </div>
