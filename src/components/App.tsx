@@ -9,12 +9,12 @@ import { ResultsMovie } from './ResultsMovie/ResultsMovie';
 import * as movies from '../data/movies.json';
 
 export const App: React.FunctionComponent = () => (    
-  <div className="app">  
-    <ErrorBoundary>
+  <div className="app">          
+    <ErrorBoundary>     
       <Header />     
-      <SubHeader />
+      <SubHeader />      
       <ResultsMovie resultsMovies={movies} />
-      <Footer />
+      <Footer />      
     </ErrorBoundary>      
   </div>
 );

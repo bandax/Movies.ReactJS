@@ -4,6 +4,10 @@ export interface IMovie {
     image: string;
     year: number;
     categories: ICategory[];
+    releaseDate: string;
+    review: string;
+    url: string;    
+    runtime: string;
 }
 
 export interface ICategory {
