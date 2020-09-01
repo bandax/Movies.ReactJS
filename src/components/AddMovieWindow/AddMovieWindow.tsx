@@ -38,13 +38,13 @@ class AddMovieWindow extends React.Component<AddMovieWindowProps, AddMovieWindow
 
     initState = () => {
         this.state = {  
-            movieId: this.props.movie ? this.props.movie.id : "",        
-            title: this.props.movie ? this.props.movie.title : "",
-            releaseDate: this.props.movie ? this.props.movie.releaseDate : "",
-            overview: this.props.movie ? this.props.movie.review : "",
-            url: this.props.movie ? this.props.movie.url : "",
-            genres: this.props.movie ? this.props.movie.categories : [],
-            runtime: this.props.movie ? this.props.movie.runtime : "",
+            movieId: this.props.movie?.id ?? "",        
+            title: this.props.movie?.title ?? "",
+            releaseDate: this.props.movie?.releaseDate ?? "",
+            overview: this.props.movie?.review ?? "",
+            url: this.props.movie?.url ?? "",
+            genres: this.props.movie?.categories ?? [],
+            runtime: this.props.movie?.runtime ?? "",
         }
     }
 
