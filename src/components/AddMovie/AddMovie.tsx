@@ -6,24 +6,34 @@ import * as clasificationTypes from '../../data/clasifications.json';
 import { IMovie } from '../../interfaces/IResultsMovies';
 
 const movie: IMovie = {
-    "id":"movie-1",
-    "title": "Avengers Infinity War",
-    "image": "../../../assets/posters/avengers-infinity-war.PNG",
-    "year": 2004,
-    "releaseDate": "01/02/2014",    
-    "review": "Testing review",
-    "url": "http://movie.com",
-    "runtime": "Runtime",    
-    "categories": [
+    id: "movie-1",
+    title: "Avengers Infinity War",
+    image: "../../../assets/posters/avengers-infinity-war.PNG",
+    year: 2004,
+    releaseDate: "01/02/2014",    
+    review: "Testing review",
+    url: "http://movie.com",
+    runtime: "Runtime",    
+    categories: [
         {
-            "id": "cat-1",
-            "name": "Action & Adventure"
+            id: "cat-1",
+            name: "Action & Adventure"
         }
     ]
+};
+
+type AddMovieState = {
+    showModal: boolean;
+    showDeleteMovieModal: boolean;
+    title:string;
+    releaseDate: Date;
+    overview: string;
+    url: string;
+    genre: string;
+    runtime: string;
 }
 
-
-class AddMovie  extends React.Component { 
+class AddMovie  extends React.Component<{}, AddMovieState> { 
     state = {
         showModal: false,
         showDeleteMovieModal: false,
@@ -41,10 +51,6 @@ class AddMovie  extends React.Component {
 
     handleShowDeleteMovieWindow = (e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLAnchorElement>) => {        
         this.setState({showDeleteMovieModal: !this.state.showDeleteMovieModal})
-    }
-
-    handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {        
-        this.setState({showModal: !this.state.showModal})
     }
 
     render() {

@@ -19,7 +19,7 @@ type AddMovieWindowState = {
     title: string;
     releaseDate: string;
     url: string;
-    genre: IClasification[];
+    genres: IClasification[];
     overview: string;
     runtime: string;
 }
@@ -32,17 +32,42 @@ interface IOptions {
 class AddMovieWindow extends React.Component<AddMovieWindowProps, AddMovieWindowState> {  
     
     constructor(props: AddMovieWindowProps){
-        super(props);
+       super(props);
+       this.initState();
+    }
 
+    initState = () => {
         this.state = {  
             movieId: this.props.movie ? this.props.movie.id : "",        
             title: this.props.movie ? this.props.movie.title : "",
             releaseDate: this.props.movie ? this.props.movie.releaseDate : "",
             overview: this.props.movie ? this.props.movie.review : "",
             url: this.props.movie ? this.props.movie.url : "",
-            genre: this.props.movie ? this.props.movie.categories : [],
+            genres: this.props.movie ? this.props.movie.categories : [],
             runtime: this.props.movie ? this.props.movie.runtime : "",
         }
+    }
+
+    get releaseDate() {
+        return this.state.releaseDate !== "" ? new Date(this.state.releaseDate) : new Date();
+    }
+
+    get optionsGenre() {
+        return this.props.clasificationMovies.map((clasOption:IClasification) => 
+                                                        ({ label: clasOption.name, value: clasOption.id}));
+    }
+
+    get selectedGenres() {
+        return this.state.genres.map((clasOption:IClasification) => 
+                                ({ label: clasOption.name, value: clasOption.id}));
+    }
+
+    get showMovieIdField() {
+        return this.state.movieId !== "" 
+        ?  ( <><label className="label-text" htmlFor="movieId">Movie Id</label>
+            <input className="input-text" id="movieId" name="movieId" placeholder=""
+            value={this.state.movieId} onChange={this.onChangeInput} /> </>)
+        : null;
     }
 
     onChangeInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -54,13 +79,10 @@ class AddMovieWindow extends React.Component<AddMovieWindowProps, AddMovieWindow
     }
 
     onSelectedGenres = (e: IOptions[]) => {     
-        const genres:IClasification[] = e.map((option:IOptions) => {
-            return { id: option.value, name: option.label}
-        });
+        const genres:IClasification[] = e.map((option:IOptions) => 
+                                                            ({ id: option.value, name: option.label}));
                
-        this.setState({
-            genre: genres
-        });
+        this.setState({ genres });
     }
 
     onReleaseDateChange = (e: Date) => {        
@@ -71,15 +93,7 @@ class AddMovieWindow extends React.Component<AddMovieWindowProps, AddMovieWindow
 
     onResetClicked = (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        this.setState({  
-            movieId: this.props.movie ? this.props.movie.id : "",        
-            title: this.props.movie ? this.props.movie.title : "",
-            releaseDate: this.props.movie ? this.props.movie.releaseDate : "",
-            overview: this.props.movie ? this.props.movie.review : "",
-            url: this.props.movie ? this.props.movie.url : "",
-            genre: this.props.movie ? this.props.movie.categories : [],
-            runtime: this.props.movie ? this.props.movie.runtime : "",
-        });
+        this.initState();
     }
 
     onSubmitClicked = (e: React.FormEvent<HTMLButtonElement>) => {
@@ -91,36 +105,21 @@ class AddMovieWindow extends React.Component<AddMovieWindowProps, AddMovieWindow
     if (!this.props.showModal) {
         return null;
     } 
-
-    const optionsGenres = this.props.clasificationMovies.map((clasOption:IClasification) => {
-        return { label: clasOption.name, value: clasOption.id}
-    });
     
-    const selectedGenres = this.state.genre.map((clasOption:IClasification) => {
-        return { label: clasOption.name, value: clasOption.id}
-    });
-
-    const releaseDate = this.state.releaseDate !== "" ? new Date(this.state.releaseDate) : new Date();
-
-    const showMovieIdField = this.state.movieId !== "" 
-    ?  ( <><label className="label-text" htmlFor="movieId">Movie Id</label>
-        <input className="input-text" id="movieId" name="movieId" placeholder=""
-        value={this.state.movieId} onChange={this.onChangeInput} /> </>)
-    : null
     return (
         <div className="add-movie-window">
             <div className="add-movie-modal">
                 <h2 className="add-movie-title">Add movie</h2>
                 <a className="add-movie-close" href="#" onClick={this.props.onHandleShowAddMovieWindow}>&times;</a>
                 <div className="add-movie-content">
-                    {showMovieIdField}
+                    {this.showMovieIdField}
 
                     <label className="label-text" htmlFor="title">Title</label>
                     <input className="input-text" id="title" name="title" 
                     placeholder="Title" value={this.state.title} onChange={this.onChangeInput} /> 
 
                     <label className="label-text" htmlFor="releaseDate">Release Date</label>
-                    <DatePicker selected={releaseDate} onChange={this.onReleaseDateChange} className="date-icon input-text" />                   
+                    <DatePicker selected={this.releaseDate} onChange={this.onReleaseDateChange} className="date-icon input-text" />                   
 
                     <label className="label-text" htmlFor="url">Movie URL</label>
                     <input className="input-text" id="url" name="url" placeholder="Movie URL here"
@@ -128,8 +127,8 @@ class AddMovieWindow extends React.Component<AddMovieWindowProps, AddMovieWindow
 
                     <label className="label-text" htmlFor="genre">Genre</label>                   
                     <MultiSelect
-                        options={optionsGenres}
-                        value={selectedGenres}
+                        options={this.optionsGenre}
+                        value={this.selectedGenres}
                         onChange={this.onSelectedGenres}
                         labelledBy={"Select"}                        
                     />                   
