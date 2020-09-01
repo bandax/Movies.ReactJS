@@ -10,11 +10,11 @@ import movies from '../data/movies.json';
 
 export const App: React.FunctionComponent = () => (    
   <div className="app">          
-    <ErrorBoundary>     
-      <Header />     
-      <SubHeader />      
+    <ErrorBoundary>
+      <Header />
+      <SubHeader />
       <ResultsMovie resultsMovies={movies} />
-      <Footer />      
-    </ErrorBoundary>      
+      <Footer />
+    </ErrorBoundary>
   </div>
 );
