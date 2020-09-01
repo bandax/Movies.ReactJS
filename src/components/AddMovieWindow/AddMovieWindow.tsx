@@ -10,8 +10,7 @@ type AddMovieWindowProps = {
     showModal: boolean;
     clasificationMovies: IClasification[];
     movie: IMovie,   
-    onHandleShowAddMovieWindow: (e: React.MouseEvent<HTMLButtonElement> 
-        | React.MouseEvent<HTMLAnchorElement>) => void;
+    onHandleShowAddMovieWindow: () => void;
 }
 
 type AddMovieWindowState = {    
@@ -36,15 +35,15 @@ class AddMovieWindow extends React.Component<AddMovieWindowProps, AddMovieWindow
        this.initState();
     }
 
-    initState = () => {
+    initState() {
         this.state = {  
-            movieId: this.props.movie?.id ?? "",        
-            title: this.props.movie?.title ?? "",
-            releaseDate: this.props.movie?.releaseDate ?? "",
-            overview: this.props.movie?.review ?? "",
-            url: this.props.movie?.url ?? "",
+            movieId: this.props.movie?.id ?? '',        
+            title: this.props.movie?.title ?? '',
+            releaseDate: this.props.movie?.releaseDate ?? '',
+            overview: this.props.movie?.review ?? '',
+            url: this.props.movie?.url ?? '',
             genres: this.props.movie?.categories ?? [],
-            runtime: this.props.movie?.runtime ?? "",
+            runtime: this.props.movie?.runtime ?? '',
         }
     }
 
@@ -93,7 +92,15 @@ class AddMovieWindow extends React.Component<AddMovieWindowProps, AddMovieWindow
 
     onResetClicked = (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        this.initState();
+        this.setState({  
+            movieId: this.props.movie?.id ?? '',        
+            title: this.props.movie?.title ?? '',
+            releaseDate: this.props.movie?.releaseDate ?? '',
+            overview: this.props.movie?.review ?? '',
+            url: this.props.movie?.url ?? '',
+            genres: this.props.movie?.categories ?? [],
+            runtime: this.props.movie?.runtime ?? '',
+        });
     }
 
     onSubmitClicked = (e: React.FormEvent<HTMLButtonElement>) => {

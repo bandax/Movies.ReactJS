@@ -17,7 +17,7 @@ const ResultsMovie: React.FunctionComponent<IResultsMovieProps>
                 <span className="found-label"><b>{resultsMovies.length}</b> movies found</span> 
             </div>
             <div className="display-movie">
-                { resultsMovies.map((movie:IMovie) => <DetailsMovie movie={movie} />) }
+                { resultsMovies.map((movie:IMovie) => <DetailsMovie key={movie.id} movie={movie} />) }
             </div>            
         </div>
         

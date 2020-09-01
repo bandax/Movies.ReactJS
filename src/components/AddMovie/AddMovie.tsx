@@ -2,22 +2,22 @@ import * as React from 'react';
 import './AddMovie.scss';
 import { AddMovieWindow } from '../AddMovieWindow/AddMovieWindow';
 import { DeleteMovieWindow } from '../DeleteMovie/DeleteMovie';
-import * as clasificationTypes from '../../data/clasifications.json';
+import clasificationTypes from '../../data/clasifications.json';
 import { IMovie } from '../../interfaces/IResultsMovies';
 
 const movie: IMovie = {
-    id: "movie-1",
-    title: "Avengers Infinity War",
-    image: "../../../assets/posters/avengers-infinity-war.PNG",
+    id: 'movie-1',
+    title: 'Avengers Infinity War',
+    image: '../../../assets/posters/avengers-infinity-war.PNG',
     year: 2004,
-    releaseDate: "01/02/2014",    
-    review: "Testing review",
-    url: "http://movie.com",
-    runtime: "Runtime",    
+    releaseDate: '01/02/2014',    
+    review: 'Testing review',
+    url: 'http://movie.com',
+    runtime: 'Runtime',    
     categories: [
         {
-            id: "cat-1",
-            name: "Action & Adventure"
+            id: 'cat-1',
+            name: 'Action & Adventure'
         }
     ]
 };
@@ -37,15 +37,15 @@ class AddMovie  extends React.Component<{}, AddMovieState> {
     state = {
         showModal: false,
         showDeleteMovieModal: false,
-        title: "",
+        title: '',
         releaseDate: new Date(),
-        overview: "",
-        url: "",
-        genre: "",
-        runtime: "",
+        overview: '',
+        url: '',
+        genre: '',
+        runtime: '',
     }
 
-    handleShowAddMovieWindow = (e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLAnchorElement>) => {        
+    handleShowAddMovieWindow = () => {        
         this.setState({showModal: !this.state.showModal})
     }
 
@@ -65,7 +65,7 @@ class AddMovie  extends React.Component<{}, AddMovieState> {
                     <AddMovieWindow 
                                     clasificationMovies={clasificationTypes}
                                     showModal={this.state.showModal} 
-                                    movie={movie}
+                                    movie={null}
                                     onHandleShowAddMovieWindow={this.handleShowAddMovieWindow}  />
                     
                     <DeleteMovieWindow movieId="movie-1" 

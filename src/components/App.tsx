@@ -6,7 +6,7 @@ import { ErrorBoundary } from './Error/ErrorBoundary';
 import { SubHeader } from './SubHeader/SubHeader';
 
 import { ResultsMovie } from './ResultsMovie/ResultsMovie';
-import * as movies from '../data/movies.json';
+import movies from '../data/movies.json';
 
 export const App: React.FunctionComponent = () => (    
   <div className="app">          
