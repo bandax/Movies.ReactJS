@@ -45,7 +45,7 @@
     width: 100%;
 }
 
-/*Forms controls*/
+// Forms controls
 .input-text {
     width: 96%;
     padding: 20px 20px;
@@ -113,10 +113,10 @@
     --rmsc-border: #ccc;
     --rmsc-gray: #aaa;
     --rmsc-bg: rgba(10, 10, 10, 0.8) !important;
-    --rmsc-p: 10px; /* Spacing */
-    --rmsc-radius: 4px; /* Radius */
-    --rmsc-h: 38px; /* Height */
-    --rmsc-w: 95% !important; /* Height */
+    --rmsc-p: 10px; // Spacing 
+    --rmsc-radius: 4px; // Radius 
+    --rmsc-h: 38px; // Height 
+    --rmsc-w: 95% !important; // Width
 }
 
 .dropdown-container {
