@@ -2,3 +2,4 @@ node_modules/
 dist/
 dev/
 prod/
+package-lock.json
