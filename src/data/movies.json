@@ -4,6 +4,10 @@
         "title": "Avengers Infinity War",
         "image": "../../../assets/posters/avengers-infinity-war.PNG",
         "year": 2004,
+        "releaseDate": "01/02/2010",
+        "review": "Testing review",
+        "runtime": "Runtime",
+        "url": "http://www.movies.com",
         "categories": [
             {
                 "id": "cat-1",
@@ -16,6 +20,10 @@
         "title": "Pulp Fiction",
         "image": "../../../assets/posters/pulp-fiction.PNG",
         "year": 2004,
+        "releaseDate": "01/02/2010",
+        "review": "Testing review",
+        "runtime": "Runtime",
+        "url": "http://www.movies.com",
         "categories": [
             {
                 "id": "cat-1",
