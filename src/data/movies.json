@@ -1,6 +1,6 @@
 [
     {
-        "id":"movie-1",
+        "id": "movie-1",
         "title": "Avengers Infinity War",
         "image": "../../../assets/posters/avengers-infinity-war.PNG",
         "year": 2004,
@@ -16,7 +16,7 @@
         ]
     },
     {
-        "id":"movie-2",
+        "id": "movie-2",
         "title": "Pulp Fiction",
         "image": "../../../assets/posters/pulp-fiction.PNG",
         "year": 2004,

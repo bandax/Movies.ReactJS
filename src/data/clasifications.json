@@ -1,18 +1,18 @@
-[    
+[
     {
-      "id": "type-1",
-      "name": "Documentary"
+        "id": "type-1",
+        "name": "Documentary"
     },
     {
-      "id": "type-2",
-      "name": "Comedy"
+        "id": "type-2",
+        "name": "Comedy"
     },
     {
-      "id": "type-3",
-      "name": "Horror"
+        "id": "type-3",
+        "name": "Horror"
     },
     {
-      "id": "type-4",
-      "name": "Crime"
+        "id": "type-4",
+        "name": "Crime"
     }
-  ]
+]

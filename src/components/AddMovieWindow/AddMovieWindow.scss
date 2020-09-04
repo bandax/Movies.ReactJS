@@ -1,10 +1,10 @@
-.add-movie-window {    
+.add-movie-window {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;    
-    transition: opacity 500ms;    
-  } 
+    right: 0;
+    transition: opacity 500ms;
+}
 
 .add-movie-modal {
     margin: 70px auto;
@@ -15,13 +15,13 @@
     position: relative;
     transition: all 5s ease-in-out;
 }
-  
+
 .add-movie-title {
     margin: 10px 0 20px 0;
-    color: #FFFFFF;
-    text-transform: uppercase;  
-    font-size: 35px;  
-    font-weight:bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 35px;
+    font-weight: bold;
 }
 
 .add-movie-close {
@@ -32,7 +32,7 @@
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 40px;
 }
 
@@ -54,18 +54,19 @@
     border: 1px solid #232323;
     border-radius: 4px;
     box-sizing: border-box;
-    background-color: rgba(10, 10, 10, 0.8);  
-    color: #FFFFFF;
+    background-color: rgba(10, 10, 10, 0.8);
+    color: #ffffff;
     font-size: 18px;
 }
 
 .date-icon {
-    background: rgba(10, 10, 10, 0.8) url('../../../assets/date_icon.png') no-repeat;            
-    background-position: 99% 50%;   
+    background: rgba(10, 10, 10, 0.8) url("../../../assets/date_icon.png")
+        no-repeat;
+    background-position: 99% 50%;
     background-size: 30px 29px;
     cursor: pointer;
 }
-  
+
 .input-select {
     width: 95%;
     padding: 20px 20px;
@@ -74,36 +75,35 @@
     border: 1px solid #232323;
     border-radius: 4px;
     box-sizing: border-box;
-    background-color: rgba(10, 10, 10, 0.8);  
-    color: #FFFFFF;
+    background-color: rgba(10, 10, 10, 0.8);
+    color: #ffffff;
     font-size: 18px;
 }
-  
 
 .label-text {
-    color: #F65261;
+    color: #f65261;
     text-transform: uppercase;
     font-weight: bold;
-    padding: 0 0 10px 0;    
+    padding: 0 0 10px 0;
     font-size: 18px;
 }
 
 .btn-submit {
-    background-color: #F65261;
+    background-color: #f65261;
     color: white;
     font-size: 18px;
-    padding: 10px 50px;    
+    padding: 10px 50px;
     border-radius: 5px;
-    text-transform: uppercase; 
+    text-transform: uppercase;
 }
-  
+
 .btn-reset {
     background-color: #232323;
-    color: #F65261;
+    color: #f65261;
     font-size: 18px;
-    padding: 10px 50px;    
+    padding: 10px 50px;
     border-radius: 5px;
-    text-transform: uppercase; 
+    text-transform: uppercase;
 }
 
 .multi-select {
@@ -113,9 +113,9 @@
     --rmsc-border: #ccc;
     --rmsc-gray: #aaa;
     --rmsc-bg: rgba(10, 10, 10, 0.8) !important;
-    --rmsc-p: 10px; // Spacing 
-    --rmsc-radius: 4px; // Radius 
-    --rmsc-h: 38px; // Height 
+    --rmsc-p: 10px; // Spacing
+    --rmsc-radius: 4px; // Radius
+    --rmsc-h: 38px; // Height
     --rmsc-w: 95% !important; // Width
 }
 
@@ -127,13 +127,12 @@
     padding: 10px 20px;
     margin: 15px 0 10px 10px;
 }
-  
-@media screen and (max-width: 700px){
-    .box{
-      width: 70%;
+
+@media screen and (max-width: 700px) {
+    .box {
+        width: 70%;
     }
     .add-movie-modal {
-      width: 70%;
+        width: 70%;
     }
-}  
-
+}
