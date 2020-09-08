@@ -50,7 +50,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
     );
 
     setOptionGenres(optionGenres);
-  }, [genres]);
+  }, [props.clasificationMovies]);
 
   React.useEffect(() => {
     const selGenres = genres.map((clasOption: IClasification) => ({
@@ -106,8 +106,6 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
     e.preventDefault();
     alert(`Saving data ${values.title} ${releaseValueDate}`);
   };
-
-  console.log(props.showModal);
 
   if (!props.showModal) {
     return null;

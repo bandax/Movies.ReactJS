@@ -5,6 +5,7 @@ import { DeleteMovieWindow } from "../DeleteMovie/DeleteMovie";
 import { MovieInfo } from "../MovieInfo/MovieInfo";
 import clasificationTypes from "../../data/clasifications.json";
 import { IMovie } from "../../interfaces/IResultsMovies";
+import { IClasification } from "../../interfaces/IClasificationMovie";
 
 const movie: IMovie = {
   id: "movie-1",
@@ -19,7 +20,7 @@ const movie: IMovie = {
   runtime: "154 mins",
   categories: [
     {
-      id: "cat-1",
+      id: "type-4",
       name: "Action & Adventure",
     },
   ],
@@ -39,7 +40,7 @@ interface IAddMovieState {
 
 const AddMovie: React.FunctionComponent = (props) => {
   const [showAddMovieModal, setShowAddMovieModal] = React.useState<boolean>(
-    true
+    false
   );
   const [showDeleteMovieModal, setShowDeleteMovieModal] = React.useState<
     boolean
@@ -47,6 +48,9 @@ const AddMovie: React.FunctionComponent = (props) => {
   const [showMovieInfoMovieModal, setShowMovieInfoModal] = React.useState<
     boolean
   >(false);
+  const [movieTypes, setClasificationTypes] = React.useState<IClasification[]>(
+    clasificationTypes
+  );
 
   const handleShowAddMovieWindow = () => {
     setShowAddMovieModal(!showAddMovieModal);
@@ -58,6 +62,14 @@ const AddMovie: React.FunctionComponent = (props) => {
 
   const handleShowHideMovieInfoWindow = () => {
     setShowMovieInfoModal(!showMovieInfoMovieModal);
+  };
+
+  const addClassType = () => {
+    const newClasificationType = {
+      id: "type-5",
+      name: "Testing",
+    };
+    setClasificationTypes([...movieTypes, newClasificationType]);
   };
 
   return (
@@ -86,8 +98,13 @@ const AddMovie: React.FunctionComponent = (props) => {
           +Show Movie
         </button>
       </div>
+      <div className="add-movie col-2">
+        <button className="btn btn-add-movie" onClick={addClassType}>
+          +Add Class Type
+        </button>
+      </div>
       <AddMovieWindow
-        clasificationMovies={clasificationTypes}
+        clasificationMovies={movieTypes}
         showModal={showAddMovieModal}
         movie={movie}
         onHandleShowAddMovieWindow={handleShowAddMovieWindow}
