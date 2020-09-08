@@ -52,17 +52,17 @@ const AddMovie: React.FunctionComponent = (props) => {
     clasificationTypes
   );
 
-  const handleShowAddMovieWindow = () => {
+  const handleShowAddMovieWindow = React.useCallback(() => {
     setShowAddMovieModal(!showAddMovieModal);
-  };
+  }, [showAddMovieModal]);
 
-  const handleShowDeleteMovieWindow = () => {
+  const handleShowDeleteMovieWindow = React.useCallback(() => {
     setShowDeleteMovieModal(!showDeleteMovieModal);
-  };
+  }, [showDeleteMovieModal]);
 
-  const handleShowHideMovieInfoWindow = () => {
+  const handleShowHideMovieInfoWindow = React.useCallback(() => {
     setShowMovieInfoModal(!showMovieInfoMovieModal);
-  };
+  }, [showMovieInfoMovieModal]);
 
   const addClassType = () => {
     const newClasificationType = {
