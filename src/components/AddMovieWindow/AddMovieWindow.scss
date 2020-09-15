@@ -25,6 +25,7 @@
 }
 
 .add-movie-close {
+  background-color: transparent;
   position: absolute;
   top: 5px;
   right: 30px;
@@ -34,6 +35,8 @@
   text-decoration: none;
   color: #ffffff;
   font-size: 40px;
+  border: none;
+  cursor: pointer;
 }
 
 .add-movie-content {
