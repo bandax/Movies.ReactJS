@@ -1,11 +1,11 @@
-.delete-movie-window {    
+.delete-movie-window {
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    right: 0;    
-    transition: opacity 500ms;    
-  } 
+    right: 0;
+    transition: opacity 500ms;
+}
 
 .delete-movie-modal {
     margin: 70px auto;
@@ -16,13 +16,13 @@
     position: relative;
     transition: all 5s ease-in-out;
 }
-  
+
 .delete-movie-title {
     margin: 10px 0 20px 0;
-    color: #FFFFFF;
-    text-transform: uppercase;  
-    font-size: 35px;  
-    font-weight:bold;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-size: 35px;
+    font-weight: bold;
 }
 
 .delete-movie-close {
@@ -33,36 +33,36 @@
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 40px;
 }
 
 .delete-movie-content {
     max-height: 30%;
     overflow: auto;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 18px;
     margin: 0 0 10px 0;
 }
 
 .delete-movie-actions {
-   text-align: right;
+    text-align: right;
 }
 
-.btn-confirm {    
-    background-color: #F65261;
+.btn-confirm {
+    background-color: #f65261;
     color: white;
     font-size: 18px;
-    padding: 10px 50px;    
+    padding: 10px 50px;
     border-radius: 5px;
-    text-transform: uppercase; 
+    text-transform: uppercase;
 }
-  
-@media screen and (max-width: 700px){
-    .box{
-      width: 70%;
+
+@media screen and (max-width: 700px) {
+    .box {
+        width: 70%;
     }
     .delete-movie-modal {
-      width: 70%;
+        width: 70%;
     }
-}  
+}

@@ -1,139 +1,141 @@
-.add-movie-window {    
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;    
-    transition: opacity 500ms;    
-  } 
+.add-movie-window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: opacity 500ms;
+}
 
 .add-movie-modal {
-    margin: 70px auto;
-    padding: 20px;
-    background: #000000;
-    border-radius: 5px;
-    width: 70%;
-    position: relative;
-    transition: all 5s ease-in-out;
+  margin: 10px 70px 0 70px;
+  padding: 20px;
+  background: #000000;
+  border-radius: 5px;
+  width: 70%;
+  position: relative;
+  transition: all 5s ease-in-out;
 }
-  
+
 .add-movie-title {
-    margin: 10px 0 20px 0;
-    color: #FFFFFF;
-    text-transform: uppercase;  
-    font-size: 35px;  
-    font-weight:bold;
+  margin: 10px 0 20px 0;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: 35px;
+  font-weight: bold;
 }
 
 .add-movie-close {
-    position: absolute;
-    top: 5px;
-    right: 30px;
-    transition: all 200ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #FFFFFF;
-    font-size: 40px;
+  background-color: transparent;
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 40px;
+  border: none;
+  cursor: pointer;
 }
 
 .add-movie-content {
-    max-height: 30%;
-    overflow: auto;
+  max-height: 30%;
+  overflow: auto;
 }
 
 .react-datepicker-wrapper {
-    width: 100%;
+  width: 100%;
 }
 
 // Forms controls
 .input-text {
-    width: 96%;
-    padding: 20px 20px;
-    margin: 15px 0 10px 10px;
-    display: inline-block;
-    border: 1px solid #232323;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: rgba(10, 10, 10, 0.8);  
-    color: #FFFFFF;
-    font-size: 18px;
+  width: 96%;
+  padding: 20px 20px;
+  margin: 15px 0 10px 10px;
+  display: inline-block;
+  border: 1px solid #232323;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: rgba(10, 10, 10, 0.8);
+  color: #ffffff;
+  font-size: 18px;
 }
 
 .date-icon {
-    background: rgba(10, 10, 10, 0.8) url('../../../assets/date_icon.png') no-repeat;            
-    background-position: 99% 50%;   
-    background-size: 30px 29px;
-    cursor: pointer;
+  background: rgba(10, 10, 10, 0.8) url("../../../assets/date_icon.png")
+    no-repeat;
+  background-position: 99% 50%;
+  background-size: 30px 29px;
+  cursor: pointer;
 }
-  
+
 .input-select {
-    width: 95%;
-    padding: 20px 20px;
-    margin: 15px 0 10px 10px;
-    display: inline-block;
-    border: 1px solid #232323;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: rgba(10, 10, 10, 0.8);  
-    color: #FFFFFF;
-    font-size: 18px;
+  width: 95%;
+  padding: 20px 20px;
+  margin: 15px 0 10px 10px;
+  display: inline-block;
+  border: 1px solid #232323;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: rgba(10, 10, 10, 0.8);
+  color: #ffffff;
+  font-size: 18px;
 }
-  
 
 .label-text {
-    color: #F65261;
-    text-transform: uppercase;
-    font-weight: bold;
-    padding: 0 0 10px 0;    
-    font-size: 18px;
+  color: #f65261;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0 0 10px 0;
+  font-size: 18px;
 }
 
 .btn-submit {
-    background-color: #F65261;
-    color: white;
-    font-size: 18px;
-    padding: 10px 50px;    
-    border-radius: 5px;
-    text-transform: uppercase; 
+  background-color: #f65261;
+  color: white;
+  font-size: 18px;
+  padding: 10px 50px;
+  border-radius: 5px;
+  text-transform: uppercase;
 }
-  
+
 .btn-reset {
-    background-color: #232323;
-    color: #F65261;
-    font-size: 18px;
-    padding: 10px 50px;    
-    border-radius: 5px;
-    text-transform: uppercase; 
+  background-color: #232323;
+  color: #f65261;
+  font-size: 18px;
+  padding: 10px 50px;
+  border-radius: 5px;
+  text-transform: uppercase;
 }
 
 .multi-select {
-    --rmsc-main: #4285f4;
-    --rmsc-hover: #f1f3f5;
-    --rmsc-selected: #e2e6ea;
-    --rmsc-border: #ccc;
-    --rmsc-gray: #aaa;
-    --rmsc-bg: rgba(10, 10, 10, 0.8) !important;
-    --rmsc-p: 10px; // Spacing 
-    --rmsc-radius: 4px; // Radius 
-    --rmsc-h: 38px; // Height 
-    --rmsc-w: 95% !important; // Width
+  --rmsc-main: #4285f4;
+  --rmsc-hover: #f1f3f5;
+  --rmsc-selected: #e2e6ea;
+  --rmsc-border: #ccc;
+  --rmsc-gray: #aaa;
+  --rmsc-bg: rgba(10, 10, 10, 0.8) !important;
+  --rmsc-p: 10px; // Spacing
+  --rmsc-radius: 4px; // Radius
+  --rmsc-h: 38px; // Height
+  --rmsc-w: 95% !important; // Width
 }
 
 .dropdown-container {
-    width: 96%;
-    border: 1px solid #232323;
-    border-radius: 4px;
-    font-size: 18px;
-    padding: 10px 20px;
-    margin: 15px 0 10px 10px;
+  width: 96%;
+  border: 1px solid #232323;
+  border-radius: 4px;
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 15px 0 10px 10px;
 }
-  
-@media screen and (max-width: 700px){
-    .box{
-      width: 70%;
-    }
-    .add-movie-modal {
-      width: 70%;
-    }
-}  
 
+@media screen and (max-width: 700px) {
+  .box {
+    width: 70%;
+  }
+  .add-movie-modal {
+    width: 70%;
+  }
+}
