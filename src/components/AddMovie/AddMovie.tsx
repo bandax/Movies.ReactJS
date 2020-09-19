@@ -8,7 +8,7 @@ import { IMovie } from "../../interfaces/IResultsMovies";
 import { IClasification } from "../../interfaces/IClasificationMovie";
 
 const movie: IMovie = {
-  id: "movie-1",
+  id: 1234,
   title: "Avengers Infinity War",
   image: "../../../assets/posters/avengers-infinity-war.PNG",
   year: 2004,

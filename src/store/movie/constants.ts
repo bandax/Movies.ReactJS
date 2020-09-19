@@ -1,0 +1,17 @@
+export const LOADING_MOVIES = "LOADING_MOVIES";
+export type LOADING_MOVIES = typeof LOADING_MOVIES;
+
+export const LOAD_MOVIES_SUCCESS = "LOAD_MOVIES_SUCCESS";
+export type LOAD_MOVIES_SUCCESS = typeof LOAD_MOVIES_SUCCESS;
+
+export const LOADING_MOVIES_ERROR = "LOADING_MOVIES_ERROR";
+export type LOADING_MOVIES_ERROR = typeof LOADING_MOVIES_ERROR;
+
+export const ADD_MOVIE = "ADD_MOVIE";
+export type ADD_MOVIE = typeof ADD_MOVIE;
+
+export const UPDATE_MOVIE = "UPDATE_MOVIE";
+export type UPDATE_MOVIE = typeof UPDATE_MOVIE;
+
+export const DELETE_MOVIE = "DELETE_MOVIE";
+export type DELETE_MOVIE = typeof DELETE_MOVIE;
