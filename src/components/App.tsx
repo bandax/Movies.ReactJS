@@ -13,7 +13,7 @@ const App: React.FunctionComponent = () => (
     <ErrorBoundary>
       <Header />
       <SubHeader />
-      <ResultsMovie counter={1} />
+      <ResultsMovie />
       <Footer />
     </ErrorBoundary>
   </div>

@@ -1,19 +1,28 @@
 // src/thunks.ts
 
 import { Action } from "redux";
-import { loadingMovies } from "../../store/movie/actions";
+import {
+  loadingMovies,
+  loadingMoviesSuccess,
+  loadingMoviesError,
+} from "../../store/movie/actions";
 import { RootState } from "../../store/index";
-import { ThunkAction } from "redux-thunk";
+import { ThunkDispatch } from "redux-thunk";
 
-export const thunkSendMessage = (
-  message: string
-): ThunkAction<void, RootState, unknown, Action<string>> => async (
-  dispatch
+export const loadMovies = () => async (
+  dispatch: ThunkDispatch<RootState, void, Action>
 ) => {
-  const asyncResp = await exampleAPI();
-  dispatch(loadingMovies());
-};
+  console.log("laoding movies");
 
-function exampleAPI() {
-  return Promise.resolve("Async Chat Bot");
-}
+  try {
+    dispatch(loadingMovies());
+    const response = await fetch("http://localhost:4000/movies");
+    const movies = await response.json();
+    console.log(movies);
+    dispatch(loadingMoviesSuccess(movies.data));
+  } catch (error) {
+    console.log(error);
+    dispatch(loadingMoviesError(error.message));
+    // dispatch(displayAlert(error));
+  }
+};
