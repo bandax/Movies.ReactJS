@@ -1,5 +1,5 @@
 import * as constants from "./constants";
-import { IMovie } from "../../interfaces/IResultsMovies";
+import { IMovieData } from "../../interfaces/IMovieData";
 import { MovieActionsTypes } from "./types";
 
 export function loadingMovies(): MovieActionsTypes {
@@ -9,7 +9,7 @@ export function loadingMovies(): MovieActionsTypes {
   };
 }
 
-export function loadingMoviesSuccess(movies: IMovie[]): MovieActionsTypes {
+export function loadingMoviesSuccess(movies: IMovieData[]): MovieActionsTypes {
   return {
     type: constants.LOAD_MOVIES_SUCCESS,
     loading: false,
@@ -24,14 +24,14 @@ export function loadingMoviesError(errorMessage: string): MovieActionsTypes {
     errorMessage: errorMessage,
   };
 }
-export function addMovie(movie: IMovie): MovieActionsTypes {
+export function addMovie(movie: IMovieData): MovieActionsTypes {
   return {
     type: constants.ADD_MOVIE,
     movieToAdd: movie,
   };
 }
 
-export function updateMovie(movie: IMovie): MovieActionsTypes {
+export function updateMovie(movie: IMovieData): MovieActionsTypes {
   return {
     type: constants.UPDATE_MOVIE,
     movieToUpdate: movie,

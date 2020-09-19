@@ -1,7 +1,7 @@
-import { IMovie } from "../../interfaces/IResultsMovies";
+import { IMovieData } from "../../interfaces/IMovieData";
 
 export interface MovieState {
-  movies: IMovie[];
+  movies: IMovieData[];
   loading: boolean;
   errorMessage: string;
 }

@@ -1,14 +1,14 @@
 import * as constants from "./constants";
-import { IMovie } from "../../interfaces/IResultsMovies";
+import { IMovieData } from "../../interfaces/IMovieData";
 
 export interface IAddMovie {
   type: constants.ADD_MOVIE;
-  movieToAdd: IMovie;
+  movieToAdd: IMovieData;
 }
 
 export interface IUpdateMovie {
   type: constants.UPDATE_MOVIE;
-  movieToUpdate: IMovie;
+  movieToUpdate: IMovieData;
 }
 
 export interface IDeleteMovie {
@@ -22,7 +22,7 @@ export interface ILoadingMovies {
 }
 export interface ILoadMoviesSuccess {
   type: constants.LOAD_MOVIES_SUCCESS;
-  movies: IMovie[];
+  movies: IMovieData[];
   loading: boolean;
 }
 

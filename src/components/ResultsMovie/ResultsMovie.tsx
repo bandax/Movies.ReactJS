@@ -1,22 +1,20 @@
 import * as React from "react";
 import "./ResultsMovie.scss";
-import { IMovie } from "../../interfaces/IResultsMovies";
+import { IMovieData } from "../../interfaces/IMovieData";
 import { DetailsMovie } from "../DetailsMovie/DetailsMovie";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../store/index";
 import * as constants from "../../store/movie/constants";
 import { loadMovies } from "./thunks";
 import { ThunkDispatch } from "redux-thunk";
-import { getMoviesLoading } from "./selectors";
+import { getMoviesLoading, getMoviesData } from "./selectors";
 import { Action } from "redux";
 
-const moviesInit: IMovie[] = [];
+const moviesInit: IMovieData[] = [];
 const mapState = (state: RootState) => ({
-  movies: moviesInit,
+  movies: getMoviesData(state),
   isLoading: getMoviesLoading(state),
 });
-
-type MyThunkDispatch = ThunkDispatch<RootState, undefined, any>;
 
 const mapDispatch = (dispatch: ThunkDispatch<RootState, void, Action>) => {
   return {
@@ -30,22 +28,20 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 type Props = PropsFromRedux;
 
 interface IResultsMovieProps {
-  resultsMovies: IMovie[];
+  resultsMovies: IMovieData[];
 }
 
 const ResultsMovie: React.FunctionComponent<Props> = ({
-  movies = [],
+  movies,
   startLoadingMovies,
-  isLoading = false,
+  isLoading,
 }) => {
-  // const { movies, counter } = props;
   React.useEffect(() => {
-    console.log("call loading movies");
-
     startLoadingMovies();
   }, []);
 
   const loadingMessage = <div>Loading movies...</div>;
+  console.log("Rendering movies");
 
   const content = (
     <div className="list-movies">
@@ -55,7 +51,7 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
         </span>
       </div>
       <div className="display-movie">
-        {movies.map((movie: IMovie) => (
+        {movies.map((movie: IMovieData) => (
           <DetailsMovie key={movie.id} movie={movie} />
         ))}
       </div>
