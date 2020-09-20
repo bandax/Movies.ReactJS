@@ -1,6 +1,7 @@
 import { MovieActionsTypes } from "./types";
 import { MovieState } from "./state";
 import * as constants from "./constants";
+import { IMovieData } from "../../interfaces/IMovieData";
 
 const initialState: MovieState = {
   movies: [],
@@ -57,7 +58,35 @@ export function movieReducer(
         ...state,
         movie: action.movie,
       };
+    case constants.FILTER_BY_RELEASE_DATE_AND_RATING:
+      return {
+        ...state,
+        movies: state.movies.filter(
+          (movie) =>
+            movie.release_date === action.releaseDate &&
+            action.rating === action.rating
+        ),
+      };
+    case constants.SORT_BY_GENRE:
+      return {
+        ...state,
+        movies: state.movies.sort(compare),
+      };
     default:
       return state;
   }
+}
+
+function compare(a: IMovieData, b: IMovieData) {
+  // Use toUpperCase() to ignore character casing
+  const genresA = a.genres.map((genre) => genre.toUpperCase()).join(", ");
+  const genresB = b.genres.map((genre) => genre.toUpperCase()).join(", ");
+
+  let comparison = 0;
+  if (genresA > genresB) {
+    comparison = 1;
+  } else if (genresA < genresB) {
+    comparison = -1;
+  }
+  return comparison;
 }

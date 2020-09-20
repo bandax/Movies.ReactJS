@@ -37,6 +37,17 @@ export interface ISelectMovie {
   movie: IMovieData;
 }
 
+export interface IFilterReleaseDateAndRating {
+  type: constants.FILTER_BY_RELEASE_DATE_AND_RATING;
+  releaseDate: string;
+  rating: number;
+}
+
+export interface ISortByGenre {
+  type: constants.SORT_BY_GENRE;
+  genre: string;
+}
+
 export type MovieActionsTypes =
   | IAddMovie
   | IUpdateMovie
@@ -44,4 +55,6 @@ export type MovieActionsTypes =
   | ILoadingMovies
   | ILoadMoviesSuccess
   | ILoadMoviesError
-  | ISelectMovie;
+  | ISelectMovie
+  | IFilterReleaseDateAndRating
+  | ISortByGenre;

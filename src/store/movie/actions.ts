@@ -51,3 +51,21 @@ export function selectMovie(movie: IMovieData): MovieActionsTypes {
     movie: movie,
   };
 }
+
+export function filterByReleaseDateAndRating(
+  releaseDate: string,
+  rating: number
+): MovieActionsTypes {
+  return {
+    type: constants.FILTER_BY_RELEASE_DATE_AND_RATING,
+    releaseDate: releaseDate,
+    rating: rating,
+  };
+}
+
+export function sortByGenre(genre: string): MovieActionsTypes {
+  return {
+    type: constants.SORT_BY_GENRE,
+    genre: genre,
+  };
+}
