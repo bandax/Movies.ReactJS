@@ -19,12 +19,16 @@ export function movieReducer(
         movies: state.movies.concat(action.movieToAdd),
       };
     case constants.UPDATE_MOVIE:
-      const movies = state.movies.filter(
-        (movie) => movie.id !== action.movieToUpdate.id
+      const index = state.movies.findIndex(
+        (movie) => movie.id === action.movieToUpdate.id
       );
+      const newMovies = Object.assign([], state.movies, {
+        [index]: action.movieToUpdate,
+      });
+
       return {
         ...state,
-        movies: movies.concat(action.movieToUpdate),
+        movies: newMovies,
       };
     case constants.DELETE_MOVIE:
       return {
@@ -47,6 +51,11 @@ export function movieReducer(
         ...state,
         loading: false,
         errorMessage: action.errorMessage,
+      };
+    case constants.SELECT_MOVIE:
+      return {
+        ...state,
+        movie: action.movie,
       };
     default:
       return state;

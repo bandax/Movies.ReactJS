@@ -14,5 +14,13 @@
   {
     "id": "type-4",
     "name": "Action & Adventure"
+  },
+  {
+    "id": "type-5",
+    "name": "Drama"
+  },
+  {
+    "id": "type-6",
+    "name": "Romance"
   }
 ]

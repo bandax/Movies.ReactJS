@@ -7,6 +7,9 @@ export type LOAD_MOVIES_SUCCESS = typeof LOAD_MOVIES_SUCCESS;
 export const LOADING_MOVIES_ERROR = "LOADING_MOVIES_ERROR";
 export type LOADING_MOVIES_ERROR = typeof LOADING_MOVIES_ERROR;
 
+export const SELECT_MOVIE = "SELECT_MOVIE";
+export type SELECT_MOVIE = typeof SELECT_MOVIE;
+
 export const ADD_MOVIE = "ADD_MOVIE";
 export type ADD_MOVIE = typeof ADD_MOVIE;
 

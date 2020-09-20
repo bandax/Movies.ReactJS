@@ -32,10 +32,16 @@ export interface ILoadMoviesError {
   errorMessage: string;
 }
 
+export interface ISelectMovie {
+  type: constants.SELECT_MOVIE;
+  movie: IMovieData;
+}
+
 export type MovieActionsTypes =
   | IAddMovie
   | IUpdateMovie
   | IDeleteMovie
   | ILoadingMovies
   | ILoadMoviesSuccess
-  | ILoadMoviesError;
+  | ILoadMoviesError
+  | ISelectMovie;

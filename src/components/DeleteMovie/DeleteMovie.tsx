@@ -1,17 +1,24 @@
 import * as React from "react";
 import "./DeleteMovie.scss";
+import { IMovieData } from "../../interfaces/IMovieData";
 
 interface IDeleteMovieWindowProps {
   showDeleteMovieModal: boolean;
-  movieId: string;
+  movieId: number;
   onHandleShowDeleteMovieWindow: (
     e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLAnchorElement>
   ) => void;
+  onHandleConfirmDeleteMovie: (id: number) => void;
 }
 
 const DeleteMovieWindow: React.FunctionComponent<IDeleteMovieWindowProps> = (
   props: IDeleteMovieWindowProps
 ) => {
+  const onSubmitClicked = (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    props.onHandleConfirmDeleteMovie(props.movieId);
+  };
+
   if (!props.showDeleteMovieModal) {
     return null;
   }
@@ -30,7 +37,9 @@ const DeleteMovieWindow: React.FunctionComponent<IDeleteMovieWindowProps> = (
           Are you sure you want to delete this movie?
         </div>
         <div className="delete-movie-actions">
-          <button className="btn btn-confirm">Confirm</button>
+          <button className="btn btn-confirm" onClick={onSubmitClicked}>
+            Confirm
+          </button>
         </div>
       </div>
     </div>

@@ -44,3 +44,10 @@ export function deleteMovie(movieId: number): MovieActionsTypes {
     movieId: movieId,
   };
 }
+
+export function selectMovie(movie: IMovieData): MovieActionsTypes {
+  return {
+    type: constants.SELECT_MOVIE,
+    movie: movie,
+  };
+}
