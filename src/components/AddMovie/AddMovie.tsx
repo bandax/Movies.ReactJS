@@ -1,7 +1,6 @@
 import * as React from "react";
 import "./AddMovie.scss";
 import { AddMovieWindow } from "../AddMovieWindow/AddMovieWindow";
-import { DeleteMovieWindow } from "../DeleteMovie/DeleteMovie";
 import { MovieInfo } from "../MovieInfo/MovieInfo";
 import clasificationTypes from "../../data/clasifications.json";
 import { IMovieData } from "../../interfaces/IMovieData";
@@ -58,14 +57,6 @@ const AddMovie: React.FunctionComponent<Props> = ({ movie, addNewMovie }) => {
     addNewMovie(movie);
   };
 
-  const addClassType = () => {
-    const newClasificationType = {
-      id: "type-5",
-      name: "Testing",
-    };
-    setClasificationTypes([...movieTypes, newClasificationType]);
-  };
-
   return (
     <>
       <div className="add-movie col-2">
@@ -92,11 +83,6 @@ const AddMovie: React.FunctionComponent<Props> = ({ movie, addNewMovie }) => {
           +Show Movie
         </button>
       </div>
-      <div className="add-movie col-2">
-        <button className="btn btn-add-movie" onClick={addClassType}>
-          +Add Class Type
-        </button>
-      </div>
       <AddMovieWindow
         clasificationMovies={movieTypes}
         showModal={showAddMovieModal}
@@ -104,12 +90,6 @@ const AddMovie: React.FunctionComponent<Props> = ({ movie, addNewMovie }) => {
         onHandleShowAddMovieWindow={handleShowAddMovieWindow}
         onHandleAddMovieSubmit={handleSubmitAddMovie}
       />
-
-      {/* <DeleteMovieWindow
-        movieId="movie-1"
-        showDeleteMovieModal={showDeleteMovieModal}
-        onHandleShowDeleteMovieWindow={handleShowDeleteMovieWindow}
-      /> */}
 
       {/* <MovieInfo
         movie={movie}
