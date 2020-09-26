@@ -4,8 +4,8 @@ import { IMovieData } from "../../interfaces/IMovieData";
 
 export interface IDetailsMovieProps {
   movie: IMovieData;
-  onHandleEditMovie: (movie: IMovieData) => void;
-  onHandleDeleteMovie: (movie: IMovieData) => void;
+  onEditMovie: (movie: IMovieData) => void;
+  onDeleteMovie: (movie: IMovieData) => void;
 }
 
 const DetailsMovie: React.FunctionComponent<IDetailsMovieProps> = (props) => {
@@ -16,14 +16,14 @@ const DetailsMovie: React.FunctionComponent<IDetailsMovieProps> = (props) => {
 
   const movie = props.movie;
 
-  const onHandleEditMovie = (e: React.FormEvent<HTMLButtonElement>) => {
+  const onEditMovie = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    props.onHandleEditMovie(movie);
+    props.onEditMovie(movie);
   };
 
-  const onHandleDeleteMovie = (e: React.FormEvent<HTMLButtonElement>) => {
+  const onDeleteMovie = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    props.onHandleDeleteMovie(movie);
+    props.onDeleteMovie(movie);
   };
 
   return (
@@ -36,10 +36,10 @@ const DetailsMovie: React.FunctionComponent<IDetailsMovieProps> = (props) => {
         <span className="categories-movie">
           {movie.genres.map((category) => category).join(", ")}
         </span>
-        <button className="" onClick={onHandleEditMovie}>
+        <button className="" onClick={onEditMovie}>
           Edit Movie
         </button>
-        <button className="" onClick={onHandleDeleteMovie}>
+        <button className="" onClick={onDeleteMovie}>
           Delete Movie
         </button>
       </div>

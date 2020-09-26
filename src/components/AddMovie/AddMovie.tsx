@@ -8,26 +8,31 @@ import { IClasification } from "../../interfaces/IClasificationMovie";
 import { Action } from "redux";
 
 import { RootState } from "../../store/index";
-import { connect, ConnectedProps } from "react-redux";
+import { connect } from "react-redux";
 import { ThunkDispatch } from "redux-thunk";
-import { saveMovie } from "./thunks";
+import { saveMovie, selectedMovie } from "./thunks";
 
-const mapState = (state: RootState) => ({
+const mapStateToProps = (state: RootState) => ({
   movie: state.movie.movie,
 });
 
-const mapDispatch = (dispatch: ThunkDispatch<RootState, void, Action>) => {
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<RootState, void, Action>
+) => {
   return {
     addNewMovie: (movie: IMovieData) => dispatch(saveMovie(movie)),
+    selectMovie: () => dispatch(selectedMovie(null)),
   };
 };
 
-const connector = connect(mapState, mapDispatch);
-type PropsFromRedux = ConnectedProps<typeof connector>;
+type Props = ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>;
 
-type Props = PropsFromRedux;
-
-const AddMovie: React.FunctionComponent<Props> = ({ movie, addNewMovie }) => {
+const AddMovie: React.FunctionComponent<Props> = ({
+  movie,
+  addNewMovie,
+  selectMovie,
+}) => {
   const [showAddMovieModal, setShowAddMovieModal] = React.useState<boolean>(
     false
   );
@@ -42,6 +47,7 @@ const AddMovie: React.FunctionComponent<Props> = ({ movie, addNewMovie }) => {
   );
 
   const handleShowAddMovieWindow = React.useCallback(() => {
+    selectMovie();
     setShowAddMovieModal(!showAddMovieModal);
   }, [showAddMovieModal]);
 
@@ -53,8 +59,8 @@ const AddMovie: React.FunctionComponent<Props> = ({ movie, addNewMovie }) => {
     setShowMovieInfoModal(!showMovieInfoMovieModal);
   }, [showMovieInfoMovieModal]);
 
-  const handleSubmitAddMovie = function (movie: IMovieData) {
-    addNewMovie(movie);
+  const handleSubmitAddMovie = function (movieToSave: IMovieData) {
+    addNewMovie(movieToSave);
   };
 
   return (
@@ -87,17 +93,17 @@ const AddMovie: React.FunctionComponent<Props> = ({ movie, addNewMovie }) => {
         clasificationMovies={movieTypes}
         showModal={showAddMovieModal}
         movie={movie}
-        onHandleShowAddMovieWindow={handleShowAddMovieWindow}
-        onHandleAddMovieSubmit={handleSubmitAddMovie}
+        onShowAddMovieWindow={handleShowAddMovieWindow}
+        onAddMovieSubmit={handleSubmitAddMovie}
       />
 
       {/* <MovieInfo
         movie={movie}
         showModal={showMovieInfoMovieModal}
-        onHandleShowHideMovieInfoWindow={handleShowHideMovieInfoWindow}
+        onShowHideMovieInfoWindow={handleShowHideMovieInfoWindow}
       /> */}
     </>
   );
 };
 
-export default connector(AddMovie);
+export default connect(mapStateToProps, mapDispatchToProps)(AddMovie);

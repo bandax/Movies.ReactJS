@@ -10,9 +10,9 @@ import { IMovieData } from "../../interfaces/IMovieData";
 interface IAddMovieWindowProps {
   showModal: boolean;
   clasificationMovies: IClasification[];
-  movie: IMovieData;
-  onHandleShowAddMovieWindow: () => void;
-  onHandleAddMovieSubmit: (movie: IMovieData) => void;
+  movie?: IMovieData;
+  onShowAddMovieWindow: () => void;
+  onAddMovieSubmit: (movie: IMovieData) => void;
 }
 
 interface IOptions {
@@ -35,8 +35,6 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
     url: props.movie?.poster_path ?? "",
     runtime: props.movie?.runtime ?? 0,
   };
-
-  console.log(props.movie);
 
   const [values, handleChange] = useForm(initialValues);
   const [releaseValueDate, setReleaseValueDate] = React.useState(
@@ -68,15 +66,10 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
       })
     );
 
-    console.log("executing1");
-
     setOptionGenres(optGenres);
   }, [props.clasificationMovies]);
 
   React.useEffect(() => {
-    // console.log("selected genres");
-    console.log(optionGenres);
-
     const selGenres: IOptions[] = [];
     genres.forEach((genre) => {
       const selectedGenre: IOptions = optionGenres.filter(
@@ -135,7 +128,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
 
   const onSubmitClicked = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const movie: IMovieData = {
+    const movieToSave: IMovieData = {
       budget: parseInt(values.budget, 0),
       genres: genres,
       id: parseInt(values.movieId, 0),
@@ -149,15 +142,12 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
       vote_average: parseInt(values.vote_average, 0),
       vote_count: parseInt(values.vote_count, 0),
     };
-    props.onHandleAddMovieSubmit(movie);
+    props.onAddMovieSubmit(movieToSave);
   };
 
   if (!props.showModal) {
     return null;
   }
-
-  console.log("values");
-  console.log(values);
 
   return (
     <div className="add-movie-window">
@@ -165,7 +155,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
         <h2 className="add-movie-title">Add movie</h2>
         <button
           className="add-movie-close"
-          onClick={props.onHandleShowAddMovieWindow}
+          onClick={props.onShowAddMovieWindow}
         >
           &times;
         </button>

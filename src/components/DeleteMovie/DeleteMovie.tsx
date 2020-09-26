@@ -5,10 +5,10 @@ import { IMovieData } from "../../interfaces/IMovieData";
 interface IDeleteMovieWindowProps {
   showDeleteMovieModal: boolean;
   movieId: number;
-  onHandleShowDeleteMovieWindow: (
+  onShowDeleteMovieWindow: (
     e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLAnchorElement>
   ) => void;
-  onHandleConfirmDeleteMovie: (id: number) => void;
+  onConfirmDeleteMovie: (id: number) => void;
 }
 
 const DeleteMovieWindow: React.FunctionComponent<IDeleteMovieWindowProps> = (
@@ -16,7 +16,7 @@ const DeleteMovieWindow: React.FunctionComponent<IDeleteMovieWindowProps> = (
 ) => {
   const onSubmitClicked = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    props.onHandleConfirmDeleteMovie(props.movieId);
+    props.onConfirmDeleteMovie(props.movieId);
   };
 
   if (!props.showDeleteMovieModal) {
@@ -29,7 +29,7 @@ const DeleteMovieWindow: React.FunctionComponent<IDeleteMovieWindowProps> = (
         <a
           className="delete-movie-close"
           href="#"
-          onClick={props.onHandleShowDeleteMovieWindow}
+          onClick={props.onShowDeleteMovieWindow}
         >
           &times;
         </a>

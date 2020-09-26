@@ -2,7 +2,7 @@ import * as React from "react";
 import "./ResultsMovie.scss";
 import { IMovieData } from "../../interfaces/IMovieData";
 import { DetailsMovie } from "../DetailsMovie/DetailsMovie";
-import { connect, ConnectedProps } from "react-redux";
+import { connect } from "react-redux";
 import { RootState } from "../../store/index";
 import { loadMovies } from "./thunks";
 import { ThunkDispatch } from "redux-thunk";
@@ -18,13 +18,15 @@ import clasificationTypes from "../../data/clasifications.json";
 import { IClasification } from "../../interfaces/IClasificationMovie";
 import { DeleteMovieWindow } from "../DeleteMovie/DeleteMovie";
 
-const mapState = (state: RootState) => ({
+const mapStateToProps = (state: RootState) => ({
   movie: state.movie.movie,
   movies: getMoviesData(state),
   isLoading: getMoviesLoading(state),
 });
 
-const mapDispatch = (dispatch: ThunkDispatch<RootState, void, Action>) => {
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<RootState, void, Action>
+) => {
   return {
     startLoadingMovies: () => dispatch(loadMovies()),
     updateMovie: (movie: IMovieData) => dispatch(saveMovie(movie)),
@@ -33,10 +35,8 @@ const mapDispatch = (dispatch: ThunkDispatch<RootState, void, Action>) => {
   };
 };
 
-const connector = connect(mapState, mapDispatch);
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-type Props = PropsFromRedux;
+type Props = ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>;
 
 const ResultsMovie: React.FunctionComponent<Props> = ({
   movie,
@@ -72,16 +72,13 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
   }, []);
 
   const loadingMessage = <div>Loading movies...</div>;
-  console.log("Rendering movies");
 
   const handleEditMovie = function (movie: IMovieData) {
-    console.log(movie);
     setShowAddMovieModal(!showAddMovieModal);
     selectMovie(movie);
   };
 
   const handleDeleteMovie = function (movie: IMovieData) {
-    console.log(movie);
     setShowDeleteMovieModal(!showDeleteMovieModal);
     selectMovie(movie);
   };
@@ -100,14 +97,14 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
         clasificationMovies={movieTypes}
         showModal={showAddMovieModal}
         movie={movie}
-        onHandleShowAddMovieWindow={handleShowAddMovieWindow}
-        onHandleAddMovieSubmit={handleUpdateMovie}
+        onShowAddMovieWindow={handleShowAddMovieWindow}
+        onAddMovieSubmit={handleUpdateMovie}
       />
       <DeleteMovieWindow
         movieId={movie?.id}
         showDeleteMovieModal={showDeleteMovieModal}
-        onHandleShowDeleteMovieWindow={handleShowDeleteMovieWindow}
-        onHandleConfirmDeleteMovie={handleDeleteSelectedMovie}
+        onShowDeleteMovieWindow={handleShowDeleteMovieWindow}
+        onConfirmDeleteMovie={handleDeleteSelectedMovie}
       />
       <div className="list-movies">
         <div className="total-result">
@@ -120,8 +117,8 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
             <DetailsMovie
               key={movie.id}
               movie={movie}
-              onHandleEditMovie={handleEditMovie}
-              onHandleDeleteMovie={handleDeleteMovie}
+              onEditMovie={handleEditMovie}
+              onDeleteMovie={handleDeleteMovie}
             />
           ))}
         </div>
@@ -132,4 +129,4 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
   return isLoading ? loadingMessage : content;
 };
 
-export default connector(ResultsMovie);
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsMovie);

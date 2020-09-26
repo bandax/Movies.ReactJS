@@ -15,21 +15,20 @@ export function movieReducer(
 ): MovieState {
   switch (action.type) {
     case constants.ADD_MOVIE:
+      const addMovie = [...state.movies, action.movieToAdd];
       return {
         ...state,
-        movies: state.movies.concat(action.movieToAdd),
+        movies: addMovie,
       };
     case constants.UPDATE_MOVIE:
       const index = state.movies.findIndex(
         (movie) => movie.id === action.movieToUpdate.id
       );
-      const newMovies = Object.assign([], state.movies, {
-        [index]: action.movieToUpdate,
-      });
-
+      const updatedMovies = [...state.movies];
+      updatedMovies[index] = action.movieToUpdate;
       return {
         ...state,
-        movies: newMovies,
+        movies: updatedMovies,
       };
     case constants.DELETE_MOVIE:
       return {
@@ -82,11 +81,10 @@ function compare(a: IMovieData, b: IMovieData) {
   const genresA = a.genres.map((genre) => genre.toUpperCase()).join(", ");
   const genresB = b.genres.map((genre) => genre.toUpperCase()).join(", ");
 
-  let comparison = 0;
   if (genresA > genresB) {
-    comparison = 1;
+    return 1;
   } else if (genresA < genresB) {
-    comparison = -1;
+    return -1;
   }
-  return comparison;
+  return 0;
 }
