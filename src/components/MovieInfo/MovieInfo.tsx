@@ -1,6 +1,6 @@
-import * as React from "react";
-import "./MovieInfo.scss";
-import { IMovie } from "../../interfaces/IResultsMovies";
+import * as React from 'react';
+import './MovieInfo.scss';
+import { IMovie } from '../../interfaces/IResultsMovies';
 
 interface IMovieInfoProps {
   showModal: boolean;
@@ -31,11 +31,11 @@ const MovieInfo: React.FunctionComponent<IMovieInfoProps> = (props) => {
           </div>
           <div className="col-8">
             <div className="">
-              <h1 className="movie-title">{movie.title}</h1>{" "}
+              <h1 className="movie-title">{movie.title}</h1>{' '}
               <span className="movie-rate">{movie.rate}</span>
             </div>
             <div>
-              <span className="movie-year">{movie.year}</span>{" "}
+              <span className="movie-year">{movie.year}</span>{' '}
               <span className="movie-duration">{movie.runtime}</span>
             </div>
             <div>

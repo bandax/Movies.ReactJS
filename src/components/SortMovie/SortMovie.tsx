@@ -1,28 +1,28 @@
-import * as React from "react"
-import "./SortMovie.scss"
-import { ISortOption } from "../../interfaces/ISortMovie"
+import * as React from 'react';
+import './SortMovie.scss';
+import { ISortOption } from '../../interfaces/ISortMovie';
 
 interface ISortMovieProps {
-    sortOptions: ISortOption[]
+  sortOptions: ISortOption[];
 }
 
 const SortMovie: React.FunctionComponent<ISortMovieProps> = (
-    props: ISortMovieProps
+  props: ISortMovieProps
 ) => {
-    const { sortOptions } = props
+  const { sortOptions } = props;
 
-    return (
-        <>
-            <span className="sort-title">sort by: </span>
-            <select>
-                {sortOptions.map((sortOption: ISortOption) => (
-                    <option key={sortOption.id} value={sortOption.id}>
-                        {sortOption.name}
-                    </option>
-                ))}
-            </select>
-        </>
-    )
-}
+  return (
+    <>
+      <span className="sort-title">sort by: </span>
+      <select>
+        {sortOptions.map((sortOption: ISortOption) => (
+          <option key={sortOption.id} value={sortOption.id}>
+            {sortOption.name}
+          </option>
+        ))}
+      </select>
+    </>
+  );
+};
 
-export { SortMovie }
+export { SortMovie };

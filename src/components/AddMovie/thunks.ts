@@ -1,20 +1,20 @@
-import { Action } from "redux";
+import { Action } from 'redux';
 import {
   addMovie,
   updateMovie,
   selectMovie,
   deleteMovie,
   loadingMoviesError,
-} from "../../store/movie/actions";
-import { RootState } from "../../store/index";
-import { ThunkDispatch } from "redux-thunk";
-import { IMovieData } from "../../interfaces/IMovieData";
-import { INetworkData } from "../../interfaces/INetWorkData";
+} from '../../store/movie/actions';
+import { RootState } from '../../store/index';
+import { ThunkDispatch } from 'redux-thunk';
+import { IMovieData } from '../../interfaces/IMovieData';
+import { INetworkData } from '../../interfaces/INetWorkData';
 import {
   postRequest,
   putRequest,
   deleteRequest,
-} from "../../services/networkService";
+} from '../../services/networkService';
 
 export const saveMovie = (movie: IMovieData) => async (
   dispatch: ThunkDispatch<RootState, void, Action>
@@ -27,15 +27,15 @@ export const saveMovie = (movie: IMovieData) => async (
       delete movie.id;
       data = {
         body: JSON.stringify(movie),
-        contentType: "application/json",
-        url: "http://localhost:4000/movies",
+        contentType: 'application/json',
+        url: 'http://localhost:4000/movies',
       };
       response = await postRequest(data);
     } else {
       data = {
         body: JSON.stringify(movie),
-        contentType: "application/json",
-        url: "http://localhost:4000/movies",
+        contentType: 'application/json',
+        url: 'http://localhost:4000/movies',
       };
       isNewMovie = false;
       response = await putRequest(data);
@@ -51,9 +51,9 @@ export const saveMovie = (movie: IMovieData) => async (
     } else {
       const data = await response.json();
       const messages = data.messages;
-      let allMessages = "Error with message: \n";
+      let allMessages = 'Error with message: \n';
       messages.forEach((message: string) => {
-        allMessages = allMessages.concat(message + "\n");
+        allMessages = allMessages.concat(message + '\n');
       });
       alert(allMessages);
     }

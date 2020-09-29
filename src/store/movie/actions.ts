@@ -1,6 +1,6 @@
-import * as constants from "./constants";
-import { IMovieData } from "../../interfaces/IMovieData";
-import { MovieActionsTypes } from "./types";
+import * as constants from './constants';
+import { IMovieData } from '../../interfaces/IMovieData';
+import { MovieActionsTypes } from './types';
 
 export function loadingMovies(): MovieActionsTypes {
   return {

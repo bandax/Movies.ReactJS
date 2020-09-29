@@ -4,16 +4,16 @@
 
 @for $i from 1 to 13 {
   .col-#{$i} {
-    width: 8.33 * $i#{"%"};
+    width: 8.33 * $i#{'%'};
   }
 }
 
-[class*="col-"] {
+[class*='col-'] {
   float: left;
 }
 
 .row::after {
-  content: "";
+  content: '';
   clear: both;
   display: table;
 }
@@ -25,7 +25,7 @@ html body {
 
 .app {
   font-size: 14px;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #9ca4ab;
 }
 

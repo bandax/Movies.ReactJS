@@ -1,12 +1,12 @@
-import { MovieActionsTypes } from "./types";
-import { MovieState } from "./state";
-import * as constants from "./constants";
-import { IMovieData } from "../../interfaces/IMovieData";
+import { MovieActionsTypes } from './types';
+import { MovieState } from './state';
+import * as constants from './constants';
+import { IMovieData } from '../../interfaces/IMovieData';
 
 const initialState: MovieState = {
   movies: [],
   loading: false,
-  errorMessage: "",
+  errorMessage: '',
 };
 
 export function movieReducer(
@@ -78,8 +78,8 @@ export function movieReducer(
 
 function compare(a: IMovieData, b: IMovieData) {
   // Use toUpperCase() to ignore character casing
-  const genresA = a.genres.map((genre) => genre.toUpperCase()).join(", ");
-  const genresB = b.genres.map((genre) => genre.toUpperCase()).join(", ");
+  const genresA = a.genres.map((genre) => genre.toUpperCase()).join(', ');
+  const genresB = b.genres.map((genre) => genre.toUpperCase()).join(', ');
 
   if (genresA > genresB) {
     return 1;

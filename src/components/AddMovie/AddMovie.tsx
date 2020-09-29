@@ -1,16 +1,16 @@
-import * as React from "react";
-import "./AddMovie.scss";
-import { AddMovieWindow } from "../AddMovieWindow/AddMovieWindow";
-import { MovieInfo } from "../MovieInfo/MovieInfo";
-import clasificationTypes from "../../data/clasifications.json";
-import { IMovieData } from "../../interfaces/IMovieData";
-import { IClasification } from "../../interfaces/IClasificationMovie";
-import { Action } from "redux";
+import * as React from 'react';
+import './AddMovie.scss';
+import { AddMovieWindow } from '../AddMovieWindow/AddMovieWindow';
+import { MovieInfo } from '../MovieInfo/MovieInfo';
+import clasificationTypes from '../../data/clasifications.json';
+import { IMovieData } from '../../interfaces/IMovieData';
+import { IClasification } from '../../interfaces/IClasificationMovie';
+import { Action } from 'redux';
 
-import { RootState } from "../../store/index";
-import { connect } from "react-redux";
-import { ThunkDispatch } from "redux-thunk";
-import { saveMovie, selectedMovie } from "./thunks";
+import { RootState } from '../../store/index';
+import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { saveMovie, selectedMovie } from './thunks';
 
 const mapStateToProps = (state: RootState) => ({
   movie: state.movie.movie,

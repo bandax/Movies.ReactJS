@@ -1,6 +1,6 @@
-import * as React from "react";
-import "./DetailsMovie.scss";
-import { IMovieData } from "../../interfaces/IMovieData";
+import * as React from 'react';
+import './DetailsMovie.scss';
+import { IMovieData } from '../../interfaces/IMovieData';
 
 export interface IDetailsMovieProps {
   movie: IMovieData;
@@ -34,7 +34,7 @@ const DetailsMovie: React.FunctionComponent<IDetailsMovieProps> = (props) => {
         <span className="title-movie">{movie.title}</span>
         <span className="year-movie">{getYear(movie.release_date)}</span>
         <span className="categories-movie">
-          {movie.genres.map((category) => category).join(", ")}
+          {movie.genres.map((category) => category).join(', ')}
         </span>
         <button className="" onClick={onEditMovie}>
           Edit Movie

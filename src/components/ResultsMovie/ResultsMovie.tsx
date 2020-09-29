@@ -1,22 +1,22 @@
-import * as React from "react";
-import "./ResultsMovie.scss";
-import { IMovieData } from "../../interfaces/IMovieData";
-import { DetailsMovie } from "../DetailsMovie/DetailsMovie";
-import { connect } from "react-redux";
-import { RootState } from "../../store/index";
-import { loadMovies } from "./thunks";
-import { ThunkDispatch } from "redux-thunk";
-import { getMoviesLoading, getMoviesData } from "./selectors";
-import { Action } from "redux";
+import * as React from 'react';
+import './ResultsMovie.scss';
+import { IMovieData } from '../../interfaces/IMovieData';
+import { DetailsMovie } from '../DetailsMovie/DetailsMovie';
+import { connect } from 'react-redux';
+import { RootState } from '../../store/index';
+import { loadMovies } from './thunks';
+import { ThunkDispatch } from 'redux-thunk';
+import { getMoviesLoading, getMoviesData } from './selectors';
+import { Action } from 'redux';
 import {
   saveMovie,
   selectedMovie,
   deleteSelectedMovie,
-} from "../AddMovie/thunks";
-import { AddMovieWindow } from "../AddMovieWindow/AddMovieWindow";
-import clasificationTypes from "../../data/clasifications.json";
-import { IClasification } from "../../interfaces/IClasificationMovie";
-import { DeleteMovieWindow } from "../DeleteMovie/DeleteMovie";
+} from '../AddMovie/thunks';
+import { AddMovieWindow } from '../AddMovieWindow/AddMovieWindow';
+import clasificationTypes from '../../data/clasifications.json';
+import { IClasification } from '../../interfaces/IClasificationMovie';
+import { DeleteMovieWindow } from '../DeleteMovie/DeleteMovie';
 
 const mapStateToProps = (state: RootState) => ({
   movie: state.movie.movie,

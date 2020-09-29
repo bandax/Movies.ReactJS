@@ -1,11 +1,11 @@
-import * as React from "react";
-import "./AddMovieWindow.scss";
-import { IClasification } from "../../interfaces/IClasificationMovie";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import MultiSelect from "react-multi-select-component";
-import { useForm } from "./useForm";
-import { IMovieData } from "../../interfaces/IMovieData";
+import * as React from 'react';
+import './AddMovieWindow.scss';
+import { IClasification } from '../../interfaces/IClasificationMovie';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import MultiSelect from 'react-multi-select-component';
+import { useForm } from './useForm';
+import { IMovieData } from '../../interfaces/IMovieData';
 
 interface IAddMovieWindowProps {
   showModal: boolean;
@@ -26,13 +26,13 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
   const initialValues = {
     budget: props.movie?.budget ?? 0,
     revenue: props.movie?.revenue ?? 0,
-    tagline: props.movie?.tagline ?? "",
+    tagline: props.movie?.tagline ?? '',
     vote_average: props.movie?.vote_average ?? 0,
     vote_count: props.movie?.vote_average ?? 0,
     movieId: props.movie?.id ?? 0,
-    title: props.movie?.title ?? "",
-    overview: props.movie?.overview ?? "",
-    url: props.movie?.poster_path ?? "",
+    title: props.movie?.title ?? '',
+    overview: props.movie?.overview ?? '',
+    url: props.movie?.poster_path ?? '',
     runtime: props.movie?.runtime ?? 0,
   };
 
@@ -98,7 +98,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
           readOnly
           value={values.movieId}
           onChange={handleChange}
-        />{" "}
+        />{' '}
       </>
     ) : null;
   };
@@ -200,7 +200,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
                 options={optionGenres}
                 value={selectedGenres}
                 onChange={onSelectedGenres}
-                labelledBy={"Select"}
+                labelledBy={'Select'}
               />
               <label className="label-text" htmlFor="overview">
                 Overview

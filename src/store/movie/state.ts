@@ -1,4 +1,4 @@
-import { IMovieData } from "../../interfaces/IMovieData";
+import { IMovieData } from '../../interfaces/IMovieData';
 
 export interface MovieState {
   movie?: IMovieData;

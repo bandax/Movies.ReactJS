@@ -1,5 +1,5 @@
-import * as constants from "./constants";
-import { IMovieData } from "../../interfaces/IMovieData";
+import * as constants from './constants';
+import { IMovieData } from '../../interfaces/IMovieData';
 
 export interface IAddMovie {
   type: constants.ADD_MOVIE;
