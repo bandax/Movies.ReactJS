@@ -1,8 +1,8 @@
 import { INetworkData } from '../interfaces/INetWorkData';
 
-export const postRequest = async (data: INetworkData) => {
+export const postRequest = (data: INetworkData) => {
   const { url, body, contentType } = data;
-  const response = await fetch(url, {
+  const response = fetch(url, {
     headers: {
       'Content-Type': contentType,
     },
@@ -13,9 +13,9 @@ export const postRequest = async (data: INetworkData) => {
   return response;
 };
 
-export const putRequest = async (data: INetworkData) => {
+export const putRequest = (data: INetworkData) => {
   const { url, body, contentType } = data;
-  const response = await fetch(url, {
+  const response = fetch(url, {
     headers: {
       'Content-Type': contentType,
     },
@@ -26,8 +26,8 @@ export const putRequest = async (data: INetworkData) => {
   return response;
 };
 
-export const deleteRequest = async (url: string) => {
-  const response = await fetch(url, {
+export const deleteRequest = (url: string) => {
+  const response = fetch(url, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -36,7 +36,7 @@ export const deleteRequest = async (url: string) => {
   return response;
 };
 
-export const getRequest = async (url: string) => {
-  const response = await fetch(url);
+export const getRequest = (url: string) => {
+  const response = fetch(url);
   return response;
 };

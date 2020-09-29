@@ -1,6 +1,6 @@
 import { MovieActionsTypes } from './types';
 import { MovieState } from './state';
-import * as constants from './constants';
+import { ACTIONS } from './constants';
 import { IMovieData } from '../../interfaces/IMovieData';
 
 const initialState: MovieState = {
@@ -14,13 +14,13 @@ export function movieReducer(
   action: MovieActionsTypes
 ): MovieState {
   switch (action.type) {
-    case constants.ADD_MOVIE:
+    case ACTIONS.ADD_MOVIE:
       const addMovie = [...state.movies, action.movieToAdd];
       return {
         ...state,
         movies: addMovie,
       };
-    case constants.UPDATE_MOVIE:
+    case ACTIONS.UPDATE_MOVIE:
       const index = state.movies.findIndex(
         (movie) => movie.id === action.movieToUpdate.id
       );
@@ -30,34 +30,34 @@ export function movieReducer(
         ...state,
         movies: updatedMovies,
       };
-    case constants.DELETE_MOVIE:
+    case ACTIONS.DELETE_MOVIE:
       return {
         ...state,
         movies: state.movies.filter((movie) => movie.id !== action.movieId),
       };
-    case constants.LOADING_MOVIES:
+    case ACTIONS.LOADING_MOVIES:
       return {
         ...state,
         loading: true,
       };
-    case constants.LOAD_MOVIES_SUCCESS:
+    case ACTIONS.LOAD_MOVIES_SUCCESS:
       return {
         ...state,
         loading: false,
         movies: action.movies,
       };
-    case constants.LOADING_MOVIES_ERROR:
+    case ACTIONS.LOADING_MOVIES_ERROR:
       return {
         ...state,
         loading: false,
         errorMessage: action.errorMessage,
       };
-    case constants.SELECT_MOVIE:
+    case ACTIONS.SELECT_MOVIE:
       return {
         ...state,
         movie: action.movie,
       };
-    case constants.FILTER_BY_RELEASE_DATE_AND_RATING:
+    case ACTIONS.FILTER_BY_RELEASE_DATE_AND_RATING:
       return {
         ...state,
         movies: state.movies.filter(
@@ -66,7 +66,7 @@ export function movieReducer(
             action.rating === action.rating
         ),
       };
-    case constants.SORT_BY_GENRE:
+    case ACTIONS.SORT_BY_GENRE:
       return {
         ...state,
         movies: state.movies.sort(compare),

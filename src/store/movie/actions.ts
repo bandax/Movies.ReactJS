@@ -1,17 +1,17 @@
-import * as constants from './constants';
+import { ACTIONS } from './constants';
 import { IMovieData } from '../../interfaces/IMovieData';
 import { MovieActionsTypes } from './types';
 
 export function loadingMovies(): MovieActionsTypes {
   return {
-    type: constants.LOADING_MOVIES,
+    type: ACTIONS.LOADING_MOVIES,
     loading: true,
   };
 }
 
 export function loadingMoviesSuccess(movies: IMovieData[]): MovieActionsTypes {
   return {
-    type: constants.LOAD_MOVIES_SUCCESS,
+    type: ACTIONS.LOAD_MOVIES_SUCCESS,
     loading: false,
     movies: movies,
   };
@@ -19,35 +19,35 @@ export function loadingMoviesSuccess(movies: IMovieData[]): MovieActionsTypes {
 
 export function loadingMoviesError(errorMessage: string): MovieActionsTypes {
   return {
-    type: constants.LOADING_MOVIES_ERROR,
+    type: ACTIONS.LOADING_MOVIES_ERROR,
     loading: true,
     errorMessage: errorMessage,
   };
 }
 export function addMovie(movie: IMovieData): MovieActionsTypes {
   return {
-    type: constants.ADD_MOVIE,
+    type: ACTIONS.ADD_MOVIE,
     movieToAdd: movie,
   };
 }
 
 export function updateMovie(movie: IMovieData): MovieActionsTypes {
   return {
-    type: constants.UPDATE_MOVIE,
+    type: ACTIONS.UPDATE_MOVIE,
     movieToUpdate: movie,
   };
 }
 
 export function deleteMovie(movieId: number): MovieActionsTypes {
   return {
-    type: constants.DELETE_MOVIE,
+    type: ACTIONS.DELETE_MOVIE,
     movieId: movieId,
   };
 }
 
 export function selectMovie(movie: IMovieData): MovieActionsTypes {
   return {
-    type: constants.SELECT_MOVIE,
+    type: ACTIONS.SELECT_MOVIE,
     movie: movie,
   };
 }
@@ -57,7 +57,7 @@ export function filterByReleaseDateAndRating(
   rating: number
 ): MovieActionsTypes {
   return {
-    type: constants.FILTER_BY_RELEASE_DATE_AND_RATING,
+    type: ACTIONS.FILTER_BY_RELEASE_DATE_AND_RATING,
     releaseDate: releaseDate,
     rating: rating,
   };
@@ -65,7 +65,7 @@ export function filterByReleaseDateAndRating(
 
 export function sortByGenre(genre: string): MovieActionsTypes {
   return {
-    type: constants.SORT_BY_GENRE,
+    type: ACTIONS.SORT_BY_GENRE,
     genre: genre,
   };
 }
