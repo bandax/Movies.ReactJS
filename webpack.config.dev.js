@@ -1,46 +1,52 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
-  target: "web",
-  mode: "development",
+  target: 'web',
+  mode: 'development',
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
   },
   resolve: {
-    extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
   },
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        loader: "awesome-typescript-loader",
-      },      
+        loader: 'awesome-typescript-loader',
+      },
       {
-          test: /\.scss$/,
-          use: [{
-              loader: "style-loader"
-          }, {
-              loader: "css-loader", options: {
-                  sourceMap: true
-              }
-          }, {
-              loader: "sass-loader", options: {
-                  sourceMap: true
-              }
-          }]
-      },     
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
-        loader: "source-map-loader",
+        loader: 'source-map-loader',
       },
       {
         // Preprocess your css files
         // you can add additional loaders here (e.g. sass/less etc.)
-        test: /\.css$/,        
+        test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
       {
@@ -52,16 +58,16 @@ module.exports = {
             options: {
               name: '[name].[ext]',
               outputPath: 'assets/',
-              publicPath: 'assets/'
-            }
-          }
-        ]
+              publicPath: 'assets/',
+            },
+          },
+        ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "src", "index.html"),
-    })
+      template: path.resolve(__dirname, 'src', 'index.html'),
+    }),
   ],
 };

@@ -1,44 +1,38 @@
-import * as React from "react";
-import "./AddMovie.scss";
-import { AddMovieWindow } from "../AddMovieWindow/AddMovieWindow";
-import { DeleteMovieWindow } from "../DeleteMovie/DeleteMovie";
-import { MovieInfo } from "../MovieInfo/MovieInfo";
-import clasificationTypes from "../../data/clasifications.json";
-import { IMovie } from "../../interfaces/IResultsMovies";
-import { IClasification } from "../../interfaces/IClasificationMovie";
+import * as React from 'react';
+import './AddMovie.scss';
+import { AddMovieWindow } from '../AddMovieWindow/AddMovieWindow';
+import { MovieInfo } from '../MovieInfo/MovieInfo';
+import clasificationTypes from '../../data/clasifications.json';
+import { IMovieData } from '../../interfaces/IMovieData';
+import { IClasification } from '../../interfaces/IClasificationMovie';
+import { Action } from 'redux';
 
-const movie: IMovie = {
-  id: "movie-1",
-  title: "Avengers Infinity War",
-  image: "../../../assets/posters/avengers-infinity-war.PNG",
-  year: 2004,
-  rate: 4.3,
-  releaseDate: "01/02/2014",
-  review:
-    "The most definitive overarching issue with the Marvel Cinematic Universe has been the lack of stakes. Over the course of the saga’s previous 18 movies, MCU heroes have faced numerous world-ending threats, eking out victories by the skin of their teeth, only to have their worlds essentially return to normal in time for the next installment. The approach worked early, on a film-by-film basis, but when viewed as part of a 10-year narrative, it’s tended to weaken the broader franchise. There can be no drama without true risk, and in the MCU, audiences have learned that none of their favorites are ever really in harm’s way.",
-  url: "http://movie.com",
-  runtime: "154 mins",
-  categories: [
-    {
-      id: "type-4",
-      name: "Action & Adventure",
-    },
-  ],
+import { RootState } from '../../store/index';
+import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { saveMovie, selectedMovie } from './thunks';
+
+const mapStateToProps = (state: RootState) => ({
+  movie: state.movie.movie,
+});
+
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<RootState, void, Action>
+) => {
+  return {
+    addNewMovie: (movie: IMovieData) => dispatch(saveMovie(movie)),
+    selectMovie: () => dispatch(selectedMovie(null)),
+  };
 };
 
-interface IAddMovieState {
-  showAddMovieModal: boolean;
-  showDeleteMovieModal: boolean;
-  showMovieInfoMovieModal: boolean;
-  title: string;
-  releaseDate: Date;
-  overview: string;
-  url: string;
-  genre: string;
-  runtime: string;
-}
+type Props = ReturnType<typeof mapStateToProps> &
+  ReturnType<typeof mapDispatchToProps>;
 
-const AddMovie: React.FunctionComponent = (props) => {
+const AddMovie: React.FunctionComponent<Props> = ({
+  movie,
+  addNewMovie,
+  selectMovie,
+}) => {
   const [showAddMovieModal, setShowAddMovieModal] = React.useState<boolean>(
     false
   );
@@ -53,6 +47,7 @@ const AddMovie: React.FunctionComponent = (props) => {
   );
 
   const handleShowAddMovieWindow = React.useCallback(() => {
+    selectMovie();
     setShowAddMovieModal(!showAddMovieModal);
   }, [showAddMovieModal]);
 
@@ -64,12 +59,8 @@ const AddMovie: React.FunctionComponent = (props) => {
     setShowMovieInfoModal(!showMovieInfoMovieModal);
   }, [showMovieInfoMovieModal]);
 
-  const addClassType = () => {
-    const newClasificationType = {
-      id: "type-5",
-      name: "Testing",
-    };
-    setClasificationTypes([...movieTypes, newClasificationType]);
+  const handleSubmitAddMovie = function (movieToSave: IMovieData) {
+    addNewMovie(movieToSave);
   };
 
   return (
@@ -98,31 +89,21 @@ const AddMovie: React.FunctionComponent = (props) => {
           +Show Movie
         </button>
       </div>
-      <div className="add-movie col-2">
-        <button className="btn btn-add-movie" onClick={addClassType}>
-          +Add Class Type
-        </button>
-      </div>
       <AddMovieWindow
         clasificationMovies={movieTypes}
         showModal={showAddMovieModal}
         movie={movie}
-        onHandleShowAddMovieWindow={handleShowAddMovieWindow}
+        onShowAddMovieWindow={handleShowAddMovieWindow}
+        onAddMovieSubmit={handleSubmitAddMovie}
       />
 
-      <DeleteMovieWindow
-        movieId="movie-1"
-        showDeleteMovieModal={showDeleteMovieModal}
-        onHandleShowDeleteMovieWindow={handleShowDeleteMovieWindow}
-      />
-
-      <MovieInfo
+      {/* <MovieInfo
         movie={movie}
         showModal={showMovieInfoMovieModal}
-        onHandleShowHideMovieInfoWindow={handleShowHideMovieInfoWindow}
-      />
+        onShowHideMovieInfoWindow={handleShowHideMovieInfoWindow}
+      /> */}
     </>
   );
 };
 
-export { AddMovie };
+export default connect(mapStateToProps, mapDispatchToProps)(AddMovie);
