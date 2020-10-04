@@ -4,8 +4,9 @@ import { IClasification } from '../../interfaces/IClasificationMovie';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import MultiSelect from 'react-multi-select-component';
-import { useForm } from './useForm';
 import { IMovieData } from '../../interfaces/IMovieData';
+import * as Yup from 'yup';
+import { Formik, Form, useField, useFormikContext } from 'formik';
 
 interface IAddMovieWindowProps {
   showModal: boolean;
@@ -15,51 +16,97 @@ interface IAddMovieWindowProps {
   onAddMovieSubmit: (movie: IMovieData) => void;
 }
 
-interface IOptions {
+interface IOption {
   label: string;
   value: string;
 }
 
+interface IFormMovieValues {
+  movieId: number;
+  title: string;
+  budget: number;
+  revenue: number;
+  tagline: string;
+  voteAverage: number;
+  voteCount: number;
+  overview: string;
+  url: string;
+  runtime: number;
+  releaseDate: Date;
+  genres: IOption[];
+}
+
+const MovieTextInput = ({ ...props }) => {
+  const [field, meta] = useField(props.name);
+  return (
+    <>
+      <label htmlFor={props.id || props.name} className="label-text">
+        {props.label}
+      </label>
+      <input className="input-text" {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </>
+  );
+};
+
+const FormikDatePicker = ({ ...props }) => {
+  const { setFieldValue } = useFormikContext();
+  const [field, meta] = useField(props.name);
+
+  return (
+    <>
+      <DatePicker
+        selected={field.value}
+        onChange={(val: Date) => {
+          setFieldValue(field.name, val);
+        }}
+        className="date-icon input-text"
+        {...props}
+      />
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </>
+  );
+};
+
+const FormikMultiSelect = ({ ...props }) => {
+  const { setFieldValue } = useFormikContext();
+  const [field, meta] = useField(props.name);
+
+  React.useEffect(() => {
+    setFieldValue(field.name, props.selValue);
+  }, [props.selValue]);
+
+  const onSelectedOption = (selectedOptions: IOption[]) => {
+    setFieldValue(field.name, selectedOptions);
+  };
+
+  return (
+    <>
+      <MultiSelect
+        options={props.options}
+        value={field.value}
+        onChange={onSelectedOption}
+        labelledBy={'Select'}
+        {...props}
+      />
+      {meta.touched && meta.error ? (
+        <div className="error">{meta.error}</div>
+      ) : null}
+    </>
+  );
+};
+
 const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
   props: IAddMovieWindowProps
 ) => {
-  const initialValues = {
-    budget: props.movie?.budget ?? 0,
-    revenue: props.movie?.revenue ?? 0,
-    tagline: props.movie?.tagline ?? '',
-    vote_average: props.movie?.vote_average ?? 0,
-    vote_count: props.movie?.vote_average ?? 0,
-    movieId: props.movie?.id ?? 0,
-    title: props.movie?.title ?? '',
-    overview: props.movie?.overview ?? '',
-    url: props.movie?.poster_path ?? '',
-    runtime: props.movie?.runtime ?? 0,
-  };
-
-  const [values, handleChange] = useForm(initialValues);
-  const [releaseValueDate, setReleaseValueDate] = React.useState(
-    props.movie?.release_date ?? new Date().toISOString()
-  );
-  const [releaseDate, setReleaseDate] = React.useState(
-    props.movie?.release_date ? new Date(props.movie.release_date) : new Date()
-  );
-  const [genres, setGenres] = React.useState(props.movie?.genres ?? []);
-  const [optionGenres, setOptionGenres] = React.useState([]);
-  const [selectedGenres, setSelectedGenres] = React.useState([]);
+  const [genreOptions, setOptionGenres] = React.useState([]);
 
   React.useEffect(() => {
-    handleChange(undefined, initialValues);
-    setGenres(props.movie?.genres ?? []);
-    setReleaseValueDate(props.movie?.release_date ?? new Date().toISOString());
-    setReleaseDate(
-      props.movie?.release_date
-        ? new Date(props.movie.release_date)
-        : new Date()
-    );
-  }, [props.movie]);
-
-  React.useEffect(() => {
-    const optGenres: IOptions[] = props.clasificationMovies.map(
+    const optGenres: IOption[] = props.clasificationMovies.map(
       (clasOption: IClasification) => ({
         label: clasOption.name,
         value: clasOption.id,
@@ -69,11 +116,13 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
     setOptionGenres(optGenres);
   }, [props.clasificationMovies]);
 
+  const [selectedGenres, setSelectedGenres] = React.useState([]);
+
   React.useEffect(() => {
-    const selGenres: IOptions[] = [];
-    genres.forEach((genre) => {
-      const selectedGenre: IOptions = optionGenres.filter(
-        (g) => g.label === genre
+    const selGenres: IOption[] = [];
+    props.movie?.genres.forEach((genre) => {
+      const selectedGenre: IOption = genreOptions.filter(
+        (g: IOption) => g.label === genre
       )[0];
 
       if (selectedGenre) {
@@ -82,67 +131,37 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
     });
 
     setSelectedGenres(selGenres);
-  }, [genres]);
+  }, [props.movie]);
+
+  const initialValues: IFormMovieValues = {
+    budget: props.movie?.budget ?? 0,
+    revenue: props.movie?.revenue ?? 0,
+    tagline: props.movie?.tagline ?? '',
+    voteAverage: props.movie?.vote_average ?? 0,
+    voteCount: props.movie?.vote_average ?? 0,
+    movieId: props.movie?.id ?? 0,
+    title: props.movie?.title ?? '',
+    overview: props.movie?.overview ?? '',
+    url: props.movie?.poster_path ?? '',
+    runtime: props.movie?.runtime ?? 0,
+    releaseDate: props.movie?.release_date
+      ? new Date(props.movie?.release_date)
+      : new Date(),
+    genres: selectedGenres,
+  };
 
   const showMovieIdField = () => {
-    return values.movieId !== 0 ? (
+    return initialValues.movieId !== 0 ? (
       <>
-        <label className="label-text" htmlFor="movieId">
-          Movie Id
-        </label>
-        <input
-          className="input-text"
+        <MovieTextInput
           id="movieId"
           name="movieId"
+          label="Movie Id"
           placeholder=""
-          readOnly
-          value={values.movieId}
-          onChange={handleChange}
-        />{' '}
+          type="text"
+        />
       </>
     ) : null;
-  };
-
-  const onSelectedGenres = (e: IOptions[]) => {
-    const selGenres: string[] = e.map((option: IOptions) => {
-      return option.label;
-    });
-    setGenres(selGenres);
-  };
-
-  const onReleaseDateChange = (e: Date) => {
-    setReleaseDate(e);
-    setReleaseValueDate(e.toISOString());
-  };
-
-  const onResetClicked = (e: React.FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    handleChange(undefined, initialValues);
-    const releaseDate = props.movie?.release_date
-      ? new Date(props.movie.release_date)
-      : new Date();
-    setReleaseDate(releaseDate);
-    setReleaseValueDate(releaseDate.toISOString());
-    setGenres(props.movie?.genres ?? []);
-  };
-
-  const onSubmitClicked = (e: React.FormEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const movieToSave: IMovieData = {
-      budget: parseInt(values.budget, 0),
-      genres: genres,
-      id: parseInt(values.movieId, 0),
-      overview: values.overview,
-      poster_path: values.url,
-      release_date: releaseValueDate,
-      revenue: parseInt(values.revenue, 0),
-      runtime: parseInt(values.runtime, 0),
-      tagline: values.tagline,
-      title: values.title,
-      vote_average: parseInt(values.vote_average, 0),
-      vote_count: parseInt(values.vote_count, 0),
-    };
-    props.onAddMovieSubmit(movieToSave);
   };
 
   if (!props.showModal) {
@@ -159,140 +178,149 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
         >
           &times;
         </button>
-        <div className="add-movie-content">
-          <div className="row">
-            <div className="col-6">
-              {showMovieIdField()}
-              <label className="label-text" htmlFor="title">
-                Title
-              </label>
-              <input
-                className="input-text"
-                id="title"
-                name="title"
-                placeholder="Title"
-                value={values.title}
-                onChange={handleChange}
-              />
-              <label className="label-text" htmlFor="releaseDate">
-                Release Date
-              </label>
-              <DatePicker
-                selected={releaseDate}
-                onChange={onReleaseDateChange}
-                className="date-icon input-text"
-              />
-              <label className="label-text" htmlFor="url">
-                Movie URL
-              </label>
-              <input
-                className="input-text"
-                id="url"
-                name="url"
-                placeholder="Movie URL here"
-                value={values.url}
-                onChange={handleChange}
-              />
-              <label className="label-text" htmlFor="genre">
-                Genre
-              </label>
-              <MultiSelect
-                options={optionGenres}
-                value={selectedGenres}
-                onChange={onSelectedGenres}
-                labelledBy={'Select'}
-              />
-              <label className="label-text" htmlFor="overview">
-                Overview
-              </label>
-              <input
-                className="input-text"
-                id="overview"
-                name="overview"
-                placeholder="Overview here"
-                value={values.overview}
-                onChange={handleChange}
-              />
+        <Formik
+          initialValues={initialValues}
+          validationSchema={Yup.object({
+            title: Yup.string().required('Required'),
+            runtime: Yup.number().required('Required').positive().integer(),
+            budget: Yup.number().required('Required').positive().integer(),
+            revenue: Yup.number().required('Required').positive().integer(),
+            voteAverage: Yup.number().required('Required').positive().integer(),
+            voteCount: Yup.number().required('Required').positive().integer(),
+            overview: Yup.string().required('Required'),
+            tagline: Yup.string().required('Required'),
+            url: Yup.string().required('Required').url(),
+            releaseDate: Yup.date().default(() => new Date()),
+          })}
+          onSubmit={(values, actions) => {
+            const selGenres: string[] = values.genres.map((option: IOption) => {
+              return option.label;
+            });
+
+            const movieToSave: IMovieData = {
+              budget: values.budget,
+              genres: selGenres,
+              id: values.movieId,
+              overview: values.overview,
+              poster_path: values.url,
+              release_date: values.releaseDate.toISOString(),
+              revenue: values.revenue,
+              runtime: values.runtime,
+              tagline: values.tagline,
+              title: values.title,
+              vote_average: values.voteAverage,
+              vote_count: values.voteCount,
+            };
+
+            props.onAddMovieSubmit(movieToSave);
+          }}
+        >
+          <Form>
+            <div className="add-movie-content">
+              <div className="row">
+                <div className="col-6">
+                  {showMovieIdField()}
+
+                  <MovieTextInput
+                    id="title"
+                    name="title"
+                    label="Title"
+                    placeholder="Title"
+                    type="text"
+                  />
+
+                  <label className="label-text" htmlFor="releaseDate">
+                    Release Date
+                  </label>
+                  <FormikDatePicker id="releaseDate" name="releaseDate" />
+
+                  <MovieTextInput
+                    id="url"
+                    name="url"
+                    label="Movie URL"
+                    placeholder="Movie URL here"
+                    type="text"
+                  />
+
+                  <label className="label-text" htmlFor="genre">
+                    Genre
+                  </label>
+                  <FormikMultiSelect
+                    id="genres"
+                    name="genres"
+                    selValue={selectedGenres}
+                    options={genreOptions}
+                  />
+
+                  <MovieTextInput
+                    id="overview"
+                    name="overview"
+                    label="Overview"
+                    placeholder="Overview here"
+                    type="text"
+                  />
+                </div>
+                <div className="col-6">
+                  <MovieTextInput
+                    id="runtime"
+                    name="runtime"
+                    label="Runtime"
+                    placeholder="Runtime here"
+                    type="number"
+                  />
+
+                  <MovieTextInput
+                    id="budget"
+                    name="budget"
+                    label="Budget"
+                    placeholder="Budget"
+                    type="number"
+                  />
+
+                  <MovieTextInput
+                    id="tagline"
+                    name="tagline"
+                    label="Tagline"
+                    placeholder="Tagline"
+                    type="text"
+                  />
+
+                  <MovieTextInput
+                    id="revenue"
+                    name="revenue"
+                    label="Revenue"
+                    placeholder="Revenue here"
+                    type="number"
+                  />
+
+                  <MovieTextInput
+                    id="voteAverage"
+                    name="voteAverage"
+                    label="Vote Avg"
+                    placeholder="vote"
+                    type="number"
+                  />
+
+                  <MovieTextInput
+                    id="voteCount"
+                    name="voteCount"
+                    label="Vote Count"
+                    placeholder="vote count"
+                    type="number"
+                  />
+                </div>
+              </div>
             </div>
-            <div className="col-6">
-              <label className="label-text" htmlFor="runtime">
-                Runtime
-              </label>
-              <input
-                type="number"
-                className="input-text"
-                id="runtime"
-                name="runtime"
-                placeholder="Runtime here"
-                value={values.runtime}
-                onChange={handleChange}
-              />
-              <label className="label-text" htmlFor="budget">
-                Budget
-              </label>
-              <input
-                className="input-text"
-                id="budget"
-                name="budget"
-                placeholder="Budget"
-                value={values.budget}
-                onChange={handleChange}
-              />
-              <label className="label-text" htmlFor="tagline">
-                Tagline
-              </label>
-              <input
-                className="input-text"
-                id="tagline"
-                name="tagline"
-                placeholder="Tagline"
-                value={values.tagline}
-                onChange={handleChange}
-              />
-              <label className="label-text" htmlFor="revenue">
-                Revenue
-              </label>
-              <input
-                className="input-text"
-                id="revenue"
-                name="revenue"
-                placeholder="revenue"
-                value={values.revenue}
-                onChange={handleChange}
-              />
-              <label className="label-text" htmlFor="vote_average">
-                Vote
-              </label>
-              <input
-                className="input-text"
-                id="vote_average"
-                name="vote_average"
-                placeholder="vote_average"
-                value={values.vote_average}
-                onChange={handleChange}
-              />
-              <label className="label-text" htmlFor="vote_count">
-                Vote Count
-              </label>
-              <input
-                className="input-text"
-                id="vote_count"
-                name="vote_count"
-                placeholder="vote_count"
-                value={values.vote_count}
-                onChange={handleChange}
-              />
+            <div className="actions">
+              <button className="btn btn-reset" type="reset">
+                Reset
+              </button>
+              <button className="btn btn-submit" type="submit">
+                Submit
+              </button>
             </div>
-          </div>
-        </div>
-        <div className="actions">
-          <button className="btn btn-reset" onClick={onResetClicked}>
-            Reset
-          </button>
-          <button className="btn btn-submit" onClick={onSubmitClicked}>
-            Submit
-          </button>
-        </div>
+          </Form>
+        </Formik>
       </div>
     </div>
   );
