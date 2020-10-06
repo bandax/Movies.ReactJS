@@ -1,12 +1,13 @@
 import * as React from 'react';
 import './AddMovieWindow.scss';
 import { IClasification } from '../../interfaces/IClasificationMovie';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import MultiSelect from 'react-multi-select-component';
 import { IMovieData } from '../../interfaces/IMovieData';
 import * as Yup from 'yup';
-import { Formik, Form, useField, useFormikContext } from 'formik';
+import { Formik, Form } from 'formik';
+import { FormikTextInput } from '../Shared/FormikTextInput';
+import { FormikMultiSelect } from '../Shared/FormikMultiSelect';
+import { FormikDatePicker } from '../Shared/FormikDatePicker';
+import { IOption } from '../../interfaces/IOption';
 
 interface IAddMovieWindowProps {
   showModal: boolean;
@@ -16,89 +17,20 @@ interface IAddMovieWindowProps {
   onAddMovieSubmit: (movie: IMovieData) => void;
 }
 
-interface IOption {
-  label: string;
-  value: string;
-}
-
 interface IFormMovieValues {
-  movieId: number;
+  id: number;
   title: string;
   budget: number;
   revenue: number;
   tagline: string;
-  voteAverage: number;
-  voteCount: number;
+  vote_average: number;
+  vote_count: number;
   overview: string;
-  url: string;
+  poster_path: string;
   runtime: number;
-  releaseDate: Date;
+  release_date: Date;
   genres: IOption[];
 }
-
-const MovieTextInput = ({ ...props }) => {
-  const [field, meta] = useField(props.name);
-  return (
-    <>
-      <label htmlFor={props.id || props.name} className="label-text">
-        {props.label}
-      </label>
-      <input className="input-text" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
-
-const FormikDatePicker = ({ ...props }) => {
-  const { setFieldValue } = useFormikContext();
-  const [field, meta] = useField(props.name);
-
-  return (
-    <>
-      <DatePicker
-        selected={field.value}
-        onChange={(val: Date) => {
-          setFieldValue(field.name, val);
-        }}
-        className="date-icon input-text"
-        {...props}
-      />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
-
-const FormikMultiSelect = ({ ...props }) => {
-  const { setFieldValue } = useFormikContext();
-  const [field, meta] = useField(props.name);
-
-  React.useEffect(() => {
-    setFieldValue(field.name, props.selValue);
-  }, [props.selValue]);
-
-  const onSelectedOption = (selectedOptions: IOption[]) => {
-    setFieldValue(field.name, selectedOptions);
-  };
-
-  return (
-    <>
-      <MultiSelect
-        options={props.options}
-        value={field.value}
-        onChange={onSelectedOption}
-        labelledBy={'Select'}
-        {...props}
-      />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
 
 const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
   props: IAddMovieWindowProps
@@ -107,9 +39,9 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
 
   React.useEffect(() => {
     const optGenres: IOption[] = props.clasificationMovies.map(
-      (clasOption: IClasification) => ({
-        label: clasOption.name,
-        value: clasOption.id,
+      (option: IClasification) => ({
+        label: option.name,
+        value: option.id,
       })
     );
 
@@ -137,25 +69,38 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
     budget: props.movie?.budget ?? 0,
     revenue: props.movie?.revenue ?? 0,
     tagline: props.movie?.tagline ?? '',
-    voteAverage: props.movie?.vote_average ?? 0,
-    voteCount: props.movie?.vote_average ?? 0,
-    movieId: props.movie?.id ?? 0,
+    vote_average: props.movie?.vote_average ?? 0,
+    vote_count: props.movie?.vote_count ?? 0,
+    id: props.movie?.id ?? 0,
     title: props.movie?.title ?? '',
     overview: props.movie?.overview ?? '',
-    url: props.movie?.poster_path ?? '',
+    poster_path: props.movie?.poster_path ?? '',
     runtime: props.movie?.runtime ?? 0,
-    releaseDate: props.movie?.release_date
+    release_date: props.movie?.release_date
       ? new Date(props.movie?.release_date)
       : new Date(),
     genres: selectedGenres,
   };
 
+  const validations = {
+    title: Yup.string().required('Required'),
+    runtime: Yup.number().required('Required').positive().integer(),
+    budget: Yup.number().required('Required').positive().integer(),
+    revenue: Yup.number().required('Required').positive().integer(),
+    vote_average: Yup.number().required('Required'),
+    vote_count: Yup.number().required('Required').positive().integer(),
+    overview: Yup.string().required('Required'),
+    tagline: Yup.string().required('Required'),
+    poster_path: Yup.string().required('Required').url(),
+    release_date: Yup.date().default(() => new Date()),
+  };
+
   const showMovieIdField = () => {
-    return initialValues.movieId !== 0 ? (
+    return initialValues.id !== 0 ? (
       <>
-        <MovieTextInput
-          id="movieId"
-          name="movieId"
+        <FormikTextInput
+          id="id"
+          name="id"
           label="Movie Id"
           placeholder=""
           type="text"
@@ -180,36 +125,16 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
         </button>
         <Formik
           initialValues={initialValues}
-          validationSchema={Yup.object({
-            title: Yup.string().required('Required'),
-            runtime: Yup.number().required('Required').positive().integer(),
-            budget: Yup.number().required('Required').positive().integer(),
-            revenue: Yup.number().required('Required').positive().integer(),
-            voteAverage: Yup.number().required('Required').positive().integer(),
-            voteCount: Yup.number().required('Required').positive().integer(),
-            overview: Yup.string().required('Required'),
-            tagline: Yup.string().required('Required'),
-            url: Yup.string().required('Required').url(),
-            releaseDate: Yup.date().default(() => new Date()),
-          })}
+          validationSchema={Yup.object(validations)}
           onSubmit={(values, actions) => {
             const selGenres: string[] = values.genres.map((option: IOption) => {
               return option.label;
             });
 
             const movieToSave: IMovieData = {
-              budget: values.budget,
+              ...values,
               genres: selGenres,
-              id: values.movieId,
-              overview: values.overview,
-              poster_path: values.url,
-              release_date: values.releaseDate.toISOString(),
-              revenue: values.revenue,
-              runtime: values.runtime,
-              tagline: values.tagline,
-              title: values.title,
-              vote_average: values.voteAverage,
-              vote_count: values.voteCount,
+              release_date: values.release_date.toISOString(),
             };
 
             props.onAddMovieSubmit(movieToSave);
@@ -221,7 +146,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
                 <div className="col-6">
                   {showMovieIdField()}
 
-                  <MovieTextInput
+                  <FormikTextInput
                     id="title"
                     name="title"
                     label="Title"
@@ -229,30 +154,29 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
                     type="text"
                   />
 
-                  <label className="label-text" htmlFor="releaseDate">
-                    Release Date
-                  </label>
-                  <FormikDatePicker id="releaseDate" name="releaseDate" />
+                  <FormikDatePicker
+                    id="release_date"
+                    name="release_date"
+                    label="Release Date"
+                  />
 
-                  <MovieTextInput
-                    id="url"
-                    name="url"
+                  <FormikTextInput
+                    id="poster_path"
+                    name="poster_path"
                     label="Movie URL"
                     placeholder="Movie URL here"
                     type="text"
                   />
 
-                  <label className="label-text" htmlFor="genre">
-                    Genre
-                  </label>
                   <FormikMultiSelect
                     id="genres"
                     name="genres"
+                    label="Genre"
                     selValue={selectedGenres}
                     options={genreOptions}
                   />
 
-                  <MovieTextInput
+                  <FormikTextInput
                     id="overview"
                     name="overview"
                     label="Overview"
@@ -261,7 +185,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
                   />
                 </div>
                 <div className="col-6">
-                  <MovieTextInput
+                  <FormikTextInput
                     id="runtime"
                     name="runtime"
                     label="Runtime"
@@ -269,7 +193,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
                     type="number"
                   />
 
-                  <MovieTextInput
+                  <FormikTextInput
                     id="budget"
                     name="budget"
                     label="Budget"
@@ -277,7 +201,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
                     type="number"
                   />
 
-                  <MovieTextInput
+                  <FormikTextInput
                     id="tagline"
                     name="tagline"
                     label="Tagline"
@@ -285,7 +209,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
                     type="text"
                   />
 
-                  <MovieTextInput
+                  <FormikTextInput
                     id="revenue"
                     name="revenue"
                     label="Revenue"
@@ -293,17 +217,17 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
                     type="number"
                   />
 
-                  <MovieTextInput
-                    id="voteAverage"
-                    name="voteAverage"
+                  <FormikTextInput
+                    id="vote_average"
+                    name="vote_average"
                     label="Vote Avg"
                     placeholder="vote"
                     type="number"
                   />
 
-                  <MovieTextInput
-                    id="voteCount"
-                    name="voteCount"
+                  <FormikTextInput
+                    id="vote_count"
+                    name="vote_count"
                     label="Vote Count"
                     placeholder="vote count"
                     type="number"

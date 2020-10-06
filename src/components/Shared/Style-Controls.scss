@@ -1,0 +1,42 @@
+// Forms controls
+.input-text {
+  width: 97%;
+  padding: 5px 20px;
+  margin: 15px 0 10px 10px;
+  display: inline-block;
+  border: 1px solid #232323;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: rgba(10, 10, 10, 0.8);
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.date-icon {
+  background: rgba(10, 10, 10, 0.8) url('../../../assets/date_icon.png')
+    no-repeat;
+  background-position: 99% 50%;
+  background-size: 30px 29px;
+  cursor: pointer;
+}
+
+.input-select {
+  width: 95%;
+  padding: 20px 20px;
+  margin: 15px 0 10px 10px;
+  display: inline-block;
+  border: 1px solid #232323;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: rgba(10, 10, 10, 0.8);
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.label-text {
+  color: #f65261;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0 0 10px 0;
+  font-size: 12px;
+}
