@@ -33,6 +33,15 @@
   font-size: 18px;
 }
 
+input:-moz-read-only {
+  /* For Firefox */
+  background-color: #bdb9b9;
+}
+
+input:read-only {
+  background-color: gray;
+}
+
 .label-text {
   color: #f65261;
   text-transform: uppercase;

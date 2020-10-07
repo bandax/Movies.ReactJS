@@ -53,15 +53,13 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
   React.useEffect(() => {
     const selGenres: IOption[] = [];
     props.movie?.genres.forEach((genre) => {
-      const selectedGenre: IOption = genreOptions.filter(
+      const [selectedGenre] = genreOptions.filter(
         (g: IOption) => g.label === genre
-      )[0];
-
+      );
       if (selectedGenre) {
         selGenres.push(selectedGenre);
       }
     });
-
     setSelectedGenres(selGenres);
   }, [props.movie]);
 
@@ -82,7 +80,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
     genres: selectedGenres,
   };
 
-  const validations = {
+  const validationSchema = Yup.object({
     title: Yup.string().required('Required'),
     runtime: Yup.number().required('Required').positive().integer(),
     budget: Yup.number().required('Required').positive().integer(),
@@ -93,7 +91,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
     tagline: Yup.string().required('Required'),
     poster_path: Yup.string().required('Required').url(),
     release_date: Yup.date().default(() => new Date()),
-  };
+  });
 
   const showMovieIdField = () => {
     return initialValues.id !== 0 ? (
@@ -104,6 +102,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
           label="Movie Id"
           placeholder=""
           type="text"
+          readonly="true"
         />
       </>
     ) : null;
@@ -125,7 +124,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
         </button>
         <Formik
           initialValues={initialValues}
-          validationSchema={Yup.object(validations)}
+          validationSchema={validationSchema}
           onSubmit={(values, actions) => {
             const selGenres: string[] = values.genres.map((option: IOption) => {
               return option.label;
