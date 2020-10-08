@@ -1,7 +1,6 @@
 import * as React from 'react';
 import './AddMovie.scss';
 import { AddMovieWindow } from '../AddMovieWindow/AddMovieWindow';
-import { MovieInfo } from '../MovieInfo/MovieInfo';
 import clasificationTypes from '../../data/clasifications.json';
 import { IMovieData } from '../../interfaces/IMovieData';
 import { IClasification } from '../../interfaces/IClasificationMovie';
@@ -96,12 +95,6 @@ const AddMovie: React.FunctionComponent<Props> = ({
         onShowAddMovieWindow={handleShowAddMovieWindow}
         onAddMovieSubmit={handleSubmitAddMovie}
       />
-
-      {/* <MovieInfo
-        movie={movie}
-        showModal={showMovieInfoMovieModal}
-        onShowHideMovieInfoWindow={handleShowHideMovieInfoWindow}
-      /> */}
     </>
   );
 };

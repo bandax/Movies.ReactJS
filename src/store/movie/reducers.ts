@@ -7,6 +7,7 @@ const initialState: MovieState = {
   movies: [],
   loading: false,
   errorMessage: '',
+  findMovies: true,
 };
 
 export function movieReducer(
@@ -45,6 +46,7 @@ export function movieReducer(
         ...state,
         loading: false,
         movies: action.movies,
+        findMovies: action.movies.length > 0,
       };
     case ACTIONS.LOADING_MOVIES_ERROR:
       return {
@@ -55,6 +57,7 @@ export function movieReducer(
     case ACTIONS.SELECT_MOVIE:
       return {
         ...state,
+        loading: false,
         movie: action.movie,
       };
     case ACTIONS.FILTER_BY_RELEASE_DATE_AND_RATING:

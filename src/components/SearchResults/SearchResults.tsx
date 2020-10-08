@@ -1,18 +1,27 @@
 import * as React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams, withRouter, RouteComponentProps } from 'react-router-dom';
 import { IMovieData } from '../../interfaces/IMovieData';
 import { DetailsMovie } from '../DetailsMovie/DetailsMovie';
 import { connect } from 'react-redux';
 import { RootState } from '../../store/index';
 import { searchMovies } from './thunks';
 import { ThunkDispatch } from 'redux-thunk';
-import { getMoviesLoading, getMoviesData } from '../ResultsMovie/selectors';
+import {
+  getMoviesLoading,
+  getMoviesData,
+  getFindMovies,
+} from '../ResultsMovie/selectors';
 import { Action } from 'redux';
+
+interface IParamTypes {
+  searchQuery: string;
+}
 
 const mapStateToProps = (state: RootState) => ({
   movie: state.movie.movie,
   movies: getMoviesData(state),
   isLoading: getMoviesLoading(state),
+  findMovies: getFindMovies(state),
 });
 
 const mapDispatchToProps = (
@@ -24,33 +33,31 @@ const mapDispatchToProps = (
 };
 
 type Props = ReturnType<typeof mapStateToProps> &
-  ReturnType<typeof mapDispatchToProps>;
+  ReturnType<typeof mapDispatchToProps> &
+  RouteComponentProps;
 
 const SearchResults: React.FunctionComponent<Props> = ({
   movie,
   movies,
-  searchMovies,
   isLoading,
+  searchMovies,
+  history,
+  findMovies,
 }) => {
-  const params = new URLSearchParams(useLocation().search);
-  const term = params.get('term');
+  const { searchQuery } = useParams<IParamTypes>();
+
   React.useEffect(() => {
-    console.log(`searching ${term}`);
-    searchMovies(term);
+    searchMovies(searchQuery);
   }, []);
 
-  const handleEditMovie = function (movie: IMovieData) {
-    console.log('tests');
-  };
-
-  const handleDeleteMovie = function (movie: IMovieData) {
-    console.log('tests');
-  };
+  if (!findMovies && movies.length === 0) {
+    history.push('/noresults');
+  }
 
   const loadingMessage = <div>Searching movies...</div>;
   const content = (
     <>
-      <div className="app">Results for {term}</div>
+      <div className="app">Results for {searchQuery}</div>
       <div className="list-movies">
         <div className="total-result">
           <span className="found-label">
@@ -59,12 +66,7 @@ const SearchResults: React.FunctionComponent<Props> = ({
         </div>
         <div className="display-movie">
           {movies.map((movie: IMovieData) => (
-            <DetailsMovie
-              key={movie.id}
-              movie={movie}
-              onEditMovie={handleEditMovie}
-              onDeleteMovie={handleDeleteMovie}
-            />
+            <DetailsMovie key={movie.id} movie={movie} />
           ))}
         </div>
       </div>
@@ -74,4 +76,6 @@ const SearchResults: React.FunctionComponent<Props> = ({
   return isLoading ? loadingMessage : content;
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchResults)
+);

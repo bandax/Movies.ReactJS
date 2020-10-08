@@ -5,4 +5,5 @@ export interface MovieState {
   movies: IMovieData[];
   loading: boolean;
   errorMessage: string;
+  findMovies: boolean;
 }

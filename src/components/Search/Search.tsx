@@ -16,7 +16,7 @@ const Search: React.FunctionComponent = () => {
         placeholder="What do you want to watch?"
         type="text"
       />
-      <Link to={`/search?term=${search}`} className="btn btn-search">
+      <Link to={`/search/${search}`} className="btn btn-search">
         Search
       </Link>
     </div>

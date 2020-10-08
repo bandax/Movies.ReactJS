@@ -14,6 +14,7 @@ export function loadingMoviesSuccess(movies: IMovieData[]): MovieActionsTypes {
     type: ACTIONS.LOAD_MOVIES_SUCCESS,
     loading: false,
     movies: movies,
+    findMovies: movies.length > 0,
   };
 }
 
