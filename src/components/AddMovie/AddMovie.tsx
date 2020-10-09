@@ -72,22 +72,6 @@ const AddMovie: React.FunctionComponent<Props> = ({
           +Add Movie
         </button>
       </div>
-      <div className="add-movie col-2">
-        <button
-          className="btn btn-add-movie"
-          onClick={handleShowDeleteMovieWindow}
-        >
-          +Delete Movie
-        </button>
-      </div>
-      <div className="add-movie col-2">
-        <button
-          className="btn btn-add-movie"
-          onClick={handleShowHideMovieInfoWindow}
-        >
-          +Show Movie
-        </button>
-      </div>
       <AddMovieWindow
         clasificationMovies={movieTypes}
         showModal={showAddMovieModal}

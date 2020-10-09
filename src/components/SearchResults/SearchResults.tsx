@@ -51,7 +51,7 @@ const SearchResults: React.FunctionComponent<Props> = ({
   }, []);
 
   if (!findMovies && movies.length === 0) {
-    history.push('/noresults');
+    return <div className="app">No movies found</div>;
   }
 
   const loadingMessage = <div>Searching movies...</div>;
