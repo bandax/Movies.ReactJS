@@ -24,6 +24,7 @@ export interface ILoadMoviesSuccess {
   type: ACTIONS.LOAD_MOVIES_SUCCESS;
   movies: IMovieData[];
   loading: boolean;
+  findMovies: boolean;
 }
 
 export interface ILoadMoviesError {

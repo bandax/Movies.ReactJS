@@ -1,11 +1,12 @@
 import * as React from 'react';
 import './DetailsMovie.scss';
 import { IMovieData } from '../../interfaces/IMovieData';
+import { Link } from 'react-router-dom';
 
 export interface IDetailsMovieProps {
   movie: IMovieData;
-  onEditMovie: (movie: IMovieData) => void;
-  onDeleteMovie: (movie: IMovieData) => void;
+  onEditMovie?: (movie: IMovieData) => void;
+  onDeleteMovie?: (movie: IMovieData) => void;
 }
 
 const DetailsMovie: React.FunctionComponent<IDetailsMovieProps> = (props) => {
@@ -42,6 +43,7 @@ const DetailsMovie: React.FunctionComponent<IDetailsMovieProps> = (props) => {
         <button className="" onClick={onDeleteMovie}>
           Delete Movie
         </button>
+        <Link to={`/film/${movie.id}`}>Show Details Movie</Link>
       </div>
     </>
   );
