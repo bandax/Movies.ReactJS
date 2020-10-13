@@ -4,18 +4,17 @@ import { Header } from './Header/Header';
 import { Footer } from './Footer/Footer';
 import { ErrorBoundary } from './Error/ErrorBoundary';
 import { SubHeader } from './SubHeader/SubHeader';
-
 import ResultsMovie from './ResultsMovie/ResultsMovie';
-import movies from '../data/movies.json';
 
 const App: React.FunctionComponent = () => (
   <div className="app">
-    <ErrorBoundary>
+    Testing
+    {/* <ErrorBoundary>
       <Header />
       <SubHeader />
       <ResultsMovie />
       <Footer />
-    </ErrorBoundary>
+    </ErrorBoundary> */}
   </div>
 );
 
