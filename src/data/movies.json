@@ -1,32 +1,32 @@
-[
-  {
-    "id": 1234,
-    "title": "Avengers Infinity War",
-    "poster_path": "../../../assets/posters/avengers-infinity-war.PNG",
-    "release_date": "01/02/2010",
-    "budget": 123,
-    "revenue": 123,
-    "vote_average": 123,
-    "vote_count": 123,
-    "review": "Testing review",
-    "runtime": 412,
-    "tagline": "12343",
-    "overview": "tests",
-    "genres": ["Action & Adventure", "Comedy"]
-  },
-  {
-    "id": 4567,
-    "title": "StarWars",
-    "poster_path": "../../../assets/posters/avengers-infinity-war.PNG",
-    "release_date": "01/02/2010",
-    "budget": 123,
-    "revenue": 123,
-    "vote_average": 123,
-    "vote_count": 123,
-    "review": "Testing review",
-    "runtime": 412,
-    "tagline": "12343",
-    "overview": "tests",
-    "genres": ["Horror", "Comedy"]
-  }
-]
+{
+  "data": [
+    {
+      "id": 1234,
+      "title": "Avengers Infinity War",
+      "poster_path": "../../../assets/posters/avengers-infinity-war.PNG",
+      "release_date": "01/02/2010",
+      "budget": 123,
+      "revenue": 123,
+      "vote_average": 123,
+      "vote_count": 123,
+      "runtime": 412,
+      "tagline": "12343",
+      "overview": "tests",
+      "genres": ["Action & Adventure", "Comedy"]
+    },
+    {
+      "id": 4567,
+      "title": "StarWars",
+      "poster_path": "../../../assets/posters/avengers-infinity-war.PNG",
+      "release_date": "01/02/2010",
+      "budget": 123,
+      "revenue": 123,
+      "vote_average": 123,
+      "vote_count": 123,
+      "runtime": 412,
+      "tagline": "12343",
+      "overview": "tests",
+      "genres": ["Horror", "Comedy"]
+    }
+  ]
+}
