@@ -9,6 +9,9 @@ module.exports = {
     '^.+\\.tsx?$': 'ts-jest',
   },
 
+  coverageReporters: ['text', 'html'],
+  coverageDirectory: '<rootDir>/coverage/',
+
   // Runs special logic, such as cleaning up components
   // when using React Testing Library and adds special
   // extended assertions to Jest

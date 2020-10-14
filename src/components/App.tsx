@@ -8,13 +8,12 @@ import ResultsMovie from './ResultsMovie/ResultsMovie';
 
 const App: React.FunctionComponent = () => (
   <div className="app">
-    Testing
-    {/* <ErrorBoundary>
+    <ErrorBoundary>
       <Header />
       <SubHeader />
       <ResultsMovie />
       <Footer />
-    </ErrorBoundary> */}
+    </ErrorBoundary>
   </div>
 );
 

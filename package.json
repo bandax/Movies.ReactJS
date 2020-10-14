@@ -9,6 +9,7 @@
     "build:dev": "cross-env NODE_ENV=development node_modules/.bin/webpack",
     "build:prod": "cross-env NODE_ENV=production node_modules/.bin/webpack -p",
     "test": "jest",
+    "test-coverage": "jest --coverage --collectCoverageFrom=src/**/*.{ts,tsx}",
     "test:watch": "jest --watch"
   },
   "author": "Luis Banda",

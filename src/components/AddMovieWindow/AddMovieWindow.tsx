@@ -115,7 +115,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
   return (
     <div className="add-movie-window">
       <div className="add-movie-modal">
-        <h2 className="add-movie-title">Add movie</h2>
+        <h2 className="add-movie-title">Add movie window</h2>
         <button
           className="add-movie-close"
           onClick={props.onShowAddMovieWindow}
