@@ -102,7 +102,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
           label="Movie Id"
           placeholder=""
           type="text"
-          readonly="true"
+          readOnly="{true}"
         />
       </>
     ) : null;
@@ -118,6 +118,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
         <h2 className="add-movie-title">Add movie window</h2>
         <button
           className="add-movie-close"
+          data-testid="add-movie-close"
           onClick={props.onShowAddMovieWindow}
         >
           &times;

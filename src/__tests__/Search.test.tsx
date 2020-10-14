@@ -7,7 +7,6 @@ import '@testing-library/jest-dom/extend-expect';
 describe('<Search />', () => {
   test('render a Search Component', async () => {
     const { asFragment } = render(<Search />);
-    screen.debug();
     expect(asFragment()).toMatchSnapshot();
   });
 

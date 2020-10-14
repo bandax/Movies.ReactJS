@@ -26,7 +26,7 @@ describe('moviesReducer', () => {
       errorMessage: '',
       findMovies: true,
     };
-    const movies: IMovieData[] = moviesData;
+    const movies: IMovieData[] = moviesData.data;
 
     const newState = movieReducer(state, loadingMoviesSuccess(movies));
 
