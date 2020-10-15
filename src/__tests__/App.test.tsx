@@ -26,12 +26,15 @@ describe('<App />', () => {
 
   beforeEach(() => (store = mockStore(state)));
 
-  test('should display a default app component', async () => {
+  it('should display a default app component', async () => {
     const { asFragment } = render(
       <Provider store={store}>
         <App />
       </Provider>
     );
-    expect(asFragment()).toMatchSnapshot();
+
+    const fragment = asFragment();
+
+    expect(fragment).toMatchSnapshot();
   });
 });

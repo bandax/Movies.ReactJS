@@ -29,23 +29,28 @@ describe('<AddMovie />', () => {
 
   beforeEach(() => (store = mockStore(state)));
 
-  test('render a Add Movie Component', async () => {
+  it('render a Add Movie Component', async () => {
     const { asFragment } = render(
       <Provider store={store}>
         <AddMovie />
       </Provider>
     );
-    expect(asFragment()).toMatchSnapshot();
+
+    const fragment = asFragment();
+
+    expect(fragment).toMatchSnapshot();
   });
 
-  test('click to show Add Movie Window', async () => {
+  it('click to show Add Movie Window', async () => {
     const { getByText } = render(
       <Provider store={store}>
         <AddMovie />
       </Provider>
     );
-    const button = getByText(/Add/i);
+    const button = getByText('+Add Movie');
+
     userEvent.click(button);
+
     expect(getByText('Add movie window')).toBeInTheDocument();
   });
 });

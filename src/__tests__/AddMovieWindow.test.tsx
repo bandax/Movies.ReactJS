@@ -7,7 +7,6 @@ import '@testing-library/jest-dom/extend-expect';
 import configureMockStore, { MockStoreCreator } from 'redux-mock-store';
 import { MovieState } from '../store/movie/state';
 import { Action } from 'redux';
-import { Provider } from 'react-redux';
 import { RootState } from '../store/index';
 import clasificationTypes from '../data/clasifications.json';
 import { IMovieData } from '../interfaces/IMovieData';
@@ -24,41 +23,39 @@ const state: RootState = {
   },
 };
 
+const newMovie: IMovieData = {
+  id: 0,
+  title: 'Avengers Infinity War',
+  poster_path: '../../../assets/posters/avengers-infinity-war.PNG',
+  release_date: '01/02/2010',
+  budget: 123,
+  revenue: 123,
+  vote_average: 123,
+  vote_count: 123,
+  runtime: 412,
+  tagline: '12343',
+  overview: 'tests',
+  genres: ['Action & Adventure', 'Comedy'],
+};
+
+const movieToUpdate: IMovieData = {
+  id: 1234,
+  title: 'Avengers Infinity War',
+  poster_path: '../../../assets/posters/avengers-infinity-war.PNG',
+  release_date: '01/02/2010',
+  budget: 123,
+  revenue: 123,
+  vote_average: 123,
+  vote_count: 123,
+  runtime: 412,
+  tagline: '12343',
+  overview: 'tests',
+  genres: ['Action & Adventure', 'Comedy'],
+};
+
 const mockStore = configureMockStore<RootState, DispatchExts>(middleware);
 
 describe('<AddMovie />', () => {
-  let store;
-
-  const newMovie: IMovieData = {
-    id: 0,
-    title: 'Avengers Infinity War',
-    poster_path: '../../../assets/posters/avengers-infinity-war.PNG',
-    release_date: '01/02/2010',
-    budget: 123,
-    revenue: 123,
-    vote_average: 123,
-    vote_count: 123,
-    runtime: 412,
-    tagline: '12343',
-    overview: 'tests',
-    genres: ['Action & Adventure', 'Comedy'],
-  };
-
-  const movieToUpdate: IMovieData = {
-    id: 1234,
-    title: 'Avengers Infinity War',
-    poster_path: '../../../assets/posters/avengers-infinity-war.PNG',
-    release_date: '01/02/2010',
-    budget: 123,
-    revenue: 123,
-    vote_average: 123,
-    vote_count: 123,
-    runtime: 412,
-    tagline: '12343',
-    overview: 'tests',
-    genres: ['Action & Adventure', 'Comedy'],
-  };
-
   let onAddMovieSubmit;
   let onShowAddMovieWindow;
 
@@ -71,7 +68,7 @@ describe('<AddMovie />', () => {
     jest.clearAllMocks();
   });
 
-  test('should render a Add Movie Window Component', async () => {
+  it('should render a Add Movie Window Component', async () => {
     const { asFragment } = render(
       <AddMovieWindow
         clasificationMovies={clasificationTypes}
@@ -81,10 +78,13 @@ describe('<AddMovie />', () => {
         movie={newMovie}
       />
     );
-    expect(asFragment()).toMatchSnapshot();
+
+    const fragment = asFragment();
+
+    expect(fragment).toMatchSnapshot();
   });
 
-  test('should not render the component at all', async () => {
+  it('should not render the component at all', async () => {
     const { container } = render(
       <AddMovieWindow
         clasificationMovies={clasificationTypes}
@@ -94,10 +94,13 @@ describe('<AddMovie />', () => {
         movie={newMovie}
       />
     );
-    expect(container.firstChild).toBeNull();
+
+    const elements = container.firstChild;
+
+    expect(elements).toBeNull();
   });
 
-  test('should close add movie window when click close icon', async () => {
+  it('should close add movie window when click close icon', async () => {
     const { getByTestId, getByText } = render(
       <AddMovieWindow
         clasificationMovies={clasificationTypes}
@@ -108,14 +111,16 @@ describe('<AddMovie />', () => {
       />
     );
     const button = getByTestId('add-movie-close');
+
     userEvent.click(button);
+
     expect(getByText('Add movie window')).toBeInTheDocument();
     await waitFor(() => {
       expect(onShowAddMovieWindow).toHaveBeenCalled();
     });
   });
 
-  test('should show moveId input control', async () => {
+  it('should show moveId input control', async () => {
     const { getByTestId, getByText } = render(
       <AddMovieWindow
         clasificationMovies={clasificationTypes}
@@ -125,11 +130,13 @@ describe('<AddMovie />', () => {
         movie={movieToUpdate}
       />
     );
+
     const input = getByText('Movie Id');
+
     expect(input).toBeInTheDocument();
   });
 
-  test('should allow to call submit button', async () => {
+  it('should allow to call submit button', async () => {
     const { getByTestId, getByText } = render(
       <AddMovieWindow
         clasificationMovies={clasificationTypes}
@@ -139,6 +146,7 @@ describe('<AddMovie />', () => {
         movie={null}
       />
     );
+    const button = getByText('Submit');
 
     userEvent.type(getByText('Title'), 'New Movie');
     userEvent.type(
@@ -152,8 +160,6 @@ describe('<AddMovie />', () => {
     userEvent.type(getByText('Revenue'), '1234');
     userEvent.type(getByText('Vote Avg'), '1234');
     userEvent.type(getByText('Vote Count'), '23454');
-
-    const button = getByText(/Submit/i);
     userEvent.click(button);
 
     await waitFor(() => {
@@ -161,8 +167,8 @@ describe('<AddMovie />', () => {
     });
   });
 
-  test('should allow to call reset button and clean up values', async () => {
-    const { getByTestId, getByText } = render(
+  it('should allow to call reset button and clean up values', async () => {
+    const { getByText } = render(
       <AddMovieWindow
         clasificationMovies={clasificationTypes}
         onAddMovieSubmit={onAddMovieSubmit}
@@ -171,10 +177,10 @@ describe('<AddMovie />', () => {
         movie={null}
       />
     );
-
     const title = getByText('Title');
+    const button = getByText('Reset');
+
     userEvent.type(title, 'New Movie');
-    const button = getByText(/Reset/i);
     userEvent.click(button);
 
     expect(title).not.toHaveValue();

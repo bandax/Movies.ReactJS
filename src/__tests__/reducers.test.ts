@@ -16,7 +16,10 @@ describe('moviesReducer', () => {
       errorMessage: '',
       findMovies: true,
     };
-    expect(movieReducer(state, loadingMovies()).loading).toBe(true);
+
+    const isLoading = movieReducer(state, loadingMovies()).loading;
+
+    expect(isLoading).toBe(true);
   });
 
   it('should return list of movies and set isLoading to false', () => {
@@ -42,6 +45,7 @@ describe('moviesReducer', () => {
       findMovies: true,
     };
     const errorMessage = 'No data found';
+
     const newState = movieReducer(state, loadingMoviesError(errorMessage));
 
     expect(newState.loading).toBe(false);

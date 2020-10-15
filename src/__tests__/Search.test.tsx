@@ -5,19 +5,19 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 
 describe('<Search />', () => {
-  test('render a Search Component', async () => {
+  it('render a Search Component', async () => {
     const { asFragment } = render(<Search />);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test('type a text to search', async () => {
+  it('type a text to search', async () => {
     const { getByRole } = render(<Search />);
     const input = getByRole('textbox');
     userEvent.type(input, 'Fifty');
     expect(input).toHaveValue('Fifty');
   });
 
-  test('click search button to redirect search page with text included', async () => {
+  it('click search button to redirect search page with text included', async () => {
     const { getByText, getByRole } = render(<Search />);
     const input = getByRole('textbox');
     const link = getByText('Search');
