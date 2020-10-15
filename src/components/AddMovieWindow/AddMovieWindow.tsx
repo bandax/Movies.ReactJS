@@ -61,7 +61,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
       }
     });
     setSelectedGenres(selGenres);
-  }, [props.movie]);
+  }, [genreOptions]);
 
   const initialValues: IFormMovieValues = {
     budget: props.movie?.budget ?? 0,
@@ -130,11 +130,12 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
             const selGenres: string[] = values.genres.map((option: IOption) => {
               return option.label;
             });
+            console.log(values.release_date);
 
             const movieToSave: IMovieData = {
               ...values,
               genres: selGenres,
-              release_date: values.release_date.toISOString(),
+              release_date: values.release_date.toLocaleDateString(),
             };
 
             props.onAddMovieSubmit(movieToSave);

@@ -63,7 +63,7 @@ exports[`<AddMovie /> should render a Add Movie Window Component 1`] = `
                     id="release_date"
                     name="release_date"
                     type="text"
-                    value="01/02/2010"
+                    value="10/15/2020"
                   />
                 </div>
               </div>
@@ -80,7 +80,7 @@ exports[`<AddMovie /> should render a Add Movie Window Component 1`] = `
                 name="poster_path"
                 placeholder="Movie URL here"
                 type="text"
-                value="../../../assets/posters/avengers-infinity-war.PNG"
+                value="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Scarymovie4-logo.svg/1920px-Scarymovie4-logo.svg.png"
               />
               <label
                 class="label-text"
@@ -104,12 +104,37 @@ exports[`<AddMovie /> should render a Add Movie Window Component 1`] = `
                     <div
                       class="dropdown-heading-value"
                     >
-                      <span
-                        class="gray"
-                      >
-                        Select...
+                      <span>
+                        Action & Adventure, Comedy
                       </span>
                     </div>
+                    <button
+                      aria-label="Clear Selected"
+                      class="go367124755 clear-selected-button"
+                      type="button"
+                    >
+                      <svg
+                        class="dropdown-search-clear-icon gray"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        width="24"
+                      >
+                        <line
+                          x1="18"
+                          x2="6"
+                          y1="6"
+                          y2="18"
+                        />
+                        <line
+                          x1="6"
+                          x2="18"
+                          y1="6"
+                          y2="18"
+                        />
+                      </svg>
+                    </button>
                     <svg
                       class="dropdown-heading-dropdown-arrow gray"
                       fill="none"

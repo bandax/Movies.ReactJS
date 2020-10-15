@@ -26,8 +26,9 @@ const state: RootState = {
 const newMovie: IMovieData = {
   id: 0,
   title: 'Avengers Infinity War',
-  poster_path: '../../../assets/posters/avengers-infinity-war.PNG',
-  release_date: '01/02/2010',
+  poster_path:
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Scarymovie4-logo.svg/1920px-Scarymovie4-logo.svg.png',
+  release_date: new Date().toLocaleDateString(),
   budget: 123,
   revenue: 123,
   vote_average: 123,
@@ -143,27 +144,15 @@ describe('<AddMovie />', () => {
         onAddMovieSubmit={onAddMovieSubmit}
         onShowAddMovieWindow={onShowAddMovieWindow}
         showModal={true}
-        movie={null}
+        movie={newMovie}
       />
     );
     const button = getByText('Submit');
 
-    userEvent.type(getByText('Title'), 'New Movie');
-    userEvent.type(
-      getByText('Movie URL'),
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Scarymovie4-logo.svg/1920px-Scarymovie4-logo.svg.png'
-    );
-    userEvent.type(getByText('Overview'), 'Overview');
-    userEvent.type(getByText('Runtime'), '123');
-    userEvent.type(getByText('Budget'), '123');
-    userEvent.type(getByText('Tagline'), '123');
-    userEvent.type(getByText('Revenue'), '1234');
-    userEvent.type(getByText('Vote Avg'), '1234');
-    userEvent.type(getByText('Vote Count'), '23454');
     userEvent.click(button);
 
     await waitFor(() => {
-      expect(onAddMovieSubmit).toHaveBeenCalled();
+      expect(onAddMovieSubmit).toHaveBeenCalledWith(newMovie);
     });
   });
 
