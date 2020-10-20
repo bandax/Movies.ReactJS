@@ -35,12 +35,6 @@ const AddMovie: React.FunctionComponent<Props> = ({
   const [showAddMovieModal, setShowAddMovieModal] = React.useState<boolean>(
     false
   );
-  const [showDeleteMovieModal, setShowDeleteMovieModal] = React.useState<
-    boolean
-  >(false);
-  const [showMovieInfoMovieModal, setShowMovieInfoModal] = React.useState<
-    boolean
-  >(false);
   const [movieTypes, setClasificationTypes] = React.useState<IClasification[]>(
     clasificationTypes
   );
@@ -49,14 +43,6 @@ const AddMovie: React.FunctionComponent<Props> = ({
     selectMovie();
     setShowAddMovieModal(!showAddMovieModal);
   }, [showAddMovieModal]);
-
-  const handleShowDeleteMovieWindow = React.useCallback(() => {
-    setShowDeleteMovieModal(!showDeleteMovieModal);
-  }, [showDeleteMovieModal]);
-
-  const handleShowHideMovieInfoWindow = React.useCallback(() => {
-    setShowMovieInfoModal(!showMovieInfoMovieModal);
-  }, [showMovieInfoMovieModal]);
 
   const handleSubmitAddMovie = function (movieToSave: IMovieData) {
     addNewMovie(movieToSave);

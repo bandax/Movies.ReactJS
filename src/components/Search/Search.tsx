@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './Search.scss';
+import { HashRouter as Router } from 'react-router-dom';
 
 const Search: React.FunctionComponent = () => {
   const [search, setSearch] = React.useState('');
@@ -16,9 +17,11 @@ const Search: React.FunctionComponent = () => {
         placeholder="What do you want to watch?"
         type="text"
       />
-      <Link to={`/search/${search}`} className="btn btn-search">
-        Search
-      </Link>
+      <Router>
+        <Link to={`/search/${search}`} className="btn btn-search">
+          Search
+        </Link>
+      </Router>
     </div>
   );
 };

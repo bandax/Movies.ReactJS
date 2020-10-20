@@ -1,0 +1,11 @@
+{
+  "roots": ["<rootDir>"],
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "moduleFileExtensions": ["tsx", "ts", "js", "json", "node"],
+  "testRegex": "((\\.|/*.)(spec))\\.tsx?$",
+  "moduleNameMapper": {
+    "^.+\\.(css|less|scss)$": "identity-obj-proxy"
+  }
+}

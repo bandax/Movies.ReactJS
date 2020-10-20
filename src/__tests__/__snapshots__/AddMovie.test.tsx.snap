@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddMovie /> render a Add Movie Component 1`] = `
+<DocumentFragment>
+  <div
+    class="add-movie col-2"
+  >
+    <button
+      class="btn btn-add-movie"
+    >
+      +Add Movie
+    </button>
+  </div>
+</DocumentFragment>
+`;

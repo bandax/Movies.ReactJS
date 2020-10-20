@@ -1,40 +1,32 @@
-[
-  {
-    "id": 1234,
-    "title": "Avengers Infinity War",
-    "image": "../../../assets/posters/avengers-infinity-war.PNG",
-    "year": 2004,
-    "rate": 4.3,
-    "releaseDate": "01/02/2010",
-    "review": "Testing review",
-    "runtime": "Runtime",
-    "url": "http://www.movies.com",
-    "categories": [
-      {
-        "id": "cat-1",
-        "name": "Action & Adventure"
-      }
-    ]
-  },
-  {
-    "id": 2345,
-    "title": "Pulp Fiction",
-    "image": "../../../assets/posters/pulp-fiction.PNG",
-    "year": 2004,
-    "rate": 3.0,
-    "releaseDate": "01/02/2010",
-    "review": "Testing review",
-    "runtime": "Runtime",
-    "url": "http://www.movies.com",
-    "categories": [
-      {
-        "id": "cat-1",
-        "name": "Action & Adventure"
-      },
-      {
-        "id": "cat-2",
-        "name": "Drama"
-      }
-    ]
-  }
-]
+{
+  "data": [
+    {
+      "id": 1234,
+      "title": "Avengers Infinity War",
+      "poster_path": "../../../assets/posters/avengers-infinity-war.PNG",
+      "release_date": "01/02/2010",
+      "budget": 123,
+      "revenue": 123,
+      "vote_average": 123,
+      "vote_count": 123,
+      "runtime": 412,
+      "tagline": "12343",
+      "overview": "tests",
+      "genres": ["Action & Adventure", "Comedy"]
+    },
+    {
+      "id": 4567,
+      "title": "StarWars",
+      "poster_path": "../../../assets/posters/avengers-infinity-war.PNG",
+      "release_date": "01/02/2010",
+      "budget": 123,
+      "revenue": 123,
+      "vote_average": 123,
+      "vote_count": 123,
+      "runtime": 412,
+      "tagline": "12343",
+      "overview": "tests",
+      "genres": ["Horror", "Comedy"]
+    }
+  ]
+}

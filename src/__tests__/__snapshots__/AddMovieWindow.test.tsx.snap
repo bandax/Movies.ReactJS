@@ -1,0 +1,285 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddMovie /> should render a Add Movie Window Component 1`] = `
+<DocumentFragment>
+  <div
+    class="add-movie-window"
+  >
+    <div
+      class="add-movie-modal"
+    >
+      <h2
+        class="add-movie-title"
+      >
+        Add movie window
+      </h2>
+      <button
+        class="add-movie-close"
+        data-testid="add-movie-close"
+      >
+        ×
+      </button>
+      <form
+        action="#"
+      >
+        <div
+          class="add-movie-content"
+        >
+          <div
+            class="row"
+          >
+            <div
+              class="col-6"
+            >
+              <label
+                class="label-text"
+                for="title"
+              >
+                Title
+              </label>
+              <input
+                class="input-text"
+                id="title"
+                label="Title"
+                name="title"
+                placeholder="Title"
+                type="text"
+                value="Avengers Infinity War"
+              />
+              <label
+                class="label-text"
+                for="release_date"
+              >
+                Release Date
+              </label>
+              <div
+                class="react-datepicker-wrapper"
+              >
+                <div
+                  class="react-datepicker__input-container"
+                >
+                  <input
+                    class="date-icon input-text"
+                    id="release_date"
+                    name="release_date"
+                    type="text"
+                    value="10/15/2020"
+                  />
+                </div>
+              </div>
+              <label
+                class="label-text"
+                for="poster_path"
+              >
+                Movie URL
+              </label>
+              <input
+                class="input-text"
+                id="poster_path"
+                label="Movie URL"
+                name="poster_path"
+                placeholder="Movie URL here"
+                type="text"
+                value="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Scarymovie4-logo.svg/1920px-Scarymovie4-logo.svg.png"
+              />
+              <label
+                class="label-text"
+                for="genres"
+              >
+                Genre
+              </label>
+              <div
+                class="go2139093995 multi-select"
+              >
+                <div
+                  aria-expanded="false"
+                  aria-labelledby="Select"
+                  aria-readonly="true"
+                  class="go2646822163 dropdown-container"
+                  tabindex="0"
+                >
+                  <div
+                    class="go2642161244 dropdown-heading"
+                  >
+                    <div
+                      class="dropdown-heading-value"
+                    >
+                      <span>
+                        Action & Adventure, Comedy
+                      </span>
+                    </div>
+                    <button
+                      aria-label="Clear Selected"
+                      class="go367124755 clear-selected-button"
+                      type="button"
+                    >
+                      <svg
+                        class="dropdown-search-clear-icon gray"
+                        fill="none"
+                        height="24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        width="24"
+                      >
+                        <line
+                          x1="18"
+                          x2="6"
+                          y1="6"
+                          y2="18"
+                        />
+                        <line
+                          x1="6"
+                          x2="18"
+                          y1="6"
+                          y2="18"
+                        />
+                      </svg>
+                    </button>
+                    <svg
+                      class="dropdown-heading-dropdown-arrow gray"
+                      fill="none"
+                      height="24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      width="24"
+                    >
+                      <path
+                        d="M6 9L12 15 18 9"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <label
+                class="label-text"
+                for="overview"
+              >
+                Overview
+              </label>
+              <input
+                class="input-text"
+                id="overview"
+                label="Overview"
+                name="overview"
+                placeholder="Overview here"
+                type="text"
+                value="tests"
+              />
+            </div>
+            <div
+              class="col-6"
+            >
+              <label
+                class="label-text"
+                for="runtime"
+              >
+                Runtime
+              </label>
+              <input
+                class="input-text"
+                id="runtime"
+                label="Runtime"
+                name="runtime"
+                placeholder="Runtime here"
+                type="number"
+                value="412"
+              />
+              <label
+                class="label-text"
+                for="budget"
+              >
+                Budget
+              </label>
+              <input
+                class="input-text"
+                id="budget"
+                label="Budget"
+                name="budget"
+                placeholder="Budget"
+                type="number"
+                value="123"
+              />
+              <label
+                class="label-text"
+                for="tagline"
+              >
+                Tagline
+              </label>
+              <input
+                class="input-text"
+                id="tagline"
+                label="Tagline"
+                name="tagline"
+                placeholder="Tagline"
+                type="text"
+                value="12343"
+              />
+              <label
+                class="label-text"
+                for="revenue"
+              >
+                Revenue
+              </label>
+              <input
+                class="input-text"
+                id="revenue"
+                label="Revenue"
+                name="revenue"
+                placeholder="Revenue here"
+                type="number"
+                value="123"
+              />
+              <label
+                class="label-text"
+                for="vote_average"
+              >
+                Vote Avg
+              </label>
+              <input
+                class="input-text"
+                id="vote_average"
+                label="Vote Avg"
+                name="vote_average"
+                placeholder="vote"
+                type="number"
+                value="123"
+              />
+              <label
+                class="label-text"
+                for="vote_count"
+              >
+                Vote Count
+              </label>
+              <input
+                class="input-text"
+                id="vote_count"
+                label="Vote Count"
+                name="vote_count"
+                placeholder="vote count"
+                type="number"
+                value="123"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          class="actions"
+        >
+          <button
+            class="btn btn-reset"
+            type="reset"
+          >
+            Reset
+          </button>
+          <button
+            class="btn btn-submit"
+            type="submit"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</DocumentFragment>
+`;

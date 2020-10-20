@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should display a default app component 1`] = `
+<DocumentFragment>
+  <div
+    class="app"
+  >
+    <div
+      class="header row"
+    >
+      <div
+        class="search col-10"
+      >
+        <span
+          class="find-label"
+        >
+          Find your movie
+        </span>
+        <br />
+        <input
+          class="search-box"
+          placeholder="What do you want to watch?"
+          type="text"
+          value=""
+        />
+        <a
+          class="btn btn-search"
+          href="#/search/"
+        >
+          Search
+        </a>
+      </div>
+      <div
+        class="add-movie col-2"
+      >
+        <button
+          class="btn btn-add-movie"
+        >
+          +Add Movie
+        </button>
+      </div>
+    </div>
+    <div
+      class="sub-header"
+    >
+      <div
+        class="clasification-movies"
+      >
+        <ul
+          class="movies-types"
+        >
+          <li
+            class="movie-type"
+          >
+            <a
+              href=""
+            >
+              Documentary
+            </a>
+          </li>
+          <li
+            class="movie-type"
+          >
+            <a
+              href=""
+            >
+              Comedy
+            </a>
+          </li>
+          <li
+            class="movie-type"
+          >
+            <a
+              href=""
+            >
+              Horror
+            </a>
+          </li>
+          <li
+            class="movie-type"
+          >
+            <a
+              href=""
+            >
+              Action & Adventure
+            </a>
+          </li>
+          <li
+            class="movie-type"
+          >
+            <a
+              href=""
+            >
+              Drama
+            </a>
+          </li>
+          <li
+            class="movie-type"
+          >
+            <a
+              href=""
+            >
+              Romance
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="sort-movies"
+      >
+        <span
+          class="sort-title"
+        >
+          sort by: 
+        </span>
+        <select>
+          <option
+            value="sort-1"
+          >
+            Release Date
+          </option>
+          <option
+            value="sort-2"
+          >
+            Most Popular
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      class="list-movies"
+    >
+      <div
+        class="total-result"
+      >
+        <span
+          class="found-label"
+        >
+          <b>
+            0
+          </b>
+           movies found
+        </span>
+      </div>
+      <div
+        class="display-movie"
+      />
+    </div>
+    <div
+      class="footer"
+    >
+      <img
+        src="../../../assets/netflix-roulette.PNG"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
