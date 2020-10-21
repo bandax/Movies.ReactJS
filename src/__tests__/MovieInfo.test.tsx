@@ -56,9 +56,6 @@ const state: RootState = {
 const mockStore = configureMockStore<RootState, DispatchExts>(middleware);
 
 describe('<MovieInfo />', () => {
-  let onAddMovieSubmit;
-  let onShowAddMovieWindow;
-
   let store;
 
   beforeEach(() => {
@@ -70,11 +67,6 @@ describe('<MovieInfo />', () => {
       }),
     }));
   });
-
-  //   beforeEach(() => {
-  //     onAddMovieSubmit = jest.fn();
-  //     onShowAddMovieWindow = jest.fn();
-  //   });
 
   afterEach(() => {
     jest.clearAllMocks();

@@ -85,11 +85,6 @@ describe('<SearchResults />', () => {
     }));
   });
 
-  //   beforeEach(() => {
-  //     onAddMovieSubmit = jest.fn();
-  //     onShowAddMovieWindow = jest.fn();
-  //   });
-
   afterEach(() => {
     jest.clearAllMocks();
   });
