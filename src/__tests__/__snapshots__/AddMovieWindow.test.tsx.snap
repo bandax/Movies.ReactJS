@@ -63,7 +63,7 @@ exports[`<AddMovie /> should render a Add Movie Window Component 1`] = `
                     id="release_date"
                     name="release_date"
                     type="text"
-                    value="10/15/2020"
+                    value="10/21/2020"
                   />
                 </div>
               </div>

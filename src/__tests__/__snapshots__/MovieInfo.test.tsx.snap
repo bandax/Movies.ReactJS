@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieInfo /> should render a MovieInfo Component 1`] = `
+<DocumentFragment>
+  <div
+    class="row"
+  >
+    <div
+      class="col-4 movie-image"
+    >
+      <img
+        class="poster-movie"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Scarymovie4-logo.svg/1920px-Scarymovie4-logo.svg.png"
+        width="50%"
+      />
+    </div>
+    <div
+      class="col-8"
+    >
+      <div
+        class=""
+      >
+        <h1
+          class="movie-title"
+          data-testid="movie-title"
+        >
+          Avengers Infinity War
+        </h1>
+         Rate: 
+        <span
+          class="movie-rate"
+        >
+          123
+        </span>
+      </div>
+      <div>
+        Release Date: 
+        <span
+          class="movie-year"
+        >
+          2020
+        </span>
+         
+      </div>
+      <div>
+        Overview: 
+        <p
+          class="movie-review"
+        >
+          tests
+        </p>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

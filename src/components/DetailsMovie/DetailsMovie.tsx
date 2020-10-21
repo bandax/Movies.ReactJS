@@ -2,6 +2,7 @@ import * as React from 'react';
 import './DetailsMovie.scss';
 import { IMovieData } from '../../interfaces/IMovieData';
 import { Link } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 
 export interface IDetailsMovieProps {
   movie: IMovieData;
@@ -43,7 +44,9 @@ const DetailsMovie: React.FunctionComponent<IDetailsMovieProps> = (props) => {
         <button className="" onClick={onDeleteMovie}>
           Delete Movie
         </button>
-        <Link to={`/film/${movie.id}`}>Show Details Movie</Link>
+        <Router>
+          <Link to={`/film/${movie.id}`}>Show Details Movie</Link>
+        </Router>
       </div>
     </>
   );

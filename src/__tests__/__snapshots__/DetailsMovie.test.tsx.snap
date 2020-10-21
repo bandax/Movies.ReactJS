@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddMovie /> should render a Details Movie Component 1`] = `
+<DocumentFragment>
+  <div
+    class="details-movie"
+  >
+    <img
+      class="poster-movie"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Scarymovie4-logo.svg/1920px-Scarymovie4-logo.svg.png"
+    />
+    <br />
+    <span
+      class="title-movie"
+    >
+      Avengers Infinity War
+    </span>
+    <span
+      class="year-movie"
+    >
+      2020
+    </span>
+    <span
+      class="categories-movie"
+    >
+      Action & Adventure, Comedy
+    </span>
+    <button
+      class=""
+    >
+      Edit Movie
+    </button>
+    <button
+      class=""
+    >
+      Delete Movie
+    </button>
+    <a
+      href="#/film/0"
+    >
+      Show Details Movie
+    </a>
+  </div>
+</DocumentFragment>
+`;

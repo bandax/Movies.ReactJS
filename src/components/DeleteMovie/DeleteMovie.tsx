@@ -30,6 +30,7 @@ const DeleteMovieWindow: React.FunctionComponent<IDeleteMovieWindowProps> = (
           className="delete-movie-close"
           href="#"
           onClick={props.onShowDeleteMovieWindow}
+          data-testid="delete-movie-close"
         >
           &times;
         </a>
