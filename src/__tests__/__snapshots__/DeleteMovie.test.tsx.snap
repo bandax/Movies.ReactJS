@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DeleteMovieWindow /> render a Delete Movie Component 1`] = `
+<DocumentFragment>
+  <div
+    class="delete-movie-window"
+  >
+    <div
+      class="delete-movie-modal"
+    >
+      <h2
+        class="delete-movie-title"
+      >
+        Delete movie
+      </h2>
+      <a
+        class="delete-movie-close"
+        data-testid="delete-movie-close"
+        href="#"
+      >
+        ×
+      </a>
+      <div
+        class="delete-movie-content"
+      >
+        Are you sure you want to delete this movie?
+      </div>
+      <div
+        class="delete-movie-actions"
+      >
+        <button
+          class="btn btn-confirm"
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

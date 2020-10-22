@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> render a Footer Component 1`] = `
+<DocumentFragment>
+  <ul
+    class="movies-types"
+  >
+    <li
+      class="movie-type"
+    >
+      <a
+        href=""
+      >
+        Documentary
+      </a>
+    </li>
+    <li
+      class="movie-type"
+    >
+      <a
+        href=""
+      >
+        Comedy
+      </a>
+    </li>
+    <li
+      class="movie-type"
+    >
+      <a
+        href=""
+      >
+        Horror
+      </a>
+    </li>
+    <li
+      class="movie-type"
+    >
+      <a
+        href=""
+      >
+        Action & Adventure
+      </a>
+    </li>
+    <li
+      class="movie-type"
+    >
+      <a
+        href=""
+      >
+        Drama
+      </a>
+    </li>
+    <li
+      class="movie-type"
+    >
+      <a
+        href=""
+      >
+        Romance
+      </a>
+    </li>
+  </ul>
+</DocumentFragment>
+`;

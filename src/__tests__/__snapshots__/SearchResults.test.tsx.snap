@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchResults /> should render a SearchResults Component 1`] = `
+<DocumentFragment>
+  <div
+    class="app"
+  >
+    Results for Infinity
+  </div>
+  <div
+    class="list-movies"
+  >
+    <div
+      class="total-result"
+    >
+      <span
+        class="found-label"
+      >
+        <b>
+          2
+        </b>
+         movies found
+      </span>
+    </div>
+    <div
+      class="display-movie"
+    >
+      <div
+        class="details-movie"
+      >
+        <img
+          class="poster-movie"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Scarymovie4-logo.svg/1920px-Scarymovie4-logo.svg.png"
+        />
+        <br />
+        <span
+          class="title-movie"
+        >
+          Avengers Infinity War
+        </span>
+        <span
+          class="year-movie"
+        >
+          2020
+        </span>
+        <span
+          class="categories-movie"
+        >
+          Action & Adventure, Comedy
+        </span>
+        <button
+          class=""
+        >
+          Edit Movie
+        </button>
+        <button
+          class=""
+        >
+          Delete Movie
+        </button>
+        <a
+          href="#/film/1234"
+        >
+          Show Details Movie
+        </a>
+      </div>
+      <div
+        class="details-movie"
+      >
+        <img
+          class="poster-movie"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Scarymovie4-logo.svg/1920px-Scarymovie4-logo.svg.png"
+        />
+        <br />
+        <span
+          class="title-movie"
+        >
+          Avengers Infinity War II
+        </span>
+        <span
+          class="year-movie"
+        >
+          2020
+        </span>
+        <span
+          class="categories-movie"
+        >
+          Action & Adventure, Comedy
+        </span>
+        <button
+          class=""
+        >
+          Edit Movie
+        </button>
+        <button
+          class=""
+        >
+          Delete Movie
+        </button>
+        <a
+          href="#/film/1235"
+        >
+          Show Details Movie
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Footer /> render a Footer Component 1`] = `
+<DocumentFragment>
+  <span
+    class="sort-title"
+  >
+    sort by: 
+  </span>
+  <select>
+    <option
+      value="sort-1"
+    >
+      Release Date
+    </option>
+    <option
+      value="sort-2"
+    >
+      Most Popular
+    </option>
+  </select>
+</DocumentFragment>
+`;

@@ -56,8 +56,10 @@ const MovieInfo: React.FunctionComponent<Props> = ({
         </div>
         <div className="col-8">
           <div className="">
-            <h1 className="movie-title">{movie?.title}</h1> Rate:{' '}
-            <span className="movie-rate">{movie?.vote_average}</span>
+            <h1 className="movie-title" data-testid="movie-title">
+              {movie?.title}
+            </h1>{' '}
+            Rate: <span className="movie-rate">{movie?.vote_average}</span>
           </div>
           <div>
             Release Date:{' '}
