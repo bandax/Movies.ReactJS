@@ -43,23 +43,15 @@ export default function serverRenderer() {
   return (req, res) => {
     // Create a new Redux store instance
     const store = createStore(rootReducer);
-
-    //const store = configureStore();
-    // This context object contains the results of the render
     const context = {};
 
-    const renderRoot = () => <StaticRouter><App store={store} /></StaticRouter>;
+    const renderRoot = () => (
+      <StaticRouter>
+        <App store={store} />
+      </StaticRouter>
+    );
 
     renderToString(renderRoot());
-
-    // context.url will contain the URL to redirect to if a <Redirect> was used
-    // if (context.url) {
-    //   res.writeHead(302, {
-    //     Location: context.url,
-    //   });
-    //   res.end();
-    //   return;
-    // }
 
     const htmlString = renderToString(renderRoot());
     const preloadedState = store.getState();

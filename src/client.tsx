@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { App } from './components/App';
-import {HashRouter} from 'react-router-dom';
+import { HashRouter, BrowserRouter } from 'react-router-dom';
 
 import { combineReducers, applyMiddleware } from 'redux';
 import { movieReducer } from './store/movie/reducers';
@@ -40,7 +40,8 @@ export const store = createStore(
 );
 
 ReactDOM.hydrate(
-   <App store={store} />,
+  <BrowserRouter>
+    <App store={store} />
+  </BrowserRouter>,
   document.getElementById('root')
 );
-
