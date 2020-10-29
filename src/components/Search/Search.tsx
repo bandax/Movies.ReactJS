@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import './Search.scss';
+// import './Search.scss';
 import { HashRouter as Router } from 'react-router-dom';
 
 const Search: React.FunctionComponent = () => {

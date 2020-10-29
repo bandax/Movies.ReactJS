@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './AddMovie.scss';
+//import './AddMovie.scss';
 import { AddMovieWindow } from '../AddMovieWindow/AddMovieWindow';
 import clasificationTypes from '../../data/clasifications.json';
 import { IMovieData } from '../../interfaces/IMovieData';
@@ -58,13 +58,13 @@ const AddMovie: React.FunctionComponent<Props> = ({
           +Add Movie
         </button>
       </div>
-      <AddMovieWindow
+      {/* <AddMovieWindow
         clasificationMovies={movieTypes}
         showModal={showAddMovieModal}
         movie={movie}
         onShowAddMovieWindow={handleShowAddMovieWindow}
         onAddMovieSubmit={handleSubmitAddMovie}
-      />
+      /> */}
     </>
   );
 };

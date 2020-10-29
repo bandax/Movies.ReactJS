@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './MovieInfo.scss';
+//import './MovieInfo.scss';
 import { IMovie } from '../../interfaces/IResultsMovies';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';

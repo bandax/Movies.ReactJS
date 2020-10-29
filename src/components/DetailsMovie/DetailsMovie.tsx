@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './DetailsMovie.scss';
+//import './DetailsMovie.scss';
 import { IMovieData } from '../../interfaces/IMovieData';
 import { Link } from 'react-router-dom';
 import { HashRouter as Router } from 'react-router-dom';

@@ -1,21 +1,25 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+
+const isDevMod = process.env.NODE_ENV === 'development';
 
 module.exports = {
-  entry: './src/index.tsx',
-  target: 'web',
-  mode: 'development',
+  mode: process.env.NODE_ENV,
+
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js',
+    filename: 'js/[name].js',
+    path: path.resolve('./public'),
   },
+
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
   },
+
   module: {
     rules: [
       {
         test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
         loader: 'awesome-typescript-loader',
       },
       {
@@ -27,27 +31,23 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: false,
+              sourceMap: true,
             },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: false,
+              sourceMap: true,
             },
           },
         ],
       },
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        loader: 'source-map-loader',
-      },
     ],
   },
+
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'index.html'),
-    }),
+    isDevMod
+      ? new webpack.NamedModulesPlugin()
+      : new webpack.HashedModuleIdsPlugin(),
   ],
 };

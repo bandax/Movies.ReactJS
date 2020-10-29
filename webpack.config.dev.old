@@ -1,0 +1,87 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = function (env, argv) {
+  // default to the server configuration
+  const base = {
+    entry: './src/server/index.tsx',
+    target: 'web',
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'bundle.js',
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(ts|tsx)$/,
+          loader: 'awesome-typescript-loader',
+        },
+        {
+          test: /\.scss$/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        },
+        {
+          enforce: 'pre',
+          test: /\.js$/,
+          loader: 'source-map-loader',
+        },
+        {
+          // Preprocess your css files
+          // you can add additional loaders here (e.g. sass/less etc.)
+          test: /\.css$/,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.(png|svg|jpe?g|gif)$/,
+          include: /assets/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                outputPath: 'assets/',
+                publicPath: 'assets/',
+              },
+            },
+          ],
+        },
+      ],
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, 'src', 'index.html'),
+      }),
+    ],
+  };
+  // server-specific configuration
+  if (env.platform === 'server') {
+    base.target = 'node';
+  }
+
+  // client-specific configurations
+  if (env.platform === 'web') {
+    base.entry = './src/clientEntry.tsx';
+    base.output.filename = 'bundle.js';
+  }
+
+  return base;
+};

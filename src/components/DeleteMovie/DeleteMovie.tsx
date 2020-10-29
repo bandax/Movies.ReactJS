@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './DeleteMovie.scss';
+// import './DeleteMovie.scss';
 import { IMovieData } from '../../interfaces/IMovieData';
 
 interface IDeleteMovieWindowProps {

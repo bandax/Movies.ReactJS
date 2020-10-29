@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './ResultsMovie.scss';
+//import './ResultsMovie.scss';
 import { IMovieData } from '../../interfaces/IMovieData';
 import { DetailsMovie } from '../DetailsMovie/DetailsMovie';
 import { connect } from 'react-redux';
@@ -22,6 +22,7 @@ const mapStateToProps = (state: RootState) => ({
   movie: state.movie.movie,
   movies: getMoviesData(state),
   isLoading: getMoviesLoading(state),
+  errorMessage: state.movie.errorMessage,
 });
 
 const mapDispatchToProps = (
@@ -46,6 +47,7 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
   selectMovie,
   deleteMovie,
   isLoading,
+  errorMessage,
 }) => {
   const [showAddMovieModal, setShowAddMovieModal] = React.useState<boolean>(
     false
@@ -93,13 +95,14 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
 
   const content = (
     <>
-      <AddMovieWindow
+      <h1>Message {errorMessage}</h1>
+      {/* <AddMovieWindow
         clasificationMovies={movieTypes}
         showModal={showAddMovieModal}
         movie={movie}
         onShowAddMovieWindow={handleShowAddMovieWindow}
         onAddMovieSubmit={handleUpdateMovie}
-      />
+      /> */}
       <DeleteMovieWindow
         movieId={movie?.id}
         showDeleteMovieModal={showDeleteMovieModal}

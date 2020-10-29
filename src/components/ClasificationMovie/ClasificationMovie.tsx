@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './ClasificationMovie.scss';
+// import './ClasificationMovie.scss';
 import { IClasification } from '../../interfaces/IClasificationMovie';
 
 interface IClasificationMovieProps {

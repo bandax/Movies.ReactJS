@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Provider } from 'react-redux';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import * as ReactDOM from 'react-dom';
+import { App } from './components/App';
+import { BrowserRouter } from 'react-router-dom';
+
 import { combineReducers, applyMiddleware } from 'redux';
-import { movieReducer } from '../store/movie/reducers';
+import { movieReducer } from './store/movie/reducers';
 import { createStore } from 'redux';
-import { Movie } from './Movie';
 import thunk from 'redux-thunk';
 
 declare global {
@@ -38,24 +39,24 @@ export const store = createStore(
   applyMiddleware(thunk)
 );
 
-interface IAppProps {
-  Router: any;
-  store: any;
-}
-
-const App: React.FunctionComponent<IAppProps> = (props) => (
-  <div className="app">
-    <Provider store={props.store}>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Movie} />
-          {/* <Route exact path="/film/:movieId" component={MovieInfo} />
-        <Route exact path="/search/:searchQuery" component={SearchResults} />
-        <Route path="*" component={NotFound} /> */}
-        </Switch>
-      </Router>
-    </Provider>
-  </div>
+//React.render(<MainWrapper />, document.getElementById("root"));
+ReactDOM.hydrate(
+  <App Router={BrowserRouter} store={store} />,
+  document.getElementById('root')
 );
 
-export { App };
+//const rootElement = document.getElementById('root');
+
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <Router>
+//       <Switch>
+//         <Route exact path="/" component={App} />
+//         <Route exact path="/film/:movieId" component={MovieInfo} />
+//         <Route exact path="/search/:searchQuery" component={SearchResults} />
+//         <Route path="*" component={NotFound} />
+//       </Switch>
+//     </Router>
+//   </Provider>,
+//   rootElement
+// );
