@@ -48,7 +48,7 @@ export default function serverRenderer() {
     // This context object contains the results of the render
     const context = {};
 
-    const renderRoot = () => <App Router={StaticRouter} store={store} />;
+    const renderRoot = () => <StaticRouter><App store={store} /></StaticRouter>;
 
     renderToString(renderRoot());
 

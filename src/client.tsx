@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { App } from './components/App';
-import { BrowserRouter } from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
 
 import { combineReducers, applyMiddleware } from 'redux';
 import { movieReducer } from './store/movie/reducers';
@@ -39,24 +39,8 @@ export const store = createStore(
   applyMiddleware(thunk)
 );
 
-//React.render(<MainWrapper />, document.getElementById("root"));
 ReactDOM.hydrate(
-  <App Router={BrowserRouter} store={store} />,
+   <App store={store} />,
   document.getElementById('root')
 );
 
-//const rootElement = document.getElementById('root');
-
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <Router>
-//       <Switch>
-//         <Route exact path="/" component={App} />
-//         <Route exact path="/film/:movieId" component={MovieInfo} />
-//         <Route exact path="/search/:searchQuery" component={SearchResults} />
-//         <Route path="*" component={NotFound} />
-//       </Switch>
-//     </Router>
-//   </Provider>,
-//   rootElement
-// );
