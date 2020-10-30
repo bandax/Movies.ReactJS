@@ -5,6 +5,9 @@ import { App } from './components/App';
 import { combineReducers, applyMiddleware } from 'redux';
 import { movieReducer } from './store/movie/reducers';
 import { createStore } from 'redux';
+import qs from 'qs'; // Add this at the top of the file
+import { MovieState } from './store/movie/state';
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
   movie: movieReducer,
@@ -34,6 +37,7 @@ function renderHTML(html, preloadedState) {
             )}
           </script>
           <script src="/js/main.js"></script>
+          <link rel="stylesheet" href="main.css">
         </body>
       </html>
   `;
@@ -41,9 +45,18 @@ function renderHTML(html, preloadedState) {
 
 export default function serverRenderer() {
   return (req, res) => {
+    const params = qs.parse(req.query);
+
     // Create a new Redux store instance
-    const store = createStore(rootReducer);
-    const context = {};
+    const store = createStore(rootReducer, applyMiddleware(thunk));
+
+    let preloadedState = store.getState();
+    if (params.genre) {
+      preloadedState.movie.genre = params.genre;
+    } else {
+      preloadedState.movie.genre = 'All';
+    }
+    preloadedState.movie.movie = null;
 
     const renderRoot = () => (
       <StaticRouter>
@@ -54,7 +67,6 @@ export default function serverRenderer() {
     renderToString(renderRoot());
 
     const htmlString = renderToString(renderRoot());
-    const preloadedState = store.getState();
 
     res.send(renderHTML(htmlString, preloadedState));
   };

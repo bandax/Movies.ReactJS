@@ -1,5 +1,5 @@
 import * as React from 'react';
-//import './ResultsMovie.scss';
+import './ResultsMovie.scss';
 import { IMovieData } from '../../interfaces/IMovieData';
 import { DetailsMovie } from '../DetailsMovie/DetailsMovie';
 import { connect } from 'react-redux';
@@ -23,6 +23,7 @@ const mapStateToProps = (state: RootState) => ({
   movies: getMoviesData(state),
   isLoading: getMoviesLoading(state),
   errorMessage: state.movie.errorMessage,
+  genre: state.movie.genre,
 });
 
 const mapDispatchToProps = (
@@ -47,7 +48,7 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
   selectMovie,
   deleteMovie,
   isLoading,
-  errorMessage,
+  genre,
 }) => {
   const [showAddMovieModal, setShowAddMovieModal] = React.useState<boolean>(
     false
@@ -95,7 +96,6 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
 
   const content = (
     <>
-      <h1>Message {errorMessage}</h1>
       {/* <AddMovieWindow
         clasificationMovies={movieTypes}
         showModal={showAddMovieModal}
@@ -112,7 +112,7 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
       <div className="list-movies">
         <div className="total-result">
           <span className="found-label">
-            <b>{movies.length}</b> movies found
+            <b>{movies.length}</b> movies found {genre}
           </span>
         </div>
         <div className="display-movie">

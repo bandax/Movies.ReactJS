@@ -1,5 +1,5 @@
 import * as React from 'react';
-//import './AddMovieWindow.scss';
+import './AddMovieWindow.scss';
 import { IClasification } from '../../interfaces/IClasificationMovie';
 import { IMovieData } from '../../interfaces/IMovieData';
 import * as Yup from 'yup';

@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const isDevMod = process.env.NODE_ENV === 'development';
 
@@ -22,11 +23,17 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'awesome-typescript-loader',
       },
+
       {
-        test: /\.scss$/,
+        // test: /\.s?css$/,
+        test: /\.(scss|css)$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // publicPath: '/dist/',
+              sourceMap: true,
+            },
           },
           {
             loader: 'css-loader',
@@ -42,6 +49,33 @@ module.exports = {
           },
         ],
       },
+
+      // {
+      //   test: /\.(scss|css)$/,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         minimize: {
+      //           safe: true,
+      //         },
+      //         sourceMap: true,
+      //       },
+      //     },
+      //     {
+      //       loader: 'sass-loader',
+      //       options: {
+      //         sourceMap: true,
+      //       },
+      //     },
+      //   ],
+      // },
+
+      {
+        test: /\.(ttf|eot|svg|png|jpg|gif|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader',
+      },
     ],
   },
 
@@ -49,5 +83,6 @@ module.exports = {
     isDevMod
       ? new webpack.NamedModulesPlugin()
       : new webpack.HashedModuleIdsPlugin(),
+    new MiniCssExtractPlugin(),
   ],
 };

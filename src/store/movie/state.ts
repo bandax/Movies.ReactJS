@@ -6,4 +6,5 @@ export interface MovieState {
   loading: boolean;
   errorMessage: string;
   findMovies: boolean;
+  genre: string;
 }

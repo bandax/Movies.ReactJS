@@ -1,5 +1,5 @@
 import * as React from 'react';
-//import './SortMovie.scss';
+import './SortMovie.scss';
 import { ISortOption } from '../../interfaces/ISortMovie';
 
 interface ISortMovieProps {

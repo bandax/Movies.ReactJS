@@ -1,5 +1,5 @@
 import * as React from 'react';
-//import './Header.scss';
+import './Header.scss';
 import { Search } from '../Search/Search';
 import AddMovie from '../AddMovie/AddMovie';
 

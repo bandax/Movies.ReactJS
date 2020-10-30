@@ -1,5 +1,5 @@
 import * as React from 'react';
-//import './SubHeader.scss';
+import './SubHeader.scss';
 
 import { ClasificationMovie } from '../ClasificationMovie/ClasificationMovie';
 
