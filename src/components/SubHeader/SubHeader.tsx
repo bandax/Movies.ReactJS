@@ -3,7 +3,7 @@ import './SubHeader.scss';
 
 import { ClasificationMovie } from '../ClasificationMovie/ClasificationMovie';
 
-import { SortMovie } from '../SortMovie/SortMovie';
+import SortMovieSplit from '../SortMovie/SortMovie';
 import sortOptions from '../../data/sorts.json';
 
 import clasificationTypes from '../../data/clasifications.json';
@@ -14,7 +14,7 @@ const SubHeader: React.FunctionComponent = () => (
       <ClasificationMovie clasificationTypes={clasificationTypes} />
     </div>
     <div className="sort-movies">
-      <SortMovie sortOptions={sortOptions} />
+      <SortMovieSplit sortOptions={sortOptions} />
     </div>
   </div>
 );

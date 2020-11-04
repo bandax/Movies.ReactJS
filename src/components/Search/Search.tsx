@@ -23,4 +23,4 @@ const Search: React.FunctionComponent = () => {
   );
 };
 
-export { Search };
+export default Search;
