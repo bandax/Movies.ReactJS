@@ -1,19 +1,25 @@
 import * as React from 'react';
-import './App.scss';
-import { Header } from './Header/Header';
-import { Footer } from './Footer/Footer';
-import { ErrorBoundary } from './Error/ErrorBoundary';
-import { SubHeader } from './SubHeader/SubHeader';
-import ResultsMovie from './ResultsMovie/ResultsMovie';
+import { Provider } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import { NotFound } from '../components/NotFound/NotFound';
+import SearchResults from '../components/SearchResults/SearchResults';
+import MovieInfo from '../components/MovieInfo/MovieInfo';
+import Movie from './Movie';
 
-const App: React.FunctionComponent = () => (
+interface IAppProps {
+  store: any;
+}
+
+const App: React.FunctionComponent<IAppProps> = (props) => (
   <div className="app">
-    <ErrorBoundary>
-      <Header />
-      <SubHeader />
-      <ResultsMovie />
-      <Footer />
-    </ErrorBoundary>
+    <Provider store={props.store}>
+      <Switch>
+        <Route exact path="/" component={Movie} />
+        <Route exact path="/film/:movieId" component={MovieInfo} />
+        <Route exact path="/search/:searchQuery" component={SearchResults} />
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </Provider>
   </div>
 );
 

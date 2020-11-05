@@ -8,6 +8,7 @@ const initialState: MovieState = {
   loading: false,
   errorMessage: '',
   findMovies: true,
+  genre: 'All',
 };
 
 export function movieReducer(
@@ -42,10 +43,18 @@ export function movieReducer(
         loading: true,
       };
     case ACTIONS.LOAD_MOVIES_SUCCESS:
+      let moviesToReturn = action.movies;
+      if (state.genre.toLowerCase() !== 'all') {
+        moviesToReturn = action.movies.filter((m) =>
+          m.genres
+            .map((g) => g.toLowerCase())
+            .includes(state.genre.toLowerCase())
+        );
+      }
       return {
         ...state,
         loading: false,
-        movies: action.movies,
+        movies: moviesToReturn,
         findMovies: action.movies.length > 0,
       };
     case ACTIONS.LOADING_MOVIES_ERROR:

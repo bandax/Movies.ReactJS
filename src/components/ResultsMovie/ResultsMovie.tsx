@@ -22,6 +22,8 @@ const mapStateToProps = (state: RootState) => ({
   movie: state.movie.movie,
   movies: getMoviesData(state),
   isLoading: getMoviesLoading(state),
+  errorMessage: state.movie.errorMessage,
+  genre: state.movie.genre,
 });
 
 const mapDispatchToProps = (
@@ -46,6 +48,7 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
   selectMovie,
   deleteMovie,
   isLoading,
+  genre,
 }) => {
   const [showAddMovieModal, setShowAddMovieModal] = React.useState<boolean>(
     false
@@ -93,13 +96,13 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
 
   const content = (
     <>
-      <AddMovieWindow
+      {/* <AddMovieWindow
         clasificationMovies={movieTypes}
         showModal={showAddMovieModal}
         movie={movie}
         onShowAddMovieWindow={handleShowAddMovieWindow}
         onAddMovieSubmit={handleUpdateMovie}
-      />
+      /> */}
       <DeleteMovieWindow
         movieId={movie?.id}
         showDeleteMovieModal={showDeleteMovieModal}
@@ -109,7 +112,7 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
       <div className="list-movies">
         <div className="total-result">
           <span className="found-label">
-            <b>{movies.length}</b> movies found
+            <b>{movies.length}</b> movies found {genre}
           </span>
         </div>
         <div className="display-movie">

@@ -1,10 +1,12 @@
 import * as React from 'react';
 import './Footer.scss';
 
-const Footer: React.FunctionComponent = () => (
-  <div className="footer">
-    <img src="../../../assets/netflix-roulette.PNG" />
-  </div>
-);
-
-export { Footer };
+export default class Footer extends React.Component {
+  render() {
+    return (
+      <div className="footer">
+        <img src="./assets/netflix-roulette.png" />
+      </div>
+    );
+  }
+}

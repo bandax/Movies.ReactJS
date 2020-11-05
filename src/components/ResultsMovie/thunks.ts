@@ -15,6 +15,8 @@ export const loadMovies = () => async (
     dispatch(loadingMovies());
     const response = await getRequest('http://localhost:4000/movies');
     const movies = await response.json();
+    console.log('getting movies');
+
     dispatch(loadingMoviesSuccess(movies.data));
   } catch (error) {
     dispatch(loadingMoviesError(error.message));

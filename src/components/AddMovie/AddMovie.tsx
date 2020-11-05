@@ -58,13 +58,13 @@ const AddMovie: React.FunctionComponent<Props> = ({
           +Add Movie
         </button>
       </div>
-      <AddMovieWindow
+      {/* <AddMovieWindow
         clasificationMovies={movieTypes}
         showModal={showAddMovieModal}
         movie={movie}
         onShowAddMovieWindow={handleShowAddMovieWindow}
         onAddMovieSubmit={handleSubmitAddMovie}
-      />
+      /> */}
     </>
   );
 };

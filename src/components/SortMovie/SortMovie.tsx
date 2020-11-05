@@ -25,4 +25,4 @@ const SortMovie: React.FunctionComponent<ISortMovieProps> = (
   );
 };
 
-export { SortMovie };
+export default SortMovie;
