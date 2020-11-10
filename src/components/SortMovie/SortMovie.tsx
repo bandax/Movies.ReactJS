@@ -7,7 +7,7 @@ interface ISortMovieProps {
 }
 
 const SortMovie: React.FunctionComponent<ISortMovieProps> = (
-  props: ISortMovieProps
+  props: ISortMovieProps,
 ) => {
   const { sortOptions } = props;
 

@@ -12,11 +12,10 @@ interface ISortMovieProps {
   sortOptions: ISortOption[];
 }
 
-export default class SortMovieSplit extends React.Component<ISortMovieProps> {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return <LoadableSortMovie sortOptions={this.props.sortOptions} />;
-  }
-}
+const SortMovieSplit: React.FunctionComponent<ISortMovieProps> = (
+  props: ISortMovieProps,
+) => {
+  return <LoadableSortMovie sortOptions={props.sortOptions} />;
+};
+
+export default SortMovieSplit;

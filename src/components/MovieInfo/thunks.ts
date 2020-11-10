@@ -1,17 +1,16 @@
 import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import {
   loadingMovies,
-  loadingMoviesSuccess,
   loadingMoviesError,
   selectMovie,
 } from '../../store/movie/actions';
 import { RootState } from '../../store/index';
-import { ThunkDispatch } from 'redux-thunk';
 import { getRequest } from '../../services/networkService';
 import { IMovieData } from '../../interfaces/IMovieData';
 
 export const getMovieById = (id: string) => async (
-  dispatch: ThunkDispatch<RootState, void, Action>
+  dispatch: ThunkDispatch<RootState, void, Action>,
 ) => {
   try {
     dispatch(loadingMovies());

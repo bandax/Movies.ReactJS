@@ -1,19 +1,19 @@
+import qs from 'qs'; // Add this at the top of the file
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
-import { App } from './components/App';
-import { combineReducers, applyMiddleware } from 'redux';
-import { movieReducer } from './store/movie/reducers';
-import { createStore } from 'redux';
-import qs from 'qs'; // Add this at the top of the file
-import { MovieState } from './store/movie/state';
+import { combineReducers, applyMiddleware, createStore } from 'redux';
+
 import thunk from 'redux-thunk';
+import { movieReducer } from './store/movie/reducers';
+import { App } from './components/App';
 
 const rootReducer = combineReducers({
   movie: movieReducer,
 });
 
 function renderHTML(html, preloadedState) {
+  /* eslint-disable */
   return `
       <!doctype html>
       <html>
@@ -33,7 +33,7 @@ function renderHTML(html, preloadedState) {
             // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
             window.PRELOADED_STATE = ${JSON.stringify(preloadedState).replace(
               /</g,
-              '\\u003c'
+              '\\u003c',
             )}
           </script>
           <script src="/js/main.js"></script>
@@ -41,6 +41,7 @@ function renderHTML(html, preloadedState) {
         </body>
       </html>
   `;
+  /* eslint-enable */
 }
 
 export default function serverRenderer() {
@@ -50,7 +51,7 @@ export default function serverRenderer() {
     // Create a new Redux store instance
     const store = createStore(rootReducer, applyMiddleware(thunk));
 
-    let preloadedState = store.getState();
+    const preloadedState = store.getState();
     if (params.genre) {
       preloadedState.movie.genre = params.genre;
     } else {

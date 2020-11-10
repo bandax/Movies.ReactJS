@@ -6,6 +6,7 @@ import { SubHeader } from './SubHeader/SubHeader';
 import ResultsMovie from './ResultsMovie/ResultsMovie';
 import FooterSplit from './Footer/LoadableFooter';
 
+// PATTERN: Composition
 const Movie: React.FunctionComponent = () => (
   <div className="app">
     <ErrorBoundary>

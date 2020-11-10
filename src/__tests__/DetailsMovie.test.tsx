@@ -58,7 +58,7 @@ describe('<AddMovie />', () => {
         movie={movie}
         onEditMovie={onEditMovie}
         onDeleteMovie={onDeleteMovie}
-      />
+      />,
     );
 
     const fragment = asFragment();
@@ -72,7 +72,7 @@ describe('<AddMovie />', () => {
         movie={movie}
         onEditMovie={onEditMovie}
         onDeleteMovie={onDeleteMovie}
-      />
+      />,
     );
     const button = getByText('Edit Movie');
 
@@ -89,7 +89,7 @@ describe('<AddMovie />', () => {
         movie={movie}
         onEditMovie={onEditMovie}
         onDeleteMovie={onDeleteMovie}
-      />
+      />,
     );
     const button = getByText('Delete Movie');
 

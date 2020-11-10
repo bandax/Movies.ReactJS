@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'development') {
 
   app.use(webpackDevMiddleware(compiler));
   app.use(
-    webpackHotMiddleware(compiler.compilers.find((c) => c.name === 'client'))
+    webpackHotMiddleware(compiler.compilers.find((c) => c.name === 'client')),
   );
   app.use(webpackHotServerMiddleware(compiler));
 } else {

@@ -1,10 +1,10 @@
 [
-    {
-        "id": "sort-1",
-        "name": "Release Date"
-    },
-    {
-        "id": "sort-2",
-        "name": "Most Popular"
-    }
+  {
+    "id": "sort-1",
+    "name": "Release Date"
+  },
+  {
+    "id": "sort-2",
+    "name": "Most Popular"
+  }
 ]

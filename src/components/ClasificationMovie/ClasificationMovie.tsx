@@ -7,7 +7,7 @@ interface IClasificationMovieProps {
 }
 
 const ClasificationMovie: React.FunctionComponent<IClasificationMovieProps> = (
-  props: IClasificationMovieProps
+  props: IClasificationMovieProps,
 ) => {
   const movieTypes = props.clasificationTypes;
 

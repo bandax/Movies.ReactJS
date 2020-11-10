@@ -24,7 +24,7 @@ describe('<DeleteMovieWindow />', () => {
         movieId={1234}
         onShowDeleteMovieWindow={null}
         onConfirmDeleteMovie={null}
-      />
+      />,
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -36,7 +36,7 @@ describe('<DeleteMovieWindow />', () => {
         movieId={1234}
         onShowDeleteMovieWindow={null}
         onConfirmDeleteMovie={null}
-      />
+      />,
     );
 
     const elements = container.firstChild;
@@ -51,7 +51,7 @@ describe('<DeleteMovieWindow />', () => {
         movieId={1234}
         onShowDeleteMovieWindow={onShowDeleteMovieWindow}
         onConfirmDeleteMovie={null}
-      />
+      />,
     );
     const button = getByTestId('delete-movie-close');
 
@@ -71,7 +71,7 @@ describe('<DeleteMovieWindow />', () => {
         movieId={movieId}
         onShowDeleteMovieWindow={onShowDeleteMovieWindow}
         onConfirmDeleteMovie={onConfirmDeleteMovie}
-      />
+      />,
     );
     const button = getByText('Confirm');
 

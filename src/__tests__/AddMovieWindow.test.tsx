@@ -77,7 +77,7 @@ describe('<AddMovie />', () => {
         onShowAddMovieWindow={onShowAddMovieWindow}
         showModal={true}
         movie={newMovie}
-      />
+      />,
     );
 
     const fragment = asFragment();
@@ -93,7 +93,7 @@ describe('<AddMovie />', () => {
         onShowAddMovieWindow={onShowAddMovieWindow}
         showModal={false}
         movie={newMovie}
-      />
+      />,
     );
 
     const elements = container.firstChild;
@@ -109,7 +109,7 @@ describe('<AddMovie />', () => {
         onShowAddMovieWindow={onShowAddMovieWindow}
         showModal={true}
         movie={newMovie}
-      />
+      />,
     );
     const button = getByTestId('add-movie-close');
 
@@ -129,7 +129,7 @@ describe('<AddMovie />', () => {
         onShowAddMovieWindow={onShowAddMovieWindow}
         showModal={true}
         movie={movieToUpdate}
-      />
+      />,
     );
 
     const input = getByText('Movie Id');
@@ -145,7 +145,7 @@ describe('<AddMovie />', () => {
         onShowAddMovieWindow={onShowAddMovieWindow}
         showModal={true}
         movie={newMovie}
-      />
+      />,
     );
     const button = getByText('Submit');
 
@@ -164,7 +164,7 @@ describe('<AddMovie />', () => {
         onShowAddMovieWindow={onShowAddMovieWindow}
         showModal={true}
         movie={null}
-      />
+      />,
     );
     const title = getByText('Title');
     const button = getByText('Reset');

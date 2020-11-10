@@ -80,7 +80,7 @@ describe('<MovieInfo />', () => {
             <MovieInfo />
           </Route>
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     const fragment = asFragment();
@@ -96,7 +96,7 @@ describe('<MovieInfo />', () => {
             <MovieInfo />
           </Route>
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     const title = getByTestId('movie-title');
