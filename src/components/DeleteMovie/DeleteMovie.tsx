@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './DeleteMovie.scss';
 
-interface IDeleteMovieWindowProps {
+export interface IDeleteMovieWindowProps {
   showDeleteMovieModal: boolean;
   movieId: number;
   /* eslint-disable */

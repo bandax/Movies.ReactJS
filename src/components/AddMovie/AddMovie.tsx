@@ -6,6 +6,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { AddMovieWindow } from '../AddMovieWindow/AddMovieWindow';
 import clasificationTypes from '../../data/clasifications.json';
 import { IMovieData } from '../../interfaces/IMovieData';
+import { Button } from '../Button/Button';
 
 import { RootState } from '../../store/index';
 import { saveMovie, selectedMovie } from './thunks';
@@ -52,13 +53,11 @@ const AddMovie: React.FunctionComponent<Props> = ({
   return (
     <>
       <div className="add-movie col-2">
-        <button
-          type="button"
-          className="btn btn-add-movie"
+        <Button
+          buttonType="btn-add-movie"
+          label="+Add Movie"
           onClick={handleShowAddMovieWindow}
-        >
-          +Add Movie
-        </button>
+        />
       </div>
       <AddMovieWindow
         clasificationMovies={clasificationTypes}

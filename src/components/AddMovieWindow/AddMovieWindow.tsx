@@ -9,7 +9,7 @@ import { FormikMultiSelect } from '../Shared/FormikMultiSelect';
 import { FormikDatePicker } from '../Shared/FormikDatePicker';
 import { IOption } from '../../interfaces/IOption';
 
-interface IAddMovieWindowProps {
+export interface IAddMovieWindowProps {
   showModal: boolean;
   clasificationMovies: IClasification[];
   onShowAddMovieWindow: () => void;
