@@ -1,13 +1,13 @@
 import * as React from 'react';
 import './ResultsMovie.scss';
+import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
 import { IMovieData } from '../../interfaces/IMovieData';
 import { DetailsMovie } from '../DetailsMovie/DetailsMovie';
-import { connect } from 'react-redux';
 import { RootState } from '../../store/index';
 import { loadMovies } from './thunks';
-import { ThunkDispatch } from 'redux-thunk';
 import { getMoviesLoading, getMoviesData } from './selectors';
-import { Action } from 'redux';
 import {
   saveMovie,
   selectedMovie,
@@ -15,7 +15,6 @@ import {
 } from '../AddMovie/thunks';
 import { AddMovieWindow } from '../AddMovieWindow/AddMovieWindow';
 import clasificationTypes from '../../data/clasifications.json';
-import { IClasification } from '../../interfaces/IClasificationMovie';
 import { DeleteMovieWindow } from '../DeleteMovie/DeleteMovie';
 
 const mapStateToProps = (state: RootState) => ({
@@ -27,7 +26,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (
-  dispatch: ThunkDispatch<RootState, void, Action>
+  dispatch: ThunkDispatch<RootState, void, Action>,
 ) => {
   return {
     startLoadingMovies: () => dispatch(loadMovies()),
@@ -37,8 +36,10 @@ const mapDispatchToProps = (
   };
 };
 
+/* eslint-disable */
 type Props = ReturnType<typeof mapStateToProps> &
   ReturnType<typeof mapDispatchToProps>;
+/* eslint-enable */
 
 const ResultsMovie: React.FunctionComponent<Props> = ({
   movie,
@@ -50,21 +51,21 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
   isLoading,
   genre,
 }) => {
+  /* eslint-disable */
   const [showAddMovieModal, setShowAddMovieModal] = React.useState<boolean>(
-    false
+    false,
   );
+  /* eslint-enable */
 
+  /* eslint-disable */
   const [showDeleteMovieModal, setShowDeleteMovieModal] = React.useState<
     boolean
   >(false);
+  /* eslint-enable */
 
   const handleShowDeleteMovieWindow = React.useCallback(() => {
     setShowDeleteMovieModal(!showDeleteMovieModal);
   }, [showDeleteMovieModal]);
-
-  const [movieTypes, setClasificationTypes] = React.useState<IClasification[]>(
-    clasificationTypes
-  );
 
   const handleShowAddMovieWindow = React.useCallback(() => {
     setShowAddMovieModal(!showAddMovieModal);
@@ -76,33 +77,35 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
 
   const loadingMessage = <div>Loading movies...</div>;
 
-  const handleEditMovie = function (movie: IMovieData) {
+  const handleEditMovie = function editMovieFunc(movieDetails: IMovieData) {
     setShowAddMovieModal(!showAddMovieModal);
-    selectMovie(movie);
+    selectMovie(movieDetails);
   };
 
-  const handleDeleteMovie = function (movie: IMovieData) {
+  const handleDeleteMovie = function deleteMovieFunc(movieDetails: IMovieData) {
     setShowDeleteMovieModal(!showDeleteMovieModal);
-    selectMovie(movie);
+    selectMovie(movieDetails);
   };
 
-  const handleUpdateMovie = function (movie: IMovieData) {
-    updateMovie(movie);
+  const handleUpdateMovie = function updateMovieFunc(movieDetails: IMovieData) {
+    updateMovie(movieDetails);
   };
 
-  const handleDeleteSelectedMovie = function (id: number) {
+  const handleDeleteSelectedMovie = function deleteSelectedMovieFunc(
+    id: number,
+  ) {
     deleteMovie(id);
   };
 
   const content = (
     <>
-      {/* <AddMovieWindow
-        clasificationMovies={movieTypes}
+      <AddMovieWindow
+        clasificationMovies={clasificationTypes}
         showModal={showAddMovieModal}
         movie={movie}
         onShowAddMovieWindow={handleShowAddMovieWindow}
         onAddMovieSubmit={handleUpdateMovie}
-      /> */}
+      />
       <DeleteMovieWindow
         movieId={movie?.id}
         showDeleteMovieModal={showDeleteMovieModal}
@@ -116,10 +119,10 @@ const ResultsMovie: React.FunctionComponent<Props> = ({
           </span>
         </div>
         <div className="display-movie">
-          {movies.map((movie: IMovieData) => (
+          {movies.map((movieDetails: IMovieData) => (
             <DetailsMovie
-              key={movie.id}
-              movie={movie}
+              key={movieDetails.id}
+              movie={movieDetails}
               onEditMovie={handleEditMovie}
               onDeleteMovie={handleDeleteMovie}
             />

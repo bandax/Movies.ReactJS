@@ -13,7 +13,7 @@ export function loadingMoviesSuccess(movies: IMovieData[]): MovieActionsTypes {
   return {
     type: ACTIONS.LOAD_MOVIES_SUCCESS,
     loading: false,
-    movies: movies,
+    movies,
     findMovies: movies.length > 0,
   };
 }
@@ -22,7 +22,7 @@ export function loadingMoviesError(errorMessage: string): MovieActionsTypes {
   return {
     type: ACTIONS.LOADING_MOVIES_ERROR,
     loading: true,
-    errorMessage: errorMessage,
+    errorMessage,
   };
 }
 export function addMovie(movie: IMovieData): MovieActionsTypes {
@@ -42,31 +42,31 @@ export function updateMovie(movie: IMovieData): MovieActionsTypes {
 export function deleteMovie(movieId: number): MovieActionsTypes {
   return {
     type: ACTIONS.DELETE_MOVIE,
-    movieId: movieId,
+    movieId,
   };
 }
 
 export function selectMovie(movie: IMovieData): MovieActionsTypes {
   return {
     type: ACTIONS.SELECT_MOVIE,
-    movie: movie,
+    movie,
   };
 }
 
 export function filterByReleaseDateAndRating(
   releaseDate: string,
-  rating: number
+  rating: number,
 ): MovieActionsTypes {
   return {
     type: ACTIONS.FILTER_BY_RELEASE_DATE_AND_RATING,
-    releaseDate: releaseDate,
-    rating: rating,
+    releaseDate,
+    rating,
   };
 }
 
 export function sortByGenre(genre: string): MovieActionsTypes {
   return {
     type: ACTIONS.SORT_BY_GENRE,
-    genre: genre,
+    genre,
   };
 }

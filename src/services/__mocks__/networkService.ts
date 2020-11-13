@@ -1,5 +1,5 @@
-import moviesData from '../../data/movies.json';
 import fetchMock from 'fetch-mock';
+import moviesData from '../../data/movies.json';
 import { IMovieData } from '../../interfaces/IMovieData';
 import { INetworkData } from '../../interfaces/INetWorkData';
 

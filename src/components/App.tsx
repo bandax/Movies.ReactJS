@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { NotFound } from '../components/NotFound/NotFound';
-import SearchResults from '../components/SearchResults/SearchResults';
-import MovieInfo from '../components/MovieInfo/MovieInfo';
+import { NotFound } from './NotFound/NotFound';
+import SearchResults from './SearchResults/SearchResults';
+import MovieInfo from './MovieInfo/MovieInfo';
 import Movie from './Movie';
 
 interface IAppProps {

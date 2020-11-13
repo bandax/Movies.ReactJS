@@ -1,18 +1,17 @@
 import * as React from 'react';
 import './AddMovieWindow.scss';
-import { IClasification } from '../../interfaces/IClasificationMovie';
-import { IMovieData } from '../../interfaces/IMovieData';
 import * as Yup from 'yup';
 import { Formik, Form } from 'formik';
+import { IClasification } from '../../interfaces/IClasificationMovie';
+import { IMovieData } from '../../interfaces/IMovieData';
 import { FormikTextInput } from '../Shared/FormikTextInput';
 import { FormikMultiSelect } from '../Shared/FormikMultiSelect';
 import { FormikDatePicker } from '../Shared/FormikDatePicker';
 import { IOption } from '../../interfaces/IOption';
 
-interface IAddMovieWindowProps {
+export interface IAddMovieWindowProps {
   showModal: boolean;
   clasificationMovies: IClasification[];
-  movie?: IMovieData;
   onShowAddMovieWindow: () => void;
   onAddMovieSubmit: (movie: IMovieData) => void;
 }
@@ -32,8 +31,9 @@ interface IFormMovieValues {
   genres: IOption[];
 }
 
+// PATTERN: Controlled Inputs
 const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
-  props: IAddMovieWindowProps
+  props: IAddMovieWindowProps,
 ) => {
   const [genreOptions, setOptionGenres] = React.useState([]);
 
@@ -42,7 +42,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
       (option: IClasification) => ({
         label: option.name,
         value: option.id,
-      })
+      }),
     );
 
     setOptionGenres(optGenres);
@@ -54,7 +54,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
     const selGenres: IOption[] = [];
     props.movie?.genres.forEach((genre) => {
       const [selectedGenre] = genreOptions.filter(
-        (g: IOption) => g.label === genre
+        (g: IOption) => g.label === genre,
       );
       if (selectedGenre) {
         selGenres.push(selectedGenre);
@@ -117,6 +117,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
       <div className="add-movie-modal">
         <h2 className="add-movie-title">Add movie window</h2>
         <button
+          type="button"
           className="add-movie-close"
           data-testid="add-movie-close"
           onClick={props.onShowAddMovieWindow}
@@ -130,7 +131,6 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
             const selGenres: string[] = values.genres.map((option: IOption) => {
               return option.label;
             });
-            console.log(values.release_date);
 
             const movieToSave: IMovieData = {
               ...values,
@@ -237,7 +237,7 @@ const AddMovieWindow: React.FunctionComponent<IAddMovieWindowProps> = (
               </div>
             </div>
             <div className="actions">
-              <button className="btn btn-reset" type="reset">
+              <button className="btn btn-reset" type="button">
                 Reset
               </button>
               <button className="btn btn-submit" type="submit">

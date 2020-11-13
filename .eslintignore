@@ -1,0 +1,11 @@
+// .eslintignore
+build/*
+public/*
+types/*
+src/__tests__/*
+node_modules
+coverage
+.eslint.js
+src/stories/*
+src/server/*
+__mocks__

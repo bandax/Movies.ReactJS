@@ -7,8 +7,8 @@ const LoadableSearch = Loadable({
   loading: Loading,
 });
 
-export default class SearchSplit extends React.Component {
-  render() {
-    return <LoadableSearch />;
-  }
-}
+const SearchSplit: React.FunctionComponent = () => {
+  return <LoadableSearch />;
+};
+
+export default SearchSplit;

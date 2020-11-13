@@ -1,14 +1,14 @@
 import * as React from 'react';
 import './AddMovie.scss';
+import { Action } from 'redux';
+import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { AddMovieWindow } from '../AddMovieWindow/AddMovieWindow';
 import clasificationTypes from '../../data/clasifications.json';
 import { IMovieData } from '../../interfaces/IMovieData';
-import { IClasification } from '../../interfaces/IClasificationMovie';
-import { Action } from 'redux';
+import { Button } from '../Button/Button';
 
 import { RootState } from '../../store/index';
-import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk';
 import { saveMovie, selectedMovie } from './thunks';
 
 const mapStateToProps = (state: RootState) => ({
@@ -16,7 +16,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (
-  dispatch: ThunkDispatch<RootState, void, Action>
+  dispatch: ThunkDispatch<RootState, void, Action>,
 ) => {
   return {
     addNewMovie: (movie: IMovieData) => dispatch(saveMovie(movie)),
@@ -24,8 +24,10 @@ const mapDispatchToProps = (
   };
 };
 
+/* eslint-disable */
 type Props = ReturnType<typeof mapStateToProps> &
   ReturnType<typeof mapDispatchToProps>;
+/* eslint-enable */
 
 const AddMovie: React.FunctionComponent<Props> = ({
   movie,
@@ -33,38 +35,37 @@ const AddMovie: React.FunctionComponent<Props> = ({
   selectMovie,
 }) => {
   const [showAddMovieModal, setShowAddMovieModal] = React.useState<boolean>(
-    false
-  );
-  const [movieTypes, setClasificationTypes] = React.useState<IClasification[]>(
-    clasificationTypes
+    false,
   );
 
+  // PATTERN: Event Handlers
   const handleShowAddMovieWindow = React.useCallback(() => {
     selectMovie();
     setShowAddMovieModal(!showAddMovieModal);
   }, [showAddMovieModal]);
 
-  const handleSubmitAddMovie = function (movieToSave: IMovieData) {
+  const handleSubmitAddMovie = function submitAddMovieFunc(
+    movieToSave: IMovieData,
+  ) {
     addNewMovie(movieToSave);
   };
 
   return (
     <>
       <div className="add-movie col-2">
-        <button
-          className="btn btn-add-movie"
+        <Button
+          buttonType="btn-add-movie"
+          label="+Add Movie"
           onClick={handleShowAddMovieWindow}
-        >
-          +Add Movie
-        </button>
+        />
       </div>
-      {/* <AddMovieWindow
-        clasificationMovies={movieTypes}
+      <AddMovieWindow
+        clasificationMovies={clasificationTypes}
         showModal={showAddMovieModal}
         movie={movie}
         onShowAddMovieWindow={handleShowAddMovieWindow}
         onAddMovieSubmit={handleSubmitAddMovie}
-      /> */}
+      />
     </>
   );
 };

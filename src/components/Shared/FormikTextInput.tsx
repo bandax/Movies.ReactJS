@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useField } from 'formik';
 import './Style-Controls.scss';
 
+// PATTERN: Common Abstraction
 const FormikTextInput = ({ ...props }) => {
   const [field, meta] = useField(props.name);
   return (

@@ -7,7 +7,7 @@ import clasificationTypes from '../data/clasifications.json';
 describe('<Footer />', () => {
   it('render a Footer Component', async () => {
     const { asFragment } = render(
-      <ClasificationMovie clasificationTypes={clasificationTypes} />
+      <ClasificationMovie clasificationTypes={clasificationTypes} />,
     );
     expect(asFragment()).toMatchSnapshot();
   });

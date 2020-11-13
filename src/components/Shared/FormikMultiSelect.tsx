@@ -3,6 +3,7 @@ import { useField, useFormikContext } from 'formik';
 import MultiSelect from 'react-multi-select-component';
 import { IOption } from '../../interfaces/IOption';
 
+// PATTERN: Common Abstraction
 const FormikMultiSelect = ({ ...props }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(props.name);
@@ -24,7 +25,7 @@ const FormikMultiSelect = ({ ...props }) => {
         options={props.options}
         value={field.value}
         onChange={onSelectedOption}
-        labelledBy={'Select'}
+        labelledBy="Select"
         {...props}
       />
       {meta.touched && meta.error ? (

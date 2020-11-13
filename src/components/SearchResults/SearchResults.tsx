@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { useParams, withRouter, RouteComponentProps } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
 import { IMovieData } from '../../interfaces/IMovieData';
 import { DetailsMovie } from '../DetailsMovie/DetailsMovie';
-import { connect } from 'react-redux';
 import { RootState } from '../../store/index';
 import { searchMovies } from './thunks';
-import { ThunkDispatch } from 'redux-thunk';
 import {
   getMoviesLoading,
   getMoviesData,
   getFindMovies,
 } from '../ResultsMovie/selectors';
-import { Action } from 'redux';
 
 interface IParamTypes {
   searchQuery: string;
@@ -25,29 +25,31 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (
-  dispatch: ThunkDispatch<RootState, void, Action>
+  dispatch: ThunkDispatch<RootState, void, Action>,
 ) => {
   return {
-    searchMovies: (term: string) => dispatch(searchMovies(term)),
+    searchMoviesFunc: (term: string) => dispatch(searchMovies(term)),
   };
 };
 
+/* eslint-disable */
 type Props = ReturnType<typeof mapStateToProps> &
   ReturnType<typeof mapDispatchToProps> &
   RouteComponentProps;
+/* eslint-enable */
 
 const SearchResults: React.FunctionComponent<Props> = ({
   movie,
   movies,
   isLoading,
-  searchMovies,
+  searchMoviesFunc,
   history,
   findMovies,
 }) => {
   const { searchQuery } = useParams<IParamTypes>();
 
   React.useEffect(() => {
-    searchMovies(searchQuery);
+    searchMoviesFunc(searchQuery);
   }, []);
 
   if (!findMovies && movies.length === 0) {
@@ -65,8 +67,8 @@ const SearchResults: React.FunctionComponent<Props> = ({
           </span>
         </div>
         <div className="display-movie">
-          {movies.map((movie: IMovieData) => (
-            <DetailsMovie key={movie.id} movie={movie} />
+          {movies.map((movieDetails: IMovieData) => (
+            <DetailsMovie key={movieDetails.id} movie={movieDetails} />
           ))}
         </div>
       </div>
@@ -77,5 +79,5 @@ const SearchResults: React.FunctionComponent<Props> = ({
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(SearchResults)
+  connect(mapStateToProps, mapDispatchToProps)(SearchResults),
 );

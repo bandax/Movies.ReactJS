@@ -7,8 +7,8 @@ const LoadableFooter = Loadable({
   loading: Loading,
 });
 
-export default class FooterSplit extends React.Component {
-  render() {
-    return <LoadableFooter />;
-  }
-}
+const FooterSplit: React.FunctionComponent = () => {
+  return <LoadableFooter />;
+};
+
+export default FooterSplit;

@@ -33,7 +33,7 @@ describe('<AddMovie />', () => {
     const { asFragment } = render(
       <Provider store={store}>
         <AddMovie />
-      </Provider>
+      </Provider>,
     );
 
     const fragment = asFragment();
@@ -45,7 +45,7 @@ describe('<AddMovie />', () => {
     const { getByText } = render(
       <Provider store={store}>
         <AddMovie />
-      </Provider>
+      </Provider>,
     );
     const button = getByText('+Add Movie');
 

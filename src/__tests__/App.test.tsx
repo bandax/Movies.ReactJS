@@ -30,7 +30,7 @@ describe('<App />', () => {
     const { asFragment } = render(
       <Provider store={store}>
         <App />
-      </Provider>
+      </Provider>,
     );
 
     const fragment = asFragment();

@@ -1,13 +1,12 @@
 import * as React from 'react';
 import './MovieInfo.scss';
-import { IMovie } from '../../interfaces/IResultsMovies';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { Action } from 'redux';
 import { RootState } from '../../store/index';
 import { getMovieById } from './thunks';
-import { ThunkDispatch } from 'redux-thunk';
 import { getMoviesLoading, getMoviesData } from '../ResultsMovie/selectors';
-import { Action } from 'redux';
 
 interface IParamTypes {
   movieId: string;
@@ -20,29 +19,31 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (
-  dispatch: ThunkDispatch<RootState, void, Action>
+  dispatch: ThunkDispatch<RootState, void, Action>,
 ) => {
   return {
-    getMovieById: (id: string) => dispatch(getMovieById(id)),
+    getMovieByIdFunc: (id: string) => dispatch(getMovieById(id)),
   };
 };
 
+/* eslint-disable */
 type Props = ReturnType<typeof mapStateToProps> &
   ReturnType<typeof mapDispatchToProps>;
+/* eslint-enable */
 
 const MovieInfo: React.FunctionComponent<Props> = ({
   movie,
   movies,
   isLoading,
-  getMovieById,
+  getMovieByIdFunc,
 }) => {
   const { movieId } = useParams<IParamTypes>();
 
   React.useEffect(() => {
-    getMovieById(movieId);
+    getMovieByIdFunc(movieId);
   }, []);
 
-  const getYear = function (releaseDate: string) {
+  const getYear = function gteYearFunc(releaseDate: string) {
     const date = new Date(releaseDate);
     return date.getFullYear();
   };
@@ -52,7 +53,12 @@ const MovieInfo: React.FunctionComponent<Props> = ({
     <>
       <div className="row">
         <div className="col-4 movie-image">
-          <img width="50%" className="poster-movie" src={movie?.poster_path} />
+          <img
+            width="50%"
+            className="poster-movie"
+            src={movie?.poster_path}
+            alt={movie?.title}
+          />
         </div>
         <div className="col-8">
           <div className="">

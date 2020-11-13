@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import {
   addMovie,
   updateMovie,
@@ -7,7 +8,6 @@ import {
   loadingMoviesError,
 } from '../../store/movie/actions';
 import { RootState } from '../../store/index';
-import { ThunkDispatch } from 'redux-thunk';
 import { IMovieData } from '../../interfaces/IMovieData';
 import { INetworkData } from '../../interfaces/INetWorkData';
 import {
@@ -17,7 +17,7 @@ import {
 } from '../../services/networkService';
 
 export const saveMovie = (movie: IMovieData) => async (
-  dispatch: ThunkDispatch<RootState, void, Action>
+  dispatch: ThunkDispatch<RootState, void, Action>,
 ) => {
   try {
     let data: INetworkData;
@@ -49,11 +49,11 @@ export const saveMovie = (movie: IMovieData) => async (
         dispatch(updateMovie(movieUpdated));
       }
     } else {
-      const data = await response.json();
-      const messages = data.messages;
+      const result = await response.json();
+      const { messages } = result;
       let allMessages = 'Error with message: \n';
       messages.forEach((message: string) => {
-        allMessages = allMessages.concat(message + '\n');
+        allMessages = allMessages.concat(`${message}\n`);
       });
       alert(allMessages);
     }
@@ -63,7 +63,7 @@ export const saveMovie = (movie: IMovieData) => async (
 };
 
 export const deleteSelectedMovie = (id: number) => async (
-  dispatch: ThunkDispatch<RootState, void, Action>
+  dispatch: ThunkDispatch<RootState, void, Action>,
 ) => {
   try {
     const response = await deleteRequest(`http://localhost:4000/movies/${id}`);
@@ -76,7 +76,7 @@ export const deleteSelectedMovie = (id: number) => async (
 };
 
 export const selectedMovie = (movie: IMovieData) => (
-  dispatch: ThunkDispatch<RootState, void, Action>
+  dispatch: ThunkDispatch<RootState, void, Action>,
 ) => {
   dispatch(selectMovie(movie));
 };

@@ -97,7 +97,7 @@ describe('<SearchResults />', () => {
             <SearchResults />
           </Route>
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     const fragment = asFragment();
@@ -113,7 +113,7 @@ describe('<SearchResults />', () => {
             <SearchResults />
           </Route>
         </MemoryRouter>
-      </Provider>
+      </Provider>,
     );
 
     const searchWord = getByText('Results for Infinity');
