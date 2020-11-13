@@ -16,7 +16,7 @@ function renderHTML(html, preloadedState) {
   /* eslint-disable */
   return `
       <!doctype html>
-      <html>
+      <html lang='en'>
         <head>
           <meta charset=utf-8>
           <title>React Server Side Rendering</title>
